@@ -19,7 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LabelParser.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="ParsingException.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LabelParser.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="ParsingException.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
