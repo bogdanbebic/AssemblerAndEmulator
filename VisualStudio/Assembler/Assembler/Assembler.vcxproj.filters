@@ -27,6 +27,9 @@
     <ClCompile Include="ParsingException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StatementParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parser.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ParsingException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StatementParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
