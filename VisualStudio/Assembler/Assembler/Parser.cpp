@@ -9,11 +9,11 @@ void parsers::Parser::parse(std::istream &is)
 {
 	std::string line;
 	is >> std::ws;
-	while (!this->directive_end_flag_ && std::getline(is, line))
+	while (!this->directive_end_ && std::getline(is, line))
 	{
 		try
 		{
-			this->parse_line(line);			
+			this->parse_line(line);
 		}
 		catch (ParsingException &exception)
 		{

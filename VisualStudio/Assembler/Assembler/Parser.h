@@ -14,7 +14,7 @@ namespace parsers
 	private:
 		void parse_line(std::string line);
 		
-		bool directive_end_flag_ = false;
+		bool directive_end_ = false;
 		LabelParser label_parser_;
 	};
 
