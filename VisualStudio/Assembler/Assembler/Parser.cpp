@@ -27,7 +27,9 @@ void parsers::Parser::parse(std::istream &is)
 
 void parsers::Parser::parse_line(std::string line)
 {
-	line = this->label_parser_.parse(line);
-	// TODO: parse line
+	std::string statement = this->label_parser_.parse(line);
+	
+	this->statement_parser_chain_->parse(statement);
+	
 	std::cout << "LINE:'" << line << "'\n";
 }

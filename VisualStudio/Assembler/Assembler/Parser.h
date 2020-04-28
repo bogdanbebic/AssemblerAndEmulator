@@ -2,7 +2,9 @@
 #define PARSER_H_GUARD
 
 #include <iostream>
+#include <memory>
 #include "LabelParser.h"
+#include "StatementParser.h"
 
 namespace parsers
 {
@@ -15,7 +17,9 @@ namespace parsers
 		void parse_line(std::string line);
 		
 		bool directive_end_ = false;
+
 		LabelParser label_parser_;
+		std::shared_ptr<StatementParser> statement_parser_chain_;
 	};
 
 

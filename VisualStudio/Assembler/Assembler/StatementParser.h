@@ -11,7 +11,7 @@ namespace parsers
 	public:
 		virtual ~StatementParser() = default;
 
-		virtual size_t parse(std::string line) = 0;
+		virtual size_t parse(std::string statement) = 0;
 
 		void set_next(std::shared_ptr<StatementParser> statement_parser);
 	protected:
