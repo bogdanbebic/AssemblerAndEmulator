@@ -25,6 +25,7 @@
     <ClCompile Include="ParsingException.cpp" />
     <ClCompile Include="Statement.cpp" />
     <ClCompile Include="StatementParser.cpp" />
+    <ClCompile Include="SymbolTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LabelParser.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="ParsingException.h" />
     <ClInclude Include="Statement.h" />
     <ClInclude Include="StatementParser.h" />
+    <ClInclude Include="SymbolTable.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
