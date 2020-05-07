@@ -1,9 +1,16 @@
 #include "LabelParser.h"
 #include <iostream>
+#include <utility>
 
 #include "ParsingException.h"
 
-std::string parsers::LabelParser::parse(std::string line)
+parsers::LabelParser::LabelParser(std::shared_ptr<SymbolTable> symbol_table)
+	: symbol_table_(std::move(symbol_table))
+{
+	// empty body
+}
+
+std::string parsers::LabelParser::parse(std::string line, size_t line_counter)
 {
 	if (line.find(':') != std::string::npos)
 	{

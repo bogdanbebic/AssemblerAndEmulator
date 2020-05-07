@@ -9,11 +9,15 @@ void parsers::Parser::parse(std::istream &is)
 {
 	std::string line;
 	is >> std::ws;
-	while (!this->directive_end_ && std::getline(is, line))
+	while (std::getline(is, line))
 	{
 		try
 		{
-			this->parse_line(line);
+			bool is_end = this->parse_line(line);
+			if (is_end)
+			{
+				break;
+			}
 		}
 		catch (ParsingException &exception)
 		{
@@ -25,11 +29,20 @@ void parsers::Parser::parse(std::istream &is)
 	}
 }
 
-void parsers::Parser::parse_line(std::string line)
+bool parsers::Parser::parse_line(const std::string& line)
 {
-	std::string statement = this->label_parser_.parse(line);
+	std::string statement_line = this->label_parser_.parse(line, this->line_counter_);
+	if (this->statement_parser_chain_ == nullptr)
+	{
+		return false;
+	}
 	
-	this->statement_parser_chain_->parse(statement);
-	
+	const std::shared_ptr<statements::Statement> statement = this->statement_parser_chain_->parse(statement_line);
 	std::cout << "LINE:'" << line << "'\n";
+	if (statement != nullptr)
+	{
+		return statement->is_end();
+	}
+
+	return false;
 }

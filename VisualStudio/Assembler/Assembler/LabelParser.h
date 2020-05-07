@@ -3,17 +3,22 @@
 
 #include <string>
 #include <regex>
+#include <memory>
+
+class SymbolTable;
 
 namespace parsers
 {
-		
 	class LabelParser
 	{
 	public:
-		std::string parse(std::string line);
+		explicit LabelParser(std::shared_ptr<SymbolTable> symbol_table);
+		std::string parse(std::string line, size_t line_counter);
 	private:
 		std::regex regex_{ "^(\\w+):\\s*(.*)$" };
 		std::cmatch match_;
+		
+		std::shared_ptr<SymbolTable> symbol_table_;
 	};
 
 }

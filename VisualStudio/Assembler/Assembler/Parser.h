@@ -14,12 +14,11 @@ namespace parsers
 	public:
 		void parse(std::istream &is);
 	private:
-		void parse_line(std::string line);
-		
-		bool directive_end_ = false;
+		bool parse_line(const std::string& line);
 
-		LabelParser label_parser_;
-		std::shared_ptr<StatementParser> statement_parser_chain_;
+		LabelParser label_parser_{nullptr};
+		std::shared_ptr<StatementParser> statement_parser_chain_ = nullptr;
+		size_t line_counter_ = 0;
 	};
 
 

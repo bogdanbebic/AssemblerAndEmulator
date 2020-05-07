@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include "Statement.h"
 
 namespace parsers
 {
@@ -11,7 +12,7 @@ namespace parsers
 	public:
 		virtual ~StatementParser() = default;
 
-		virtual size_t parse(std::string statement) = 0;
+		virtual std::shared_ptr<statements::Statement> parse(std::string statement) = 0;
 
 		void set_next(std::shared_ptr<StatementParser> statement_parser);
 	protected:
