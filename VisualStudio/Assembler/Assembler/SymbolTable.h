@@ -5,7 +5,7 @@
 #include <map>
 #include <string>
 
-namespace symbol_table
+namespace assembler
 {
 	class SymbolTable
 	{
