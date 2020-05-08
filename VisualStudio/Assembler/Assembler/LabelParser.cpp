@@ -4,7 +4,7 @@
 
 #include "ParsingException.h"
 
-parsers::LabelParser::LabelParser(std::shared_ptr<SymbolTable> symbol_table)
+parsers::LabelParser::LabelParser(std::shared_ptr<assembler::SymbolTable> symbol_table)
 	: symbol_table_(std::move(symbol_table))
 {
 	// empty body
