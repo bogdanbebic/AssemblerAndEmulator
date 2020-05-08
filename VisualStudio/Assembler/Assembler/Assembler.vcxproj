@@ -23,6 +23,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="ParsingException.cpp" />
+    <ClCompile Include="SectionTable.cpp" />
     <ClCompile Include="Statement.cpp" />
     <ClCompile Include="StatementParser.cpp" />
     <ClCompile Include="SymbolTable.cpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="LabelParser.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="ParsingException.h" />
+    <ClInclude Include="SectionTable.h" />
     <ClInclude Include="Statement.h" />
     <ClInclude Include="StatementParser.h" />
     <ClInclude Include="SymbolTable.h" />
