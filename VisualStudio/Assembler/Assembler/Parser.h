@@ -6,9 +6,11 @@
 #include "LabelParser.h"
 #include "StatementParser.h"
 
+#include "SymbolTable.h"
+#include "SectionTable.h"
+
 namespace parsers
 {
-
 	class Parser
 	{
 	public:
@@ -16,9 +18,18 @@ namespace parsers
 	private:
 		bool parse_line(const std::string& line);
 
+		size_t line_counter_ = 0;
+		assembler::SectionTable::key_type current_section_name_ = 
+		{
+			assembler::SectionTable::undefined_section_entry_name
+		};
+
+		assembler::SymbolTable symbol_table_;
+		assembler::SectionTable section_table_;
+				
 		LabelParser label_parser_{nullptr};
 		std::shared_ptr<StatementParser> statement_parser_chain_ = nullptr;
-		size_t line_counter_ = 0;
+
 	};
 
 
