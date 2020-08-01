@@ -31,7 +31,8 @@ void parsers::Parser::parse(std::istream &is)
 
 bool parsers::Parser::parse_line(const std::string& line)
 {
-	std::string statement_line = this->label_parser_.parse(line, 0, this->line_counter_);
+	std::string line_without_comments = this->line_comment_stripper_.strip_line_comment(line);
+	std::string statement_line = this->label_parser_.parse(line_without_comments, 0, this->line_counter_);
 	if (this->statement_parser_chain_ == nullptr)
 	{
 		return false;
