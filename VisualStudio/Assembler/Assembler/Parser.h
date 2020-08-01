@@ -27,7 +27,7 @@ namespace parsers
 		assembler::SymbolTable symbol_table_;
 		assembler::SectionTable section_table_;
 				
-		LabelParser label_parser_{std::shared_ptr<assembler::SymbolTable>(&symbol_table_)};
+		LabelParser label_parser_{nullptr};
 		std::shared_ptr<StatementParser> statement_parser_chain_ = nullptr;
 
 	};
