@@ -15,7 +15,7 @@ namespace parsers
 	{
 	public:
 		explicit LabelParser(std::shared_ptr<assembler::SymbolTable> symbol_table);
-		std::string parse(std::string line, size_t line_counter);
+		std::string parse(std::string line, size_t section_index, size_t line_counter);
 	private:
 		std::regex regex_{ "^(\\w+):\\s*(.*)$" };
 		std::cmatch match_;

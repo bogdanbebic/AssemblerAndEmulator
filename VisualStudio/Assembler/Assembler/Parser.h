@@ -24,10 +24,10 @@ namespace parsers
 			assembler::SectionTable::undefined_section_entry_name
 		};
 
-		assembler::SymbolTable symbol_table_;
-		assembler::SectionTable section_table_;
+		std::shared_ptr<assembler::SymbolTable> symbol_table_ = std::make_shared<assembler::SymbolTable>();
+		std::shared_ptr<assembler::SectionTable> section_table_ = std::make_shared<assembler::SectionTable>();
 				
-		LabelParser label_parser_{nullptr};
+		LabelParser label_parser_{ symbol_table_ };
 		std::shared_ptr<StatementParser> statement_parser_chain_ = nullptr;
 
 	};
