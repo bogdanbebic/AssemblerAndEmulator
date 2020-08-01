@@ -4,6 +4,7 @@
 #include <utility>
 #include <map>
 #include <string>
+#include <sstream>
 
 namespace assembler
 {
@@ -24,6 +25,8 @@ namespace assembler
 		mapped_type& at(const key_type& key);
 		void insert(const std::pair<key_type, mapped_type>& entry);
 		void erase(const key_type& key);
+
+		std::stringstream to_school_elf() const;
 	private:
 		std::map<key_type, mapped_type> symbol_table_;
 	};

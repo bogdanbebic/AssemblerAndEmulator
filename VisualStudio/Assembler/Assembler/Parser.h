@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <memory>
+#include <sstream>
 #include "LabelParser.h"
 #include "StatementParser.h"
 
@@ -16,6 +17,7 @@ namespace parsers
 	{
 	public:
 		void parse(std::istream &is);
+		std::stringstream to_school_elf() const;
 	private:
 		bool parse_line(const std::string& line);
 
