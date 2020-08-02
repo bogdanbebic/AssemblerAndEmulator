@@ -5,7 +5,7 @@
 #include "LiteralParsingException.h"
 #include <iostream>
 
-std::regex parsers::LiteralParser::char_literal_regex_{ "^'.'$" };
+std::regex parsers::LiteralParser::char_literal_regex_{ "^[+-]?'.'$" };
 std::regex parsers::LiteralParser::decimal_literal_regex_{ "^[+-]?[1-9][0-9]*$" };
 std::regex parsers::LiteralParser::octal_literal_regex_{ "^[+-]?0[0-7]*$" }; // * instead of + is a hack for parsing 0
 std::regex parsers::LiteralParser::hex_literal_regex_{ "^[+-]?0x[0-9a-f]+$" };
@@ -66,6 +66,10 @@ bool parsers::LiteralParser::is_hex_literal(const std::string& string)
 
 int parsers::LiteralParser::parse_char_literal(const std::string& string)
 {
+	if (string[0] == '-')
+		return -string[2];
+	if (string[0] == '+')
+		return string[2];
 	return string[1];
 }
 
