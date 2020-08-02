@@ -10,6 +10,7 @@ namespace parsers
 	public:
 		static bool is_literal(const std::string& string);
 		static int parse(const std::string& string);
+		static int evaluate_expression(std::string string);
 	private:
 		static std::regex char_literal_regex_;
 		static std::regex decimal_literal_regex_;

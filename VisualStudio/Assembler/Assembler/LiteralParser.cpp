@@ -1,7 +1,9 @@
 #include "LiteralParser.h"
+#include <algorithm>
 #include <sstream>
 #include <ios>
 #include "LiteralParsingException.h"
+#include <iostream>
 
 std::regex parsers::LiteralParser::char_literal_regex_{ "^'.'$" };
 std::regex parsers::LiteralParser::decimal_literal_regex_{ "^[+-]?[1-9][0-9]*$" };
@@ -30,6 +32,16 @@ int parsers::LiteralParser::parse(const std::string& string)
 		return parse_hex_literal(string);
 
 	throw LiteralParsingException();
+}
+
+int parsers::LiteralParser::evaluate_expression(std::string string)
+{
+	std::cout << "BEFORE: '" << string << "'\n";
+	string.erase(std::remove_if(string.begin(), string.end(), 
+		[](int ch) { return std::isspace(ch); }), 
+		string.end());
+	std::cout << "AFTER: '" << string << "'\n";
+	return 0;
 }
 
 bool parsers::LiteralParser::is_char_literal(const std::string& string)

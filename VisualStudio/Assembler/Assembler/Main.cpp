@@ -13,12 +13,20 @@ int main(int argc, char* argv[])
 	std::ofstream output_file("test_input/test.out");
 	output_file << parser.to_school_elf().str();
 
-	std::ifstream test_literal_parser_file("test_input/literals.txt");
 	std::string line;
+	
+	std::ifstream test_literal_parser_file("test_input/literals.txt");
 	std::cout << "\nLiterals test:\n";
 	while (std::getline(test_literal_parser_file, line))
 	{
 		std::cout << parsers::LiteralParser::parse(line) << '\n';
+	}
+
+	std::ifstream test_literal_expr_parser_file("test_input/literals-expr.txt");
+	std::cout << "\nLiterals expressions test:\n";
+	while (std::getline(test_literal_expr_parser_file, line))
+	{
+		std::cout << parsers::LiteralParser::evaluate_expression(line) << '\n';
 	}
 	
 	return 0;
