@@ -24,10 +24,14 @@ namespace assembler
 		SectionTable();
 		
 		mapped_type& at(const key_type& key);
-		void insert(const std::pair<key_type, mapped_type>& entry);
+		void insert(const key_type& key);
+		void update_section_size(const key_type& key, size_t size);
 		void erase(const key_type& key);
 	private:
+		void insert(const std::pair<key_type, mapped_type>& entry);
+		
 		std::map<key_type, mapped_type> section_table_;
+		size_t next_section_index_ = 1;
 	};
 
 }

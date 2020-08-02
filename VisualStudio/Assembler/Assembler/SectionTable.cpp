@@ -25,6 +25,17 @@ assembler::SectionTable::mapped_type& assembler::SectionTable::at(const key_type
 	return this->section_table_.at(key);
 }
 
+void assembler::SectionTable::insert(const key_type& key)
+{
+	mapped_type entry = { key, this->next_section_index_++, 0 };
+	this->insert({ key, entry });
+}
+
+void assembler::SectionTable::update_section_size(const key_type& key, size_t size)
+{
+	this->section_table_[key].size = size;
+}
+
 void assembler::SectionTable::insert(const std::pair<key_type, mapped_type>& entry)
 {
 	this->section_table_.insert(entry);
