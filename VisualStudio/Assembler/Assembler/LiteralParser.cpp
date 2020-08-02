@@ -10,6 +10,11 @@ std::regex parsers::LiteralParser::decimal_literal_regex_{ "^[+-]?[1-9][0-9]*$" 
 std::regex parsers::LiteralParser::octal_literal_regex_{ "^[+-]?0[0-7]*$" }; // * instead of + is a hack for parsing 0
 std::regex parsers::LiteralParser::hex_literal_regex_{ "^[+-]?0x[0-9a-f]+$" };
 
+std::regex parsers::LiteralParser::literal_regex_{ "([+-]?('.'|[1-9][0-9]*|0x[0-9a-f]+|0[0-7]*))" };
+std::regex parsers::LiteralParser::expression_regex_{
+	R"((\s*[+-]?\s*('.'|[1-9][0-9]*|0x[0-9a-f]+|0[0-7]*))(\s*[+-]\s*('.'|[1-9][0-9]*|0x[0-9a-f]+|0[0-7]*))*)"
+};
+
 std::cmatch parsers::LiteralParser::match_{};
 
 bool parsers::LiteralParser::is_literal(const std::string& string)
@@ -34,14 +39,26 @@ int parsers::LiteralParser::parse(const std::string& string)
 	throw LiteralParsingException();
 }
 
+bool parsers::LiteralParser::is_expression(const std::string& string)
+{
+	return std::regex_match(string.c_str(), match_, expression_regex_);
+}
+
 int parsers::LiteralParser::evaluate_expression(std::string string)
 {
-	std::cout << "BEFORE: '" << string << "'\n";
 	string.erase(std::remove_if(string.begin(), string.end(), 
 		[](int ch) { return std::isspace(ch); }), 
 		string.end());
-	std::cout << "AFTER: '" << string << "'\n";
-	return 0;
+	
+	std::smatch match;
+	int expression_value = 0;
+	while (std::regex_search(string, match, literal_regex_))
+	{
+		expression_value += parse(match.str());
+		string = match.suffix();
+	}
+	
+	return expression_value;
 }
 
 bool parsers::LiteralParser::is_char_literal(const std::string& string)
