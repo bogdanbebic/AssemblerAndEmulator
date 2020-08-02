@@ -22,7 +22,7 @@ void parsers::Parser::parse(std::istream &is)
 		catch (ParsingException &exception)
 		{
 			// TODO: LOG error
-			std::cout << exception.what() << "\n";
+			std::cerr << exception.what() << "\n";
 		}
 
 		is >> std::ws;
