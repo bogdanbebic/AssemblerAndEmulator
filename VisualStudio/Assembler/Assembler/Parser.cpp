@@ -44,7 +44,6 @@ bool parsers::Parser::parse_line(const std::string& line)
 	}
 	
 	const std::shared_ptr<statements::Statement> statement = this->statement_parser_chain_->parse(statement_line);
-	std::cout << "LINE:'" << line << "'\n";
 	if (statement != nullptr)
 	{
 		return statement->is_end();
