@@ -45,6 +45,9 @@
     <ClCompile Include="AssemblyDirectiveParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LiteralParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parser.h">
@@ -72,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AssemblyDirectiveParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LiteralParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LiteralParsingException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
