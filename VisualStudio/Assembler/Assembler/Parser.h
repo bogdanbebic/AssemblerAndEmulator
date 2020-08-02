@@ -16,6 +16,7 @@ namespace parsers
 	class Parser
 	{
 	public:
+		Parser();
 		void parse(std::istream &is);
 		std::stringstream to_school_elf() const;
 	private:

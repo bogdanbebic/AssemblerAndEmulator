@@ -5,6 +5,14 @@
 
 #include "ParsingException.h"
 
+#include "AssemblyDirectiveParser.h"
+
+parsers::Parser::Parser()
+{
+	auto assembly_directive_parser = std::make_shared<AssemblyDirectiveParser>(this->section_table_);
+	this->statement_parser_chain_ = assembly_directive_parser;
+}
+
 void parsers::Parser::parse(std::istream &is)
 {
 	std::string line;

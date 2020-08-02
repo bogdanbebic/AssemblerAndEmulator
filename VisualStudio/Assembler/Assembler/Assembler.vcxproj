@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssemblyDirectiveParser.cpp" />
     <ClCompile Include="LabelParser.cpp" />
     <ClCompile Include="LineCommentStripper.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="SymbolTable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssemblyDirectiveParser.h" />
     <ClInclude Include="LabelParser.h" />
     <ClInclude Include="LineCommentStripper.h" />
     <ClInclude Include="Parser.h" />
