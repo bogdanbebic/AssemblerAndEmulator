@@ -13,10 +13,10 @@ namespace assembler
 	public:
 		struct SymbolTableEntry
 		{
-			std::string symbol;
-			size_t value;
-			size_t section_index;
-			bool is_global;
+			std::string symbol = "";
+			size_t value = 0;
+			size_t section_index = 0;
+			bool is_global = false;
 		};
 		
 		using key_type = std::string;
