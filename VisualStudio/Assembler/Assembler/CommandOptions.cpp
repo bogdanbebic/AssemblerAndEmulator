@@ -32,7 +32,40 @@ CommandOptions::CommandOptions(int argc, char* argv[])
 	}
 #else
 	// LINUX
-	// TODO: implement
+	int c;
+	opterr = 0;
+	
+	while ((c = getopt(argc, argv, "ho:")) != -1)
+	{
+		switch (c)
+		{
+		case 'h':
+			this->help_flag_ = true;
+			break;
+		case 'o':
+			this->output_file_name_ = optarg;
+			break;
+		case '?':
+		default:
+			throw std::invalid_argument{
+				std::string{"Error: invalid arguments\n"}
+				+this->help_message()
+			};
+			break;
+		}
+	}
+
+	if (optind == argc - 1)
+	{
+		this->input_file_name_ = argv[optind];
+	}
+	else
+	{
+		throw std::invalid_argument{
+				std::string{"Error: invalid arguments\n"}
+				+this->help_message()
+		};
+	}
 #endif
 }
 
@@ -54,13 +87,7 @@ std::string CommandOptions::help_message() const
 
 bool CommandOptions::is_help_option_set() const
 {
-#ifdef _WIN32
-	return false;
-#else
-	// LINUX
-	// TODO: implement
-	return false;
-#endif
+	return this->help_flag_;
 }
 
 std::string CommandOptions::input_file_name() const

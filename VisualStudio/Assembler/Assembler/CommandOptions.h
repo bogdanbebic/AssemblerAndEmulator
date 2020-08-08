@@ -15,6 +15,7 @@ public:
 	std::string input_file_name() const;
 	std::string output_file_name() const;
 private:
+	bool help_flag_ = false;
 	std::string input_file_name_;
 	std::string output_file_name_;
 };
