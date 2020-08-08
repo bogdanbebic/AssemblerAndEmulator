@@ -71,6 +71,11 @@ CommandOptions::CommandOptions(int argc, char* argv[])
 				+this->help_message()
 		};
 	}
+
+	if (this->output_file_name_.empty())
+	{
+		this->output_file_name_ = this->input_file_name() + ".ss_elf";
+	}
 #endif
 }
 
@@ -86,6 +91,8 @@ std::string CommandOptions::help_message() const
 		"Usage: assembler [-h] [-o <output_file>] <input_file>\n"
 		"Options:\n"
 		"\t-h - print this message and quit\n"
+		"\t-o <output_file> - specifies the output file for the ss_elf assembler\n"
+		"\t\tIf left out, the output will be written to <input_file>.ss_elf\n"
 	};
 #endif
 }
