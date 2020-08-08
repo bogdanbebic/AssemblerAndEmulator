@@ -19,12 +19,31 @@ void assembler::SymbolTable::erase(const key_type& key)
 
 void assembler::SymbolTable::make_global(const key_type& key)
 {
-	this->symbol_table_.at(key).is_global = true;
+	if (this->symbol_table_.find(key) != this->symbol_table_.end())
+	{
+		this->symbol_table_.at(key).is_global = true;
+	}
+	else
+	{
+		// TODO: implement
+	}
 }
 
 void assembler::SymbolTable::make_extern(const key_type& key)
 {
-	this->symbol_table_.at(key).is_global = true;
+	if (this->symbol_table_.find(key) == this->symbol_table_.end())
+	{
+		this->symbol_table_[key] = {
+			key,
+			0,
+			0,
+			true
+		};
+	}
+	else
+	{
+		// TODO: implement
+	}
 }
 
 std::stringstream assembler::SymbolTable::to_school_elf() const

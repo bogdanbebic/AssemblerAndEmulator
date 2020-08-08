@@ -9,7 +9,7 @@
 
 parsers::Parser::Parser()
 {
-	auto assembly_directive_parser = std::make_shared<AssemblyDirectiveParser>(this->section_table_);
+	auto assembly_directive_parser = std::make_shared<AssemblyDirectiveParser>(this->section_table_, this->symbol_table_);
 	this->statement_parser_chain_ = assembly_directive_parser;
 }
 

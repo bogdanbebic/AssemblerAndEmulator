@@ -4,8 +4,10 @@
 #include <iostream>
 #include <regex>
 
-parsers::AssemblyDirectiveParser::AssemblyDirectiveParser(std::shared_ptr<assembler::SectionTable> section_table)
+parsers::AssemblyDirectiveParser::AssemblyDirectiveParser(std::shared_ptr<assembler::SectionTable> section_table,
+														  std::shared_ptr<assembler::SymbolTable> symbol_table)
 	: section_table_(std::move(section_table))
+	, symbol_table_(std::move(symbol_table))
 {
 	// empty body
 }
@@ -22,6 +24,7 @@ std::shared_ptr<statements::Statement> parsers::AssemblyDirectiveParser::parse(s
 		}
 		
 		const std::regex regex{R"(^\.(global|extern|section|equ)\s*(.*)$)"};
+		const std::regex symbol_regex{ "([a-zA-Z_][a-zA-Z_0-9]*)" };
 		const std::regex symbol_list_regex{
 			R"(^([a-zA-Z_][a-zA-Z_0-9]*)\s*(,\s*([a-zA-Z_][a-zA-Z_0-9]*))*\s*$)"
 		};
@@ -52,14 +55,40 @@ std::shared_ptr<statements::Statement> parsers::AssemblyDirectiveParser::parse(s
 
 			if (directive == "global")
 			{
-				// TODO: implement
-				
+				if (std::regex_match(args, match, symbol_list_regex))
+				{
+					std::cout << "GLOBAL\n";
+					auto symbol_list_begin = std::sregex_iterator(args.begin(), args.end(), symbol_regex);
+					auto symbol_list_end = std::sregex_iterator();
+					for (auto it = symbol_list_begin; it != symbol_list_end; ++it) {
+						auto symbol = it->str();
+						this->symbol_table_->make_global(symbol);
+						std::cout << "'" << it->str() << "'\n";
+					}
+				}
+				else
+				{
+					throw std::invalid_argument{ "Invalid args for .global directive" };
+				}
 			}
 
 			if (directive == "extern")
 			{
-				// TODO: implement
-				
+				if (std::regex_match(args, match, symbol_list_regex))
+				{
+					std::cout << "EXTERN\n";
+					auto symbol_list_begin = std::sregex_iterator(args.begin(), args.end(), symbol_regex);
+					auto symbol_list_end = std::sregex_iterator();
+					for (auto it = symbol_list_begin; it != symbol_list_end; ++it) {
+						auto symbol = it->str();
+						this->symbol_table_->make_extern(symbol);
+						std::cout << "'" << it->str() << "'\n";
+					}
+				}
+				else
+				{
+					throw std::invalid_argument{ "Invalid args for .extern directive" };
+				}
 			}
 
 			if (directive == "equ")
