@@ -6,6 +6,11 @@
 
 int main(int argc, char* argv[])
 {
+	std::cout << "argc: " << argc << '\n';
+	for (int i = 0; i < argc; i++)
+	{
+		std::cout << "argv[" << i << "] = " << argv[i] << '\n';
+	}
 	std::cout << "Hello, World!\n";
 	std::ifstream input_file("test_input/test.s");
 	parsers::Parser parser;
