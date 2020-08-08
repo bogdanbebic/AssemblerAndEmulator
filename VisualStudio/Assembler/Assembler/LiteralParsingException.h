@@ -7,7 +7,7 @@ namespace parsers
 		public ParsingException
 	{
 	public:
-		char const* what() const override
+		char const* what() const noexcept override
 		{
 			return "Invalid literal: allowed literals are chars, decimal, octal, hex integers";
 		}
