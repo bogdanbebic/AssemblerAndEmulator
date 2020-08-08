@@ -4,6 +4,8 @@
 
 #include "CommandOptions.h"
 
+#include "Parser.h"
+
 int main(int argc, char* argv[])
 {
 	try
@@ -15,8 +17,16 @@ int main(int argc, char* argv[])
 			return 0;
 		}
 
+		// TODO: delete
 		std::cout << "Input file: " << command_options.input_file_name() << "\n";
 		std::cout << "Output file: " << command_options.output_file_name() << "\n";
+		
+		std::ifstream input_file{ command_options.input_file_name() };
+		parsers::Parser parser;
+		parser.parse(input_file);
+
+		std::ofstream output_file{ command_options.output_file_name() };
+		output_file << parser.to_school_elf().str();
 	}
 	catch (std::invalid_argument& ex)
 	{

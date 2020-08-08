@@ -39,7 +39,10 @@ void parsers::Parser::parse(std::istream &is)
 
 std::stringstream parsers::Parser::to_school_elf() const
 {
-	return this->symbol_table_->to_school_elf();
+	std::stringstream ret;
+	ret << this->symbol_table_->to_school_elf().str()
+		<< this->section_table_->to_school_elf().str();
+	return ret;
 }
 
 bool parsers::Parser::parse_line(const std::string& line)
@@ -54,6 +57,15 @@ bool parsers::Parser::parse_line(const std::string& line)
 	const std::shared_ptr<statements::Statement> statement = this->statement_parser_chain_->parse(statement_line);
 	if (statement != nullptr)
 	{
+		this->line_counter_ += statement->location_counter_increment();
+		std::cout << "INCREMENT LC:" << statement_line << "\n";
+		if (statement->is_section_end())
+		{
+			this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
+			this->current_section_name_ = statement->next_section();
+			this->line_counter_ = 0;
+		}
+		
 		return statement->is_end();
 	}
 

@@ -13,7 +13,7 @@ namespace parsers
 		explicit AssemblyDirectiveParser(std::shared_ptr<assembler::SectionTable> section_table);
 		std::shared_ptr<statements::Statement> parse(std::string statement) override;
 	private:
-		bool can_parse(std::string statement);
+		bool can_parse(const std::string& statement) const;
 		std::shared_ptr<assembler::SectionTable> section_table_;
 	};
 }
