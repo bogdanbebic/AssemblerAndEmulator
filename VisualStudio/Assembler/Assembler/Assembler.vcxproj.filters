@@ -24,9 +24,6 @@
     <ClCompile Include="LabelParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParsingException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StatementParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
