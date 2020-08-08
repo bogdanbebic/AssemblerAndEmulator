@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyDirectiveParser.cpp" />
+    <ClCompile Include="CommandOptions.cpp" />
     <ClCompile Include="LabelParser.cpp" />
     <ClCompile Include="LineCommentStripper.cpp" />
     <ClCompile Include="LiteralParser.cpp" />
@@ -32,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssemblyDirectiveParser.h" />
+    <ClInclude Include="CommandOptions.h" />
     <ClInclude Include="LabelParser.h" />
     <ClInclude Include="LineCommentStripper.h" />
     <ClInclude Include="LiteralParser.h" />
