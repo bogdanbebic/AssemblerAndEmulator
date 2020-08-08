@@ -17,6 +17,16 @@ void assembler::SymbolTable::erase(const key_type& key)
 	this->symbol_table_.erase(key);
 }
 
+void assembler::SymbolTable::make_global(const key_type& key)
+{
+	this->symbol_table_.at(key).is_global = true;
+}
+
+void assembler::SymbolTable::make_extern(const key_type& key)
+{
+	this->symbol_table_.at(key).is_global = true;
+}
+
 std::stringstream assembler::SymbolTable::to_school_elf() const
 {
 	std::stringstream school_elf_stream;

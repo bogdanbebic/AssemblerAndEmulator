@@ -25,6 +25,8 @@ namespace assembler
 		mapped_type& at(const key_type& key);
 		void insert(const std::pair<key_type, mapped_type>& entry);
 		void erase(const key_type& key);
+		void make_global(const key_type& key);
+		void make_extern(const key_type& key);
 
 		std::stringstream to_school_elf() const;
 	private:
