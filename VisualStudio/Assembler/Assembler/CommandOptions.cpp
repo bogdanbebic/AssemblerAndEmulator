@@ -55,6 +55,11 @@ CommandOptions::CommandOptions(int argc, char* argv[])
 		}
 	}
 
+	if (this->help_flag_)
+	{
+		return;
+	}
+	
 	if (optind == argc - 1)
 	{
 		this->input_file_name_ = argv[optind];
