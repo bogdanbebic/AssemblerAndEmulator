@@ -27,7 +27,7 @@ std::string parsers::LabelParser::parse(std::string line, size_t section_index, 
 			return this->match_[2].str();
 		}
 
-		throw ParsingException{};
+		// throw ParsingException{};
 	}
 
 	return line;
