@@ -39,7 +39,10 @@ void parsers::Parser::parse(std::istream &is)
 
 std::stringstream parsers::Parser::to_school_elf() const
 {
-	return this->symbol_table_->to_school_elf();
+	std::stringstream ret;
+	ret << this->symbol_table_->to_school_elf().str()
+		<< this->section_table_->to_school_elf().str();
+	return ret;
 }
 
 bool parsers::Parser::parse_line(const std::string& line)
