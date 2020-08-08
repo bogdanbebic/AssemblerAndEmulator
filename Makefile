@@ -15,3 +15,6 @@ clean_code_src_dir:
 
 clean_code_output_dir:
 	rm ./Code/Assembler/output/* || true
+
+run_test:
+	./Code/Assembler/output/assembler -o ./Code/Assembler/tests/test.ss_elf ./Code/Assembler/tests/test.s
