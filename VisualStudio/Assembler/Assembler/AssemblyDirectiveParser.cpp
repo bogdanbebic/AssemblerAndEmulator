@@ -47,6 +47,7 @@ std::shared_ptr<statements::Statement> parsers::AssemblyDirectiveParser::parse(s
 
 				std::string section_name = match[1];
 				this->section_table_->insert(section_name);
+				return std::make_shared<statements::Statement>(0, false, true, section_name);
 			}
 
 			if (directive == "global")

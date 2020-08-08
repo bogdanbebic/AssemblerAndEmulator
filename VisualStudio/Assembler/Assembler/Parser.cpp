@@ -58,6 +58,14 @@ bool parsers::Parser::parse_line(const std::string& line)
 	if (statement != nullptr)
 	{
 		this->line_counter_ += statement->location_counter_increment();
+		std::cout << "INCREMENT LC:" << statement_line << "\n";
+		if (statement->is_section_end())
+		{
+			this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
+			this->current_section_name_ = statement->next_section();
+			this->line_counter_ = 0;
+		}
+		
 		return statement->is_end();
 	}
 
