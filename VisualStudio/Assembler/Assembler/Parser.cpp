@@ -48,7 +48,7 @@ std::stringstream parsers::Parser::to_school_elf() const
 bool parsers::Parser::parse_line(const std::string& line)
 {
 	std::string line_without_comments = this->line_comment_stripper_.strip_line_comment(line);
-	std::string statement_line = this->label_parser_.parse(line_without_comments, 0, this->line_counter_);
+	std::string statement_line = this->label_parser_.parse(line_without_comments, this->current_section_index_, this->line_counter_);
 	if (this->statement_parser_chain_ == nullptr)
 	{
 		return false;
@@ -62,6 +62,7 @@ bool parsers::Parser::parse_line(const std::string& line)
 		if (statement->is_section_end())
 		{
 			this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
+			this->current_section_index_++;
 			this->current_section_name_ = statement->next_section();
 			this->line_counter_ = 0;
 		}
