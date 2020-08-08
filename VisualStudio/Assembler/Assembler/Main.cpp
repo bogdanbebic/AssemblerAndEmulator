@@ -1,37 +1,30 @@
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 
-#include "Parser.h"
-#include "LiteralParser.h"
+#include "CommandOptions.h"
 
 int main(int argc, char* argv[])
 {
-	std::cout << "argc: " << argc << '\n';
-	for (int i = 0; i < argc; i++)
+	try
 	{
-		std::cout << "argv[" << i << "] = " << argv[i] << '\n';
-	}
-	std::cout << "Hello, World!\n";
-	std::ifstream input_file("test_input/test.s");
-	parsers::Parser parser;
-	parser.parse(input_file);
-	std::ofstream output_file("test_input/test.out");
-	output_file << parser.to_school_elf().str();
+		CommandOptions command_options{ argc, argv };
+		if (command_options.is_help_option_set())
+		{
+			std::cout << command_options.help_message();
+			return 0;
+		}
 
-	std::string line;
-	
-	std::ifstream test_literal_parser_file("test_input/literals.txt");
-	std::cout << "\nLiterals test:\n";
-	while (std::getline(test_literal_parser_file, line))
-	{
-		std::cout << parsers::LiteralParser::parse(line) << '\n';
+		std::cout << "Input file: " << command_options.input_file_name() << "\n";
+		std::cout << "Output file: " << command_options.output_file_name() << "\n";
 	}
-
-	std::ifstream test_literal_expr_parser_file("test_input/literals-expr.txt");
-	std::cout << "\nLiterals expressions test:\n";
-	while (std::getline(test_literal_expr_parser_file, line))
+	catch (std::invalid_argument& ex)
 	{
-		std::cout << parsers::LiteralParser::evaluate_expression(line) << '\n';
+		std::cout << ex.what() << std::endl;
+	}
+	catch (std::exception & ex)
+	{
+		std::cerr << "Error: " << ex.what() << std::endl;
 	}
 	
 	return 0;

@@ -32,7 +32,7 @@ CommandOptions::CommandOptions(int argc, char* argv[])
 	}
 #else
 	// LINUX
-	
+	// TODO: implement
 #endif
 }
 
@@ -48,7 +48,18 @@ std::string CommandOptions::help_message() const
 		"Usage: assembler [-h] [-o <output_file>] <input_file>\n"
 		"Options:\n"
 		"\t-h - print this message and quit\n"
-	}
+	};
+#endif
+}
+
+bool CommandOptions::is_help_option_set() const
+{
+#ifdef _WIN32
+	return false;
+#else
+	// LINUX
+	// TODO: implement
+	return false;
 #endif
 }
 

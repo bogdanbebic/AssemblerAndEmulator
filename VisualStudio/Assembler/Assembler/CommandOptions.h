@@ -9,6 +9,8 @@ public:
 	CommandOptions(int argc, char* argv[]);
 
 	std::string help_message() const;
+
+	bool is_help_option_set() const;
 	
 	std::string input_file_name() const;
 	std::string output_file_name() const;
