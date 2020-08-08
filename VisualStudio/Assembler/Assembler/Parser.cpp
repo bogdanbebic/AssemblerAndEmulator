@@ -54,6 +54,7 @@ bool parsers::Parser::parse_line(const std::string& line)
 	const std::shared_ptr<statements::Statement> statement = this->statement_parser_chain_->parse(statement_line);
 	if (statement != nullptr)
 	{
+		this->line_counter_ += statement->location_counter_increment();
 		return statement->is_end();
 	}
 

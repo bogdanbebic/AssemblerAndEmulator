@@ -5,12 +5,16 @@
 
 namespace statements
 {
-	class Statement  // NOLINT(hicpp-special-member-functions, cppcoreguidelines-special-member-functions)
+	class Statement
 	{
 	public:
-		virtual ~Statement() = default;
-		virtual size_t location_counter_increment() const = 0;
-		virtual bool is_end() const;
+		Statement(size_t location_counter_increment, bool is_end);
+
+		size_t location_counter_increment() const;
+		bool is_end() const;
+	private:
+		size_t location_counter_increment_ = 0;
+		bool is_end_ = false;
 	};
 }
 
