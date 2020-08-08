@@ -1,7 +1,9 @@
 #ifndef SECTION_TABLE_H_GUARD
 #define SECTION_TABLE_H_GUARD
+
 #include <map>
 #include <string>
+#include <sstream>
 
 namespace assembler
 {
@@ -27,6 +29,8 @@ namespace assembler
 		void insert(const key_type& key);
 		void update_section_size(const key_type& key, size_t size);
 		void erase(const key_type& key);
+
+		std::stringstream to_school_elf() const;
 	private:
 		void insert(const std::pair<key_type, mapped_type>& entry);
 		

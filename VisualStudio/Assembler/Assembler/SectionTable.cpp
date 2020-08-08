@@ -45,3 +45,20 @@ void assembler::SectionTable::erase(const key_type& key)
 {
 	this->section_table_.erase(key);
 }
+
+std::stringstream assembler::SectionTable::to_school_elf() const
+{
+	std::stringstream school_elf_stream;
+	school_elf_stream << "##########\n";
+	school_elf_stream << "# School ELF section table:\n"
+		<< "# section,index,size\n";
+	for (auto& it : this->section_table_)
+	{
+		mapped_type section_entry = it.second;
+		school_elf_stream << section_entry.section << ',' << section_entry.index << ','
+			<< section_entry.size << '\n';
+	}
+
+	school_elf_stream << "##########\n";
+	return school_elf_stream;
+}
