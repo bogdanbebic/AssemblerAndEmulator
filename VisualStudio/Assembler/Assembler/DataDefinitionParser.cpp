@@ -7,6 +7,12 @@
 
 #include <iostream>
 
+parsers::DataDefinitionParser::DataDefinitionParser(std::shared_ptr<assembler::ObjectCodeArray> object_code)
+	: object_code_(object_code)
+{
+	// empty body
+}
+
 std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std::string statement)
 {
 	if (this->can_parse(statement))
@@ -23,6 +29,7 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
 			if (LiteralParser::is_literal(arg))
 			{
 				int literal = LiteralParser::parse(arg);
+				this->object_code_->skip_bytes(literal);
 				return std::make_shared<statements::Statement>(literal, false);
 			}
 			else

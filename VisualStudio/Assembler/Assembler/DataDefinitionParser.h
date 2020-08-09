@@ -3,18 +3,22 @@
 
 #include "StatementParser.h"
 
+#include <memory>
+
+#include "ObjectCodeArray.h"
+
 namespace parsers
 {
 	class DataDefinitionParser :
 		public StatementParser
 	{
 	public:
-		explicit DataDefinitionParser() = default;
+		explicit DataDefinitionParser(std::shared_ptr<assembler::ObjectCodeArray> object_code);
 		std::shared_ptr<statements::Statement> parse(std::string statement) override;
 	private:
 		bool can_parse(const std::string& statement) const;
-
-		// TODO: member fields
+		
+		std::shared_ptr<assembler::ObjectCodeArray> object_code_;
 	};
 }
 
