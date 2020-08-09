@@ -28,6 +28,7 @@ void parsers::Parser::parse(std::istream &is)
 			bool is_end = this->parse_line(line);
 			if (is_end)
 			{
+				this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
 				break;
 			}
 		}
