@@ -1,4 +1,4 @@
-.section test_global
+.section test_global:
 foo:
 bar:
 baz:
