@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyDirectiveParser.cpp" />
     <ClCompile Include="CommandOptions.cpp" />
+    <ClCompile Include="DataDefinitionParser.cpp" />
     <ClCompile Include="LabelParser.cpp" />
     <ClCompile Include="LineCommentStripper.cpp" />
     <ClCompile Include="LiteralParser.cpp" />
@@ -34,6 +35,8 @@
   <ItemGroup>
     <ClInclude Include="AssemblyDirectiveParser.h" />
     <ClInclude Include="CommandOptions.h" />
+    <ClInclude Include="DataDefinitionParser.h" />
+    <ClInclude Include="DataDefs.h" />
     <ClInclude Include="LabelParser.h" />
     <ClInclude Include="LineCommentStripper.h" />
     <ClInclude Include="LiteralParser.h" />
