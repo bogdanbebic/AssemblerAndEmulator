@@ -6,10 +6,14 @@
 #include "ParsingException.h"
 
 #include "AssemblyDirectiveParser.h"
+#include "DataDefinitionParser.h"
 
 parsers::Parser::Parser()
 {
 	auto assembly_directive_parser = std::make_shared<AssemblyDirectiveParser>(this->section_table_, this->symbol_table_);
+	auto data_definition_parser = std::make_shared<DataDefinitionParser>(this->object_code_);
+
+	assembly_directive_parser->set_next(data_definition_parser);
 	this->statement_parser_chain_ = assembly_directive_parser;
 }
 
@@ -24,6 +28,7 @@ void parsers::Parser::parse(std::istream &is)
 			bool is_end = this->parse_line(line);
 			if (is_end)
 			{
+				this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
 				break;
 			}
 		}
@@ -41,7 +46,8 @@ std::stringstream parsers::Parser::to_school_elf() const
 {
 	std::stringstream ret;
 	ret << this->symbol_table_->to_school_elf().str()
-		<< this->section_table_->to_school_elf().str();
+		<< this->section_table_->to_school_elf().str()
+		<< this->object_code_->to_school_elf().str();
 	return ret;
 }
 

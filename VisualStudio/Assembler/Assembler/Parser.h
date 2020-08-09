@@ -9,6 +9,7 @@
 
 #include "SymbolTable.h"
 #include "SectionTable.h"
+#include "ObjectCodeArray.h"
 #include "LineCommentStripper.h"
 
 namespace parsers
@@ -31,6 +32,7 @@ namespace parsers
 
 		std::shared_ptr<assembler::SymbolTable> symbol_table_ = std::make_shared<assembler::SymbolTable>();
 		std::shared_ptr<assembler::SectionTable> section_table_ = std::make_shared<assembler::SectionTable>();
+		std::shared_ptr<assembler::ObjectCodeArray> object_code_ = std::make_shared<assembler::ObjectCodeArray>();
 
 		LineCommentStripper line_comment_stripper_;
 		LabelParser label_parser_{ symbol_table_ };
