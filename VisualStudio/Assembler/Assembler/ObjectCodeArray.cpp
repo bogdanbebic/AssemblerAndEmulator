@@ -1,7 +1,5 @@
 #include "ObjectCodeArray.h"
 
-#include <string>
-
 void assembler::ObjectCodeArray::skip_bytes(size_t number_of_bytes_to_skip)
 {
 	for (size_t i = 0; i < number_of_bytes_to_skip; i++)
@@ -32,10 +30,9 @@ std::stringstream assembler::ObjectCodeArray::to_school_elf() const
 
 	for (byte_t byte: this->object_code_)
 	{
-		auto byte_string = std::to_string(byte);
-		school_elf_stream << byte_string;
+		school_elf_stream << byte;
 	}
 	
-	school_elf_stream << "##########\n";
+	school_elf_stream << "\n##########\n";
 	return school_elf_stream;
 }
