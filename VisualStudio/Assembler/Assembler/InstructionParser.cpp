@@ -16,8 +16,68 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
 {
 	if (this->can_parse(statement))
 	{
-		// TODO: implement
-		std::cout << "INSTRUCTION:'" << statement << "'\n";
+		const std::regex zero_operand_regex{
+	"^(halt"
+		"|iret"
+		"|ret)"
+		"\\s*$"
+		};
+
+		const std::regex one_operand_regex{
+	"^((int"
+		"|call"
+		"|jmp"
+		"|jeq"
+		"|jne"
+		"|jgt"
+		"|push"
+		"|pop)"
+		"[bw]?)"
+		"\\s+([^,\\s]+)\\s*$"
+		};
+
+		const std::regex two_operand_regex{
+	"^((xchg"
+		"|mov"
+		"|add"
+		"|sub"
+		"|mul"
+		"|div"
+		"|cmp"
+		"|not"
+		"|and"
+		"|or"
+		"|xor"
+		"|test"
+		"|shl"
+		"|shr)"
+		"[bw]?)"
+		"\\s+([^,\\s]+)\\s*,\\s*([^,\\s]+)\\s*$"
+		};
+		
+		std::smatch match;
+		if (std::regex_match(statement, match, zero_operand_regex))
+		{
+			std::cout << "INSTRUCTION 0:'" << statement << "'\n";
+
+			return nullptr;
+		}
+
+		if (std::regex_match(statement, match, one_operand_regex))
+		{
+			std::cout << "INSTRUCTION 1:'" << statement << "'\n";
+
+			return nullptr;
+		}
+
+		if (std::regex_match(statement, match, two_operand_regex))
+		{
+			std::cout << "INSTRUCTION 2:'" << statement << "'\n";
+
+			return nullptr;
+		}
+
+		throw std::invalid_argument{ "Invalid number of operands for instruction: " + statement };
 	}
 	
 	return StatementParser::parse(statement);
