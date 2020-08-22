@@ -51,7 +51,7 @@ bool parsers::InstructionParser::can_parse(const std::string& statement) const
 		"|test"
 		"|shl"
 		"|shr)"
-		"\\s+.*$"
+		".*$"
 	};
 	
 	return std::regex_match(statement, instructions_regex);
