@@ -88,7 +88,8 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
 			{
 				mnemonic = mnemonic + DEFAULT_SIZE_OPERAND_SPECIFIER;
 			}
-			
+
+			char operand_size_specifier = mnemonic.back();
 			std::cout << "INSTRUCTION 2:'" << statement << "'" << mnemonic << "\n";
 
 			return nullptr;
