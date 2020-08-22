@@ -58,21 +58,38 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
 		std::smatch match;
 		if (std::regex_match(statement, match, zero_operand_regex))
 		{
-			std::cout << "INSTRUCTION 0:'" << statement << "'\n";
-
+			std::cout << "INSTRUCTION 0:'" << statement << "'" << match[1].str() << "\n";
+			
 			return nullptr;
 		}
 
 		if (std::regex_match(statement, match, one_operand_regex))
 		{
-			std::cout << "INSTRUCTION 1:'" << statement << "'\n";
+			std::string mnemonic = match[1].str();
+			std::string short_mnemonic = match[2].str();
+			constexpr char DEFAULT_SIZE_OPERAND_SPECIFIER = 'w';
+			if (short_mnemonic == mnemonic)
+			{
+				mnemonic = mnemonic + DEFAULT_SIZE_OPERAND_SPECIFIER;
+			}
+
+			char operand_size_specifier = mnemonic.back();
+			std::cout << "INSTRUCTION 1:'" << statement << "'" << mnemonic << "\n";
 
 			return nullptr;
 		}
 
 		if (std::regex_match(statement, match, two_operand_regex))
 		{
-			std::cout << "INSTRUCTION 2:'" << statement << "'\n";
+			std::string mnemonic = match[1].str();
+			std::string short_mnemonic = match[2].str();
+			constexpr char DEFAULT_SIZE_OPERAND_SPECIFIER = 'w';
+			if (short_mnemonic == mnemonic)
+			{
+				mnemonic = mnemonic + DEFAULT_SIZE_OPERAND_SPECIFIER;
+			}
+			
+			std::cout << "INSTRUCTION 2:'" << statement << "'" << mnemonic << "\n";
 
 			return nullptr;
 		}
