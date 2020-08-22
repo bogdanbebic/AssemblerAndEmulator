@@ -2,6 +2,9 @@
 #define LITERAL_PARSER_H_GUARD
 #include <string>
 #include <regex>
+#include <memory>
+
+#include "SymbolTable.h"
 
 namespace parsers
 {
@@ -12,6 +15,7 @@ namespace parsers
 		static int parse(const std::string& string);
 		static bool is_expression(const std::string& string);
 		static int evaluate_expression(std::string string);
+		static int evaluate_expression(std::string string, std::shared_ptr<assembler::SymbolTable> symbol_table);
 	private:
 		static std::regex char_literal_regex_;
 		static std::regex decimal_literal_regex_;

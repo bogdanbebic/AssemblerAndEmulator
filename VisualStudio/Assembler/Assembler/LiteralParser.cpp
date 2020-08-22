@@ -60,6 +60,39 @@ int parsers::LiteralParser::evaluate_expression(std::string string)
 	return expression_value;
 }
 
+int parsers::LiteralParser::evaluate_expression(std::string string, std::shared_ptr<assembler::SymbolTable> symbol_table)
+{
+	string.erase(std::remove_if(string.begin(), string.end(),
+		[](int ch) { return std::isspace(ch); }),
+		string.end());
+
+	if (string[0] != '+' && string[0] != '-')
+	{
+		string = '+' + string;
+	}
+
+	const std::regex regex("[\\+-][^\\+-]+");
+	std::smatch match;
+	int expression_value = 0;
+	while (std::regex_search(string, match, regex))
+	{
+		std::string operand = match.str();
+		if (is_literal(operand))
+		{
+			expression_value += parse(operand);
+		}
+		else
+		{
+			const int value = symbol_table->at(operand.substr(1)).value;
+			expression_value += (operand[0] == '-' ? -value : value);
+		}
+		
+		string = match.suffix();
+	}
+	
+	return 0;
+}
+
 bool parsers::LiteralParser::is_char_literal(const std::string& string)
 {
 	return std::regex_match(string.c_str(), match_, char_literal_regex_);
