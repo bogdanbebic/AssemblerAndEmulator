@@ -149,6 +149,7 @@
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Terminal.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Typedefs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
