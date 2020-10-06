@@ -1,6 +1,7 @@
 #ifndef _TERMINAL_H_
 #define _TERMINAL_H_
 
+#include <memory>
 #include <thread>
 
 #ifndef _WIN32
@@ -8,6 +9,7 @@
 #endif
 
 #include "Typedefs.h"
+#include "Cpu.h"
 
 namespace emulator
 {
@@ -19,7 +21,7 @@ namespace emulator
 			void set_data_out(word_t data_out);
 			word_t data_in() const;
 
-			Terminal();
+			explicit Terminal(std::shared_ptr<cpu::Cpu> cpu);
 
 			Terminal(const Terminal&) = delete;
 			Terminal(Terminal&&) = delete;
@@ -32,6 +34,8 @@ namespace emulator
 
 			void enter_raw_mode();
 			void exit_raw_mode();
+
+			std::shared_ptr<cpu::Cpu> cpu_;
 
 			#ifndef _WIN32
 			struct termios old_termios;

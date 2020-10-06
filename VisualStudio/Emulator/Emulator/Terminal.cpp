@@ -1,6 +1,9 @@
 #include "Terminal.h"
 
 #include <iostream>
+#include <utility>
+
+#include "CpuDefs.h"
 
 #ifndef _WIN32
 #include <unistd.h>
@@ -19,7 +22,8 @@ emulator::system::word_t emulator::system::Terminal::data_in() const
 	return this->data_in_;
 }
 
-emulator::system::Terminal::Terminal()
+emulator::system::Terminal::Terminal(std::shared_ptr<cpu::Cpu> cpu)
+	: cpu_(std::move(cpu))
 {
 	this->enter_raw_mode();
 }
@@ -50,7 +54,7 @@ void emulator::system::Terminal::terminal()
 
 		this->data_in_ = ch & data_in_mask;
 
-		// TODO: send interrupt to CPU
+		this->cpu_->interrupt(cpu::IVT_TERMINAL);
 	}
 }
 
