@@ -141,12 +141,17 @@
     <ClCompile Include="Cpu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="Psw.cpp" />
     <ClCompile Include="Terminal.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cpu.h" />
+    <ClInclude Include="CpuDefs.h" />
+    <ClInclude Include="Instruction.h" />
+    <ClInclude Include="InstructionsDefs.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="Psw.h" />
     <ClInclude Include="Terminal.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Typedefs.h" />
