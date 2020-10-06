@@ -3,9 +3,11 @@
 
 #include <chrono>
 #include <map>
+#include <memory>
 #include <thread>
 
 #include "Typedefs.h"
+#include "Cpu.h"
 
 namespace emulator
 {
@@ -16,7 +18,7 @@ namespace emulator
 		public:
 			void set_timer_cfg(word_t timer_cfg);
 
-			Timer() = default;
+			explicit Timer(std::shared_ptr<cpu::Cpu> cpu);
 
 			Timer(const Timer&) = delete;
 			Timer(Timer&&) = delete;
@@ -26,6 +28,8 @@ namespace emulator
 			~Timer();
 		private:
 			void timer() const;
+
+			std::shared_ptr<cpu::Cpu> cpu_;
 
 			static std::map<word_t, std::chrono::milliseconds> timeouts_;
 

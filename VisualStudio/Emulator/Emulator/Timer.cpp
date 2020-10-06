@@ -1,5 +1,9 @@
 #include "Timer.h"
 
+#include <utility>
+
+#include "CpuDefs.h"
+
 std::map<emulator::system::word_t, std::chrono::milliseconds>
 emulator::system::Timer::timeouts_ = {
 	{ 0x0, std::chrono::milliseconds{ 500 } },
@@ -19,6 +23,12 @@ void emulator::system::Timer::set_timer_cfg(const word_t timer_cfg)
 	this->timeout_ = timeouts_[this->timer_cfg_ & timer_cfg_timeout_mask];
 }
 
+emulator::system::Timer::Timer(std::shared_ptr<cpu::Cpu> cpu)
+	: cpu_(std::move(cpu))
+{
+	// empty body
+}
+
 emulator::system::Timer::~Timer()
 {
 	this->running_ = false;
@@ -29,7 +39,7 @@ void emulator::system::Timer::timer() const
 {
 	while (this->running_)
 	{
-		// TODO: send interrupt to CPU
+		this->cpu_->interrupt(cpu::IVT_TIMER);
 
 		std::this_thread::sleep_for(this->timeout_);
 	}
