@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="Cpu.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="MemoryAccessViolation.h" />
     <ClInclude Include="Terminal.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Typedefs.h" />
