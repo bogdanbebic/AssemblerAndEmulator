@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cpu.cpp" />
+    <ClCompile Include="Emulator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Psw.cpp" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Cpu.h" />
     <ClInclude Include="CpuDefs.h" />
+    <ClInclude Include="Emulator.h" />
     <ClInclude Include="Instruction.h" />
     <ClInclude Include="InstructionsDefs.h" />
     <ClInclude Include="Memory.h" />
