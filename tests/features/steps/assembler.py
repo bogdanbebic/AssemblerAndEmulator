@@ -3,13 +3,13 @@ import pexpect
 import os
 
 
-assembler_path = './assembler'
+assembler_path = './Code/Assembler/output/assembler'
 
 
 @given('we have assembler')
 def step_impl(context):
-    if not os.path.isfile(assembler_path):
-        fail("assembler doesn't exist")
+    if not os.path.exists(assembler_path):
+        assert False, "assembler doesn't exist"
 
 
 @when('we run assembler with "{text}" as arguments')
