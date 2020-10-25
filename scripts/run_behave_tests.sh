@@ -9,7 +9,7 @@ PYTHON_VENV_DIR=${ROOT_DIR}/venv
 source ${PYTHON_VENV_DIR}/bin/activate
 
 # run tests
-behave ${FEATURES_DIR} $@
+behave ${FEATURES_DIR} -k $@
 
 # leave python venv
 deactivate
