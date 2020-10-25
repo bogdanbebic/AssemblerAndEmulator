@@ -1,6 +1,6 @@
 ASSEMBLER=./Code/Assembler/output/assembler
 TESTS_OUTPUT_DIR=./Code/Assembler/output
-TESTS_DIR=./tests
+TESTS_DIR=./tests/source_ss
 
 all: copy_to_code_dir
 	g++ -Wall -v -I./Code/Assembler/include/ -o ./Code/Assembler/output/assembler ./Code/Assembler/src/*
