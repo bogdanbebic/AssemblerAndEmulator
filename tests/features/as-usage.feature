@@ -1,3 +1,5 @@
+@assembler
+@as
 Feature: print usage
 
   Scenario: print usage

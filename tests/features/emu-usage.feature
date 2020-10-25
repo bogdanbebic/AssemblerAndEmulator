@@ -1,3 +1,5 @@
+@emulator
+@emu
 Feature: print usage
 
   Scenario: print usage
