@@ -395,3 +395,6 @@ MigrationBackup/
 test_input/
 
 Code/
+
+# python venv
+venv/*
