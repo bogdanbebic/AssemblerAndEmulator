@@ -33,3 +33,5 @@ $(BUILD_DIR) :
 .PHONY : clean
 clean :
 	rm -rf $(BUILD_DIR)
+
+-include $(wildcard $(BUILD_DIR)/*.d)
