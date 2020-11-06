@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandLineOptionsParser.cpp" />
     <ClCompile Include="Cpu.cpp" />
     <ClCompile Include="Emulator.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommandLineOptionsParser.h" />
     <ClInclude Include="Cpu.h" />
     <ClInclude Include="CpuDefs.h" />
     <ClInclude Include="Emulator.h" />
