@@ -1,1 +1,5 @@
 build/*
+
+# Ignore the source files - they are already tracked in Visual Studio's folder
+include/*
+source/*
