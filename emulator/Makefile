@@ -17,12 +17,14 @@ CXXFLAGS += -I$(INCLUDE_DIR)
 CXXFLAGS += -MMD -MP
 CXXFLAGS += -Wall
 
+LDFLAGS = -lpthread
+
 .PHONY : all
 all : $(BUILD_DIR)/$(PROGRAM) Makefile
 	@echo $(PROGRAM) build successful
 
 $(BUILD_DIR)/$(PROGRAM) : $(OBJ_FILES) Makefile
-	$(LD) $(LDFLAGS) -o $(@) $(OBJ_FILES)
+	$(LD) -o $(@) $(OBJ_FILES) $(LDFLAGS)
 
 $(BUILD_DIR)/%.o : $(SRC_DIR)/%.cpp Makefile | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c -o $(@) $(<) 
