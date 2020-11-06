@@ -3,7 +3,7 @@ import pexpect
 import os
 
 
-assembler_path = './Code/Assembler/output/assembler'
+assembler_path = './assembler/build/assembler'
 
 
 @given('we have assembler')

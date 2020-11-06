@@ -3,7 +3,7 @@ import pexpect
 import os
 
 
-emulator_path = './Code/Emulator/output/emulator'
+emulator_path = './emulator/build/emulator'
 
 
 @given('we have emulator')
