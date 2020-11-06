@@ -30,20 +30,6 @@ namespace emulator
 
 			std::regex regex_place_option_{ "^--place=(\\w+)@(\\w+)$" };
 			std::cmatch match_;
-			
-			static constexpr char usage_string[] =	"Usage: emulator "
-													"[option...] "
-													"[--place=<section>@<address>...] "
-													"<source_files>...";
-			static constexpr char help_string[] = 
-				"option can be any of:\n"
-				"\n"
-				"\t-h --help\tprint this message and exit\n"
-				"\t--bare-memory <binary_file>\tuse the binary_file for memory\n"
-				"\n"
-				"Link the source files in an executable and place each section to memory\n"
-				"according to the --place parameters. If there is an option selected,\n"
-				"ignore the place params and source_files. Starts emulation.";
 		};
 	}
 }

@@ -12,7 +12,7 @@ namespace emulator
 			class MemoryAccessViolation final : public std::exception
 			{
 			public:
-				char const* what() const override
+				char const* what() const noexcept override
 				{
 					return "Error: Memory access violation";
 				}

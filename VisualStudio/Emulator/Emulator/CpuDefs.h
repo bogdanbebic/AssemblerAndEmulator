@@ -1,6 +1,8 @@
 #ifndef _CPU_DEFS_H_
 #define _CPU_DEFS_H_
 
+#include <cstdlib>
+
 #include "Typedefs.h"
 
 namespace emulator
