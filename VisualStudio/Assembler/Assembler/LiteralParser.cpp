@@ -90,7 +90,7 @@ int parsers::LiteralParser::evaluate_expression(std::string string, std::shared_
 		string = match.suffix();
 	}
 	
-	return 0;
+	return expression_value;
 }
 
 bool parsers::LiteralParser::is_char_literal(const std::string& string)

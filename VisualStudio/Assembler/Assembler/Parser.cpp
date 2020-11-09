@@ -12,7 +12,7 @@
 parsers::Parser::Parser()
 {
 	auto assembly_directive_parser = std::make_shared<AssemblyDirectiveParser>(this->section_table_, this->symbol_table_);
-	auto data_definition_parser = std::make_shared<DataDefinitionParser>(this->object_code_);
+	auto data_definition_parser = std::make_shared<DataDefinitionParser>(this->object_code_, this->symbol_table_);
 	auto instruction_parser = std::make_shared<InstructionParser>(this->symbol_table_, this->object_code_);
 
 	data_definition_parser->set_next(instruction_parser);
