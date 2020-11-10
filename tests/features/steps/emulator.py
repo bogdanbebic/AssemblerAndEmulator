@@ -12,6 +12,11 @@ def step_impl(context):
         assert False, "emulator doesn't exist"
 
 
+@when('we run emulator without arguments')
+def step_impl(context):
+    context.child = pexpect.spawn(emulator_path)
+
+
 @when('we run emulator with "{text}" as arguments')
 def step_impl(context, text):
     context.child = pexpect.spawn(emulator_path + ' ' + text)
