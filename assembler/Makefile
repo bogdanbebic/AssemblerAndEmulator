@@ -19,7 +19,6 @@ CXXFLAGS += -Wall
 
 .PHONY : all
 all : $(BUILD_DIR)/$(PROGRAM) Makefile
-	@echo $(PROGRAM) build successful
 
 $(BUILD_DIR)/$(PROGRAM) : $(OBJ_FILES) Makefile
 	$(LD) $(LDFLAGS) -o $(@) $(OBJ_FILES)

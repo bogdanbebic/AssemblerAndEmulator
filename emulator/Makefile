@@ -21,7 +21,6 @@ LDFLAGS = -lpthread
 
 .PHONY : all
 all : $(BUILD_DIR)/$(PROGRAM) Makefile
-	@echo $(PROGRAM) build successful
 
 $(BUILD_DIR)/$(PROGRAM) : $(OBJ_FILES) Makefile
 	$(LD) -o $(@) $(OBJ_FILES) $(LDFLAGS)
