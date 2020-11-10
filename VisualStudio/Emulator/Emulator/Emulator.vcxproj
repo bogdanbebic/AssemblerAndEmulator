@@ -18,6 +18,30 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\emulator\include\CommandLineOptionsParser.h" />
+    <ClInclude Include="..\..\..\emulator\include\Cpu.h" />
+    <ClInclude Include="..\..\..\emulator\include\CpuDefs.h" />
+    <ClInclude Include="..\..\..\emulator\include\Emulator.h" />
+    <ClInclude Include="..\..\..\emulator\include\Instruction.h" />
+    <ClInclude Include="..\..\..\emulator\include\InstructionsDefs.h" />
+    <ClInclude Include="..\..\..\emulator\include\Memory.h" />
+    <ClInclude Include="..\..\..\emulator\include\MemoryAccessViolation.h" />
+    <ClInclude Include="..\..\..\emulator\include\Psw.h" />
+    <ClInclude Include="..\..\..\emulator\include\Terminal.h" />
+    <ClInclude Include="..\..\..\emulator\include\Timer.h" />
+    <ClInclude Include="..\..\..\emulator\include\Typedefs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\emulator\source\CommandLineOptionsParser.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\Cpu.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\Emulator.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\main.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\Memory.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\Psw.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\Terminal.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\Timer.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{33C2741F-E806-4B1D-8B0C-E229E8338DEC}</ProjectGuid>
@@ -87,6 +111,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Bogdan\Documents\GitHub\AssemblerAndEmulator\emulator\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,30 +162,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="CommandLineOptionsParser.cpp" />
-    <ClCompile Include="Cpu.cpp" />
-    <ClCompile Include="Emulator.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Memory.cpp" />
-    <ClCompile Include="Psw.cpp" />
-    <ClCompile Include="Terminal.cpp" />
-    <ClCompile Include="Timer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CommandLineOptionsParser.h" />
-    <ClInclude Include="Cpu.h" />
-    <ClInclude Include="CpuDefs.h" />
-    <ClInclude Include="Emulator.h" />
-    <ClInclude Include="Instruction.h" />
-    <ClInclude Include="InstructionsDefs.h" />
-    <ClInclude Include="Memory.h" />
-    <ClInclude Include="MemoryAccessViolation.h" />
-    <ClInclude Include="Psw.h" />
-    <ClInclude Include="Terminal.h" />
-    <ClInclude Include="Timer.h" />
-    <ClInclude Include="Typedefs.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

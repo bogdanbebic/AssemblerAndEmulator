@@ -19,38 +19,38 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssemblyDirectiveParser.cpp" />
-    <ClCompile Include="CommandOptions.cpp" />
-    <ClCompile Include="DataDefinitionParser.cpp" />
-    <ClCompile Include="InstructionParser.cpp" />
-    <ClCompile Include="LabelParser.cpp" />
-    <ClCompile Include="LineCommentStripper.cpp" />
-    <ClCompile Include="LiteralParser.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ObjectCodeArray.cpp" />
-    <ClCompile Include="Parser.cpp" />
-    <ClCompile Include="SectionTable.cpp" />
-    <ClCompile Include="Statement.cpp" />
-    <ClCompile Include="StatementParser.cpp" />
-    <ClCompile Include="SymbolTable.cpp" />
+    <ClInclude Include="..\..\..\assembler\include\AssemblyDirectiveParser.h" />
+    <ClInclude Include="..\..\..\assembler\include\CommandOptions.h" />
+    <ClInclude Include="..\..\..\assembler\include\DataDefinitionParser.h" />
+    <ClInclude Include="..\..\..\assembler\include\DataDefs.h" />
+    <ClInclude Include="..\..\..\assembler\include\InstructionParser.h" />
+    <ClInclude Include="..\..\..\assembler\include\LabelParser.h" />
+    <ClInclude Include="..\..\..\assembler\include\LineCommentStripper.h" />
+    <ClInclude Include="..\..\..\assembler\include\LiteralParser.h" />
+    <ClInclude Include="..\..\..\assembler\include\LiteralParsingException.h" />
+    <ClInclude Include="..\..\..\assembler\include\ObjectCodeArray.h" />
+    <ClInclude Include="..\..\..\assembler\include\Parser.h" />
+    <ClInclude Include="..\..\..\assembler\include\ParsingException.h" />
+    <ClInclude Include="..\..\..\assembler\include\SectionTable.h" />
+    <ClInclude Include="..\..\..\assembler\include\Statement.h" />
+    <ClInclude Include="..\..\..\assembler\include\StatementParser.h" />
+    <ClInclude Include="..\..\..\assembler\include\SymbolTable.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AssemblyDirectiveParser.h" />
-    <ClInclude Include="CommandOptions.h" />
-    <ClInclude Include="DataDefinitionParser.h" />
-    <ClInclude Include="DataDefs.h" />
-    <ClInclude Include="InstructionParser.h" />
-    <ClInclude Include="LabelParser.h" />
-    <ClInclude Include="LineCommentStripper.h" />
-    <ClInclude Include="LiteralParser.h" />
-    <ClInclude Include="LiteralParsingException.h" />
-    <ClInclude Include="ObjectCodeArray.h" />
-    <ClInclude Include="Parser.h" />
-    <ClInclude Include="ParsingException.h" />
-    <ClInclude Include="SectionTable.h" />
-    <ClInclude Include="Statement.h" />
-    <ClInclude Include="StatementParser.h" />
-    <ClInclude Include="SymbolTable.h" />
+    <ClCompile Include="..\..\..\assembler\source\AssemblyDirectiveParser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\CommandOptions.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\DataDefinitionParser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\InstructionParser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\LabelParser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\LineCommentStripper.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\LiteralParser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\Main.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\ObjectCodeArray.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\Parser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\SectionTable.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\Statement.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\StatementParser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\SymbolTable.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -121,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Bogdan\Documents\GitHub\AssemblerAndEmulator\assembler\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
