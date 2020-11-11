@@ -12,10 +12,12 @@ static constexpr char help_string[] =
 	"\n"
 	"\t-h --help\tprint this message and exit\n"
 	"\t--bare-memory <binary_file>\tuse the binary_file for memory\n"
+	"\t--link-only <binary_file>\tuse the binary_file as output of linker, does not start emulation\n"
 	"\n"
 	"Link the source files in an executable and place each section to memory\n"
 	"according to the --place parameters. If there is an option selected,\n"
-	"ignore the place params and source_files. Starts emulation.";
+	"ignore the place params and source_files. Starts emulation. If --link-only\n"
+	"is selected, link the source files according to --place parameters.";
 
 void emulator::utility::CommandLineOptionsParser::parse(const int argc, char* argv[])
 {
@@ -34,6 +36,16 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char* ar
 			}
 
 			this->bare_memory_filepath_ = argv[i];
+		}
+		else if (strcmp(argv[i], "--link-only") == 0)
+		{
+			this->option_link_only_ = true;
+			if (++i >= argc)
+			{
+				throw std::invalid_argument{ "Error: invalid arguments: No binary file provided for output of linker" };
+			}
+
+			this->link_only_filepath_ = argv[i];
 		}
 		else if (std::regex_match(argv[i], this->match_, this->regex_place_option_))
 		{
@@ -74,6 +86,16 @@ bool emulator::utility::CommandLineOptionsParser::is_bare_memory_option() const
 std::string emulator::utility::CommandLineOptionsParser::bare_memory_filepath() const
 {
 	return this->bare_memory_filepath_;
+}
+
+bool emulator::utility::CommandLineOptionsParser::is_link_only_option() const
+{
+	return this->option_link_only_;
+}
+
+std::string emulator::utility::CommandLineOptionsParser::link_only_filepath() const
+{
+	return this->link_only_filepath_;
 }
 
 std::string emulator::utility::CommandLineOptionsParser::help_msg()

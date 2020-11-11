@@ -3,6 +3,7 @@
 
 #include "Typedefs.h"
 #include "CommandLineOptionsParser.h"
+#include "Linker.h"
 
 int main(int argc, char* argv[])
 {
@@ -33,7 +34,27 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		// TODO: link source files
+		linker::Linker linker;
+		try
+		{
+			std::cout << "Linking source files..." << std::endl;
+			linker.link(cmd_parser.source_file_paths(), cmd_parser.section_address_map());
+			if (cmd_parser.is_link_only_option())
+			{
+				std::ofstream memory_file{ cmd_parser.link_only_filepath(), std::ofstream::binary };
+				auto linked_memory_contents = linker.memory_contents();
+				std::copy(linked_memory_contents.begin(), linked_memory_contents.end(),
+						  std::ostreambuf_iterator<char>{ memory_file });
+				return 0;
+			}
+
+			// TODO: load contents to memory
+		}
+		catch (std::exception &ex)
+		{
+			std::cerr << ex.what() << std::endl;
+			return 0;
+		}
 	}
 	
 	std::cout << "Emulator started!" << std::endl;
