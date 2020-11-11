@@ -28,7 +28,7 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char* ar
 		else if (strcmp(argv[i], "--bare-memory") == 0)
 		{
 			this->option_bare_memory_ = true;
-			if (++i > argc)
+			if (++i >= argc)
 			{
 				throw std::invalid_argument{ "Error: invalid arguments: No bare memory binary file provided" };
 			}
