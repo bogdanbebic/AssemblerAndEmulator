@@ -25,6 +25,7 @@
     <ClInclude Include="..\..\..\emulator\include\Emulator.h" />
     <ClInclude Include="..\..\..\emulator\include\Instruction.h" />
     <ClInclude Include="..\..\..\emulator\include\InstructionsDefs.h" />
+    <ClInclude Include="..\..\..\emulator\include\Linker.h" />
     <ClInclude Include="..\..\..\emulator\include\Memory.h" />
     <ClInclude Include="..\..\..\emulator\include\MemoryAccessViolation.h" />
     <ClInclude Include="..\..\..\emulator\include\Psw.h" />
@@ -36,6 +37,7 @@
     <ClCompile Include="..\..\..\emulator\source\CommandLineOptionsParser.cpp" />
     <ClCompile Include="..\..\..\emulator\source\Cpu.cpp" />
     <ClCompile Include="..\..\..\emulator\source\Emulator.cpp" />
+    <ClCompile Include="..\..\..\emulator\source\Linker.cpp" />
     <ClCompile Include="..\..\..\emulator\source\main.cpp" />
     <ClCompile Include="..\..\..\emulator\source\Memory.cpp" />
     <ClCompile Include="..\..\..\emulator\source\Psw.cpp" />
