@@ -26,3 +26,9 @@ Feature: Run emulator with different arguments
       When we run emulator with "--place=duplicate_name@0x0000 --place=duplicate_name@0x4000" as arguments
       Then emulator will print "Error: invalid arguments"
       And emulator will print "Usage:"
+
+  Scenario: invalid arguments - no linker memory file for output
+     Given we have emulator
+      When we run emulator with "--link-only" as arguments
+      Then emulator will print "Error: invalid arguments"
+      And emulator will print "Usage:"
