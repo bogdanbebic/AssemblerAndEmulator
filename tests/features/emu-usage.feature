@@ -1,5 +1,7 @@
 @emulator
 @emu
+@usage
+@emu-usage
 Feature: Run emulator with different arguments
 
   Scenario: print usage

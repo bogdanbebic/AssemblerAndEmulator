@@ -1,5 +1,7 @@
 @assembler
 @as
+@usage
+@as-usage
 Feature: Run assembler with different arguments
 
   Scenario: print usage
