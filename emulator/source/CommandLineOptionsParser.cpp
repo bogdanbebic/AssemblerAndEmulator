@@ -30,7 +30,7 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char* ar
 			this->option_bare_memory_ = true;
 			if (++i > argc)
 			{
-				throw std::invalid_argument{ "No bare memory binary file provided" };
+				throw std::invalid_argument{ "Error: invalid arguments: No bare memory binary file provided" };
 			}
 
 			this->bare_memory_filepath_ = argv[i];
@@ -46,13 +46,18 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char* ar
 			bool is_inserted = ret_insert.second;
 			if (!is_inserted)
 			{
-				throw std::invalid_argument{ "Duplicate section name provided in args" };
+				throw std::invalid_argument{ "Error: invalid arguments: Duplicate section name provided in args" };
 			}
 		}
 		else
 		{
 			this->source_file_paths_.emplace_back(argv[i]);
 		}
+	}
+
+	if (!this->is_help_option() && !this->is_bare_memory_option() && this->source_file_paths().empty())
+	{
+		throw std::invalid_argument{ "Error: invalid arguments: No source files provided" };
 	}
 }
 
