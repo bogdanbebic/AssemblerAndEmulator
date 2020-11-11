@@ -54,6 +54,11 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char* ar
 			this->source_file_paths_.emplace_back(argv[i]);
 		}
 	}
+
+	if (!this->is_help_option() && !this->is_bare_memory_option() && this->source_file_paths().empty())
+	{
+		throw std::invalid_argument{ "Error: invalid arguments: No source files provided" };
+	}
 }
 
 bool emulator::utility::CommandLineOptionsParser::is_help_option() const
