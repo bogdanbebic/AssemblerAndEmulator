@@ -21,6 +21,11 @@ namespace emulator
 			public:
 				Cpu(std::shared_ptr<Memory> memory);
 
+				Cpu(const Cpu&) = delete;
+				Cpu(Cpu&&) = delete;
+				void operator= (const Cpu&) = delete;
+				void operator= (Cpu&&) = delete;
+
 				void interrupt(size_t ivt_entry);
 				void work();
 			private:
