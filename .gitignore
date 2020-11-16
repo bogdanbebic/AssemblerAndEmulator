@@ -6,3 +6,6 @@ venv/*
 
 # vscode
 .vscode/
+
+# Doxyfile generated docs
+docs/*
