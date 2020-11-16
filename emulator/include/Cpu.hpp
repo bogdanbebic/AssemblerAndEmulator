@@ -33,6 +33,10 @@ namespace emulator
 				void execute_instruction(instruction::instruction_t instr);
 				void handle_interrupt();
 
+				void execute_instruction_zero_operand(instruction::instruction_t instr);
+				void execute_instruction_one_operand(instruction::instruction_t instr);
+				void execute_instruction_two_operand(instruction::instruction_t instr);
+
 				std::shared_ptr<Memory> memory_;
 				bool cpu_running_ = false;
 

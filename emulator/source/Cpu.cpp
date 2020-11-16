@@ -69,7 +69,20 @@ emulator::system::cpu::instruction::instruction_t emulator::system::cpu::Cpu::fe
 
 void emulator::system::cpu::Cpu::execute_instruction(instruction::instruction_t instr)
 {
-	// TODO: implement
+	switch (instruction::number_of_operands(instr))
+	{
+	case 0:
+		this->execute_instruction_zero_operand(instr);
+		break;
+	case 1:
+		this->execute_instruction_one_operand(instr);
+		break;
+	case 2:
+		this->execute_instruction_two_operand(instr);
+		break;
+	default:
+		;
+	}
 }
 
 void emulator::system::cpu::Cpu::handle_interrupt()
@@ -84,5 +97,35 @@ void emulator::system::cpu::Cpu::handle_interrupt()
 			this->general_purpose_registers_[REG_PC] = this->memory_->read_word(this->interrupt_vector_table_pointer_ + i * 2);
 			break;
 		}
+	}
+}
+
+void emulator::system::cpu::Cpu::execute_instruction_zero_operand(instruction::instruction_t instr)
+{
+	switch (instr.instruction_descriptor.operation_code)
+	{
+	// TODO: implement
+	default:
+		throw std::invalid_argument{ "Usage fault: invalid opcode" };
+	}
+}
+
+void emulator::system::cpu::Cpu::execute_instruction_one_operand(instruction::instruction_t instr)
+{
+	switch (instr.instruction_descriptor.operation_code)
+	{
+	// TODO: implement
+	default:
+		throw std::invalid_argument{ "Usage fault: invalid opcode" };
+	}
+}
+
+void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::instruction_t instr)
+{
+	switch (instr.instruction_descriptor.operation_code)
+	{
+	// TODO: implement
+	default:
+		throw std::invalid_argument{ "Usage fault: invalid opcode" };
 	}
 }
