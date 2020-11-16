@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 
-#include "Typedefs.h"
-#include "CommandLineOptionsParser.h"
-#include "Linker.h"
+#include "Typedefs.hpp"
+#include "CommandLineOptionsParser.hpp"
+#include "Linker.hpp"
 
 int main(int argc, char* argv[])
 {

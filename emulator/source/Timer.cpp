@@ -1,8 +1,8 @@
-#include "Timer.h"
+#include "Timer.hpp"
 
 #include <utility>
 
-#include "CpuDefs.h"
+#include "CpuDefs.hpp"
 
 std::map<emulator::system::word_t, std::chrono::milliseconds>
 emulator::system::Timer::timeouts_ = {

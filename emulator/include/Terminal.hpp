@@ -8,8 +8,8 @@
 #include <termios.h>
 #endif
 
-#include "Typedefs.h"
-#include "Cpu.h"
+#include "Typedefs.hpp"
+#include "Cpu.hpp"
 
 namespace emulator
 {

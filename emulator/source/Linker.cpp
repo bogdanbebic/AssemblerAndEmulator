@@ -1,4 +1,4 @@
-#include "Linker.h"
+#include "Linker.hpp"
 
 void linker::Linker::link(std::vector<std::string> source_file_paths,
 						  std::map<std::string, int> section_address_map)

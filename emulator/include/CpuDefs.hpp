@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 
-#include "Typedefs.h"
+#include "Typedefs.hpp"
 
 namespace emulator
 {

@@ -1,4 +1,4 @@
-#include "Cpu.h"
+#include "Cpu.hpp"
 
 void emulator::system::cpu::Cpu::interrupt(const size_t ivt_entry)
 {

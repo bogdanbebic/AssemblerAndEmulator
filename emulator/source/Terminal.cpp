@@ -1,9 +1,9 @@
-#include "Terminal.h"
+#include "Terminal.hpp"
 
 #include <iostream>
 #include <utility>
 
-#include "CpuDefs.h"
+#include "CpuDefs.hpp"
 
 #ifndef _WIN32
 #include <unistd.h>
