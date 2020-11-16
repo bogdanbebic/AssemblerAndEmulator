@@ -3,7 +3,7 @@
 void emulator::system::Emulator::emulate()
 {
 	this->map_devices_to_memory();
-	// TODO: cpu->work()
+	this->cpu_->work();
 }
 
 void emulator::system::Emulator::load_memory(mem_address_t base, size_t size)
