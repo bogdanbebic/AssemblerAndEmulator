@@ -2,6 +2,7 @@
 #define _EMULATOR_H_
 
 #include <memory>
+#include <vector>
 
 #include "Cpu.hpp"
 #include "Memory.hpp"
@@ -16,7 +17,8 @@ namespace emulator
 		{
 		public:
 			void emulate();
-			void load_memory(mem_address_t base, size_t size);
+			void load_memory(mem_address_t base, const std::vector<emulator::system::byte_t> &memory_contents);
+			void load_memory(const std::vector<emulator::system::byte_t> &memory_contents);
 		private:
 			std::shared_ptr<Memory>   memory_	= std::make_shared<Memory>();
 			std::shared_ptr<cpu::Cpu> cpu_		= std::make_shared<cpu::Cpu>(memory_);

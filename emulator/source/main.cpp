@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 
-#include "Typedefs.hpp"
 #include "CommandLineOptionsParser.hpp"
 #include "Emulator.hpp"
 #include "Linker.hpp"
+#include "Typedefs.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 		std::ifstream memory_file{cmd_parser.bare_memory_filepath(), std::ifstream::binary };
 		std::vector<emulator::system::byte_t> contents{ std::istreambuf_iterator<char>{ memory_file },
 														std::istreambuf_iterator<char>{} };
-		// TODO: load contents to memory
+		emu.load_memory(contents);
 	}
 	else
 	{
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 				return 0;
 			}
 
-			// TODO: load contents to memory
+			emu.load_memory(linker.memory_contents());
 		}
 		catch (std::exception &ex)
 		{
