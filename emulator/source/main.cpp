@@ -3,6 +3,7 @@
 
 #include "Typedefs.hpp"
 #include "CommandLineOptionsParser.hpp"
+#include "Emulator.hpp"
 #include "Linker.hpp"
 
 int main(int argc, char* argv[])
@@ -24,6 +25,8 @@ int main(int argc, char* argv[])
 		std::cout << emulator::utility::CommandLineOptionsParser::help_msg();
 		return 0;
 	}
+
+	emulator::system::Emulator emu;
 
 	if (cmd_parser.is_bare_memory_option())
 	{
@@ -58,6 +61,7 @@ int main(int argc, char* argv[])
 	}
 	
 	std::cout << "Emulator started!" << std::endl;
+	emu.emulate();
 
 	return 0;
 }
