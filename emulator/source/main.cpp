@@ -62,6 +62,7 @@ int main(int argc, char* argv[])
 	
 	std::cout << "Emulator started!" << std::endl;
 	emu.emulate();
+	std::cout << "Emulator finished!" << std::endl;
 
 	return 0;
 }
