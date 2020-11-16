@@ -112,7 +112,8 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = ./assembler/include \
+INPUT                  = ./README.md         \
+                         ./assembler/include \
                          ./assembler/source  \
                          ./emulator/include  \
                          ./emulator/source
