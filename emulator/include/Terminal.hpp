@@ -38,6 +38,7 @@ namespace emulator
 			std::shared_ptr<cpu::Cpu> cpu_;
 
 			#ifndef _WIN32
+			int old_stdin_flags;
 			struct termios old_termios;
 			#endif
 

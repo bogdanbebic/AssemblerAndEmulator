@@ -6,6 +6,7 @@
 #include "CpuDefs.hpp"
 
 #ifndef _WIN32
+#include <fcntl.h>
 #include <unistd.h>
 #endif
 
@@ -62,13 +63,20 @@ void emulator::system::Terminal::enter_raw_mode()
 {
 #ifndef _WIN32
 	// Linux
+
+	int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
+	this->old_stdin_flags = flags;
+	fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
+
 	struct termios raw;
 	tcgetattr(STDIN_FILENO, &raw);
 	this->old_termios = raw;
 
 	raw.c_lflag &= ~ICANON;
+	raw.c_cc[VMIN] = 0;
+	raw.c_cc[VTIME] = 0;
 
-	tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+	tcsetattr(STDIN_FILENO, TCSANOW, &raw);
 #endif
 }
 
@@ -76,6 +84,7 @@ void emulator::system::Terminal::exit_raw_mode()
 {
 #ifndef _WIN32
 	// Linux
-	tcsetattr(STDIN_FILENO, TCSAFLUSH, &this->old_termios);
+	tcsetattr(STDIN_FILENO, TCSANOW, &this->old_termios);
+	fcntl(STDIN_FILENO, F_SETFL, this->old_stdin_flags);
 #endif
 }
