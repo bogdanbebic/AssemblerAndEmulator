@@ -104,6 +104,9 @@ void emulator::system::cpu::Cpu::execute_instruction_zero_operand(instruction::i
 {
 	switch (instr.instruction_descriptor.operation_code)
 	{
+	case instruction::HALT:
+		this->cpu_running_ = false;
+		break;
 	// TODO: implement
 	default:
 		throw std::invalid_argument{ "Usage fault: invalid opcode" };
