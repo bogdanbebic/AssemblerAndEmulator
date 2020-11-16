@@ -1,7 +1,7 @@
 #ifndef _MEMORY_H_
 #define _MEMORY_H_
 
-#include "Typedefs.h"
+#include "Typedefs.hpp"
 
 namespace emulator
 {

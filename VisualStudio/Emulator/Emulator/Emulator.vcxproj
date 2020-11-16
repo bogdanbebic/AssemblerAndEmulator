@@ -19,19 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\emulator\include\CommandLineOptionsParser.h" />
-    <ClInclude Include="..\..\..\emulator\include\Cpu.h" />
-    <ClInclude Include="..\..\..\emulator\include\CpuDefs.h" />
-    <ClInclude Include="..\..\..\emulator\include\Emulator.h" />
-    <ClInclude Include="..\..\..\emulator\include\Instruction.h" />
-    <ClInclude Include="..\..\..\emulator\include\InstructionsDefs.h" />
-    <ClInclude Include="..\..\..\emulator\include\Linker.h" />
-    <ClInclude Include="..\..\..\emulator\include\Memory.h" />
-    <ClInclude Include="..\..\..\emulator\include\MemoryAccessViolation.h" />
-    <ClInclude Include="..\..\..\emulator\include\Psw.h" />
-    <ClInclude Include="..\..\..\emulator\include\Terminal.h" />
-    <ClInclude Include="..\..\..\emulator\include\Timer.h" />
-    <ClInclude Include="..\..\..\emulator\include\Typedefs.h" />
+    <ClInclude Include="..\..\..\emulator\include\CommandLineOptionsParser.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Cpu.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\CpuDefs.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Emulator.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Instruction.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\InstructionsDefs.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Linker.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Memory.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\MemoryAccessViolation.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Psw.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Terminal.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Timer.hpp" />
+    <ClInclude Include="..\..\..\emulator\include\Typedefs.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\emulator\source\CommandLineOptionsParser.cpp" />

@@ -1,6 +1,6 @@
-#include "Memory.h"
+#include "Memory.hpp"
 
-#include "MemoryAccessViolation.h"
+#include "MemoryAccessViolation.hpp"
 
 void emulator::system::Memory::write_byte(const mem_address_t base_address, const byte_t data)
 {

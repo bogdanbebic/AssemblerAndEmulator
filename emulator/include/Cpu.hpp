@@ -1,9 +1,9 @@
 #ifndef _CPU_H_
 #define _CPU_H_
 
-#include "CpuDefs.h"
-#include "Typedefs.h"
-#include "Psw.h"
+#include "CpuDefs.hpp"
+#include "Typedefs.hpp"
+#include "Psw.hpp"
 
 namespace emulator
 {

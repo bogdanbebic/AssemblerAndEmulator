@@ -1,7 +1,7 @@
 #ifndef _INSTRUCTION_H_
 #define _INSTRUCTION_H_
 
-#include "Typedefs.h"
+#include "Typedefs.hpp"
 
 namespace emulator
 {

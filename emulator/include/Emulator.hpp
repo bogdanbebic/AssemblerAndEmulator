@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "Cpu.h"
-#include "Memory.h"
-#include "Terminal.h"
-#include "Timer.h"
+#include "Cpu.hpp"
+#include "Memory.hpp"
+#include "Terminal.hpp"
+#include "Timer.hpp"
 
 namespace emulator
 {

@@ -1,8 +1,8 @@
 #ifndef _PSW_H_
 #define _PSW_H_
 
-#include "CpuDefs.h"
-#include "Typedefs.h"
+#include "CpuDefs.hpp"
+#include "Typedefs.hpp"
 
 namespace emulator
 {
