@@ -3,16 +3,49 @@
 #include <stdexcept>
 #include <utility>
 
+#include "InstructionsDefs.hpp"
+
 emulator::system::cpu::Cpu::Cpu(std::shared_ptr<Memory> memory)
 	: memory_(std::move(memory))
 {
 	// empty body
 }
 
-emulator::system::cpu::instruction::instruction_t emulator::system::cpu::Cpu::fetch_instruction() const
+emulator::system::cpu::instruction::instruction_t emulator::system::cpu::Cpu::fetch_instruction()
 {
-	// TODO: implement
-	return {};
+	using namespace instruction;
+	instruction_t instr;
+	byte_t instruction_descriptor = this->memory_->read_byte(this->general_purpose_registers_[REG_PC]);
+	this->general_purpose_registers_[REG_PC] += sizeof(byte_t);
+
+	instr.instruction_descriptor.operation_code = (instruction_descriptor & OPCODE_MASK) >> OPCODE_OFFSET;
+	instr.instruction_descriptor.operand_size	= (instruction_descriptor & OPERAND_SIZE_MASK) >> OPERAND_SIZE_OFFSET;
+
+	for (size_t i = 0; i < number_of_operands(instr) && i < max_operands_in_instruction; i++)
+	{
+		byte_t operand_descriptor = this->memory_->read_byte(this->general_purpose_registers_[REG_PC]);
+		this->general_purpose_registers_[REG_PC] += sizeof(byte_t);
+
+		instr.operands[i].addressing_mode = (operand_descriptor & ADDRESSING_MODE_MASK) >> ADDRESSING_MODE_OFFSET;
+		instr.operands[i].register_index = (operand_descriptor & REGISTER_INDEX_MASK) >> REGISTER_INDEX_OFFSET;
+		instr.operands[i].low_byte = (operand_descriptor & LOW_BYTE_MASK) >> LOW_BYTE_OFFSET;
+
+		if (instr.operands[i].addressing_mode == REGISTER || instr.operands[i].addressing_mode == REGISTER_INDIRECT)
+			continue;
+
+		if (instr.instruction_descriptor.operand_size == OPERAND_SIZE_BYTE)
+		{
+			instr.operands[i].operand = this->memory_->read_byte(this->general_purpose_registers_[REG_PC]);
+			this->general_purpose_registers_[REG_PC] += sizeof(byte_t);
+		}
+		else
+		{
+			instr.operands[i].operand = this->memory_->read_word(this->general_purpose_registers_[REG_PC]++);
+			this->general_purpose_registers_[REG_PC] += sizeof(word_t);
+		}
+	}
+
+	return instr;
 }
 
 void emulator::system::cpu::Cpu::execute_instruction(instruction::instruction_t instr)

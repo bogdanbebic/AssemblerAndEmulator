@@ -24,7 +24,7 @@ namespace emulator
 				void interrupt(size_t ivt_entry);
 				void work();
 			private:
-				instruction::instruction_t fetch_instruction() const;
+				instruction::instruction_t fetch_instruction();
 				void execute_instruction(instruction::instruction_t instr);
 				void handle_interrupt();
 
