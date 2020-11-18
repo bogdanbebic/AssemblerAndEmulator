@@ -2,42 +2,43 @@
 #define SECTION_TABLE_H_GUARD
 
 #include <map>
-#include <string>
 #include <sstream>
+#include <string>
 
 namespace assembler
 {
-	class SectionTable
-	{
-	public:
-		struct SectionTableEntry
-		{
-			std::string section;
-			size_t index;
-			size_t size;
-		};
-		
-		using key_type = std::string;
-		using mapped_type = struct SectionTableEntry;
+    class SectionTable
+    {
+    public:
+        struct SectionTableEntry
+        {
+            std::string section;
+            size_t index;
+            size_t size;
+        };
 
-		static const std::string undefined_section_entry_name;
-		static const std::pair<key_type, mapped_type> undefined_section_entry;
-		
-		SectionTable();
-		
-		mapped_type& at(const key_type& key);
-		void insert(const key_type& key);
-		void update_section_size(const key_type& key, size_t size);
-		void erase(const key_type& key);
+        using key_type    = std::string;
+        using mapped_type = struct SectionTableEntry;
 
-		std::stringstream to_school_elf() const;
-	private:
-		void insert(const std::pair<key_type, mapped_type>& entry);
-		
-		std::map<key_type, mapped_type> section_table_;
-		size_t next_section_index_ = 1;
-	};
+        static const std::string undefined_section_entry_name;
+        static const std::pair<key_type, mapped_type> undefined_section_entry;
 
-}
+        SectionTable();
+
+        mapped_type &at(const key_type &key);
+        void insert(const key_type &key);
+        void update_section_size(const key_type &key, size_t size);
+        void erase(const key_type &key);
+
+        std::stringstream to_school_elf() const;
+
+    private:
+        void insert(const std::pair<key_type, mapped_type> &entry);
+
+        std::map<key_type, mapped_type> section_table_;
+        size_t next_section_index_ = 1;
+    };
+
+} // namespace assembler
 
 #endif
