@@ -155,28 +155,34 @@ void emulator::system::cpu::Cpu::execute_instruction_one_operand(instruction::in
     switch (instr.instruction_descriptor.operation_code)
     {
     case instruction::INT:
-        // TODO: implement
+        this->push_to_stack(this->psw_.get());
+        this->general_purpose_registers_[REG_PC] = (this->operand_value(instr, 0) % 8) * 2;
         break;
     case instruction::CALL:
-        // TODO: implement
+        this->push_to_stack(this->general_purpose_registers_[REG_PC]);
+        this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
         break;
     case instruction::JMP:
-        // TODO: implement
+        this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
         break;
     case instruction::JEQ:
-        // TODO: implement
+        if (this->psw_.psw_read(PswMasks::PSW_Z_MASK))
+            this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
         break;
     case instruction::JNE:
-        // TODO: implement
+        if (!this->psw_.psw_read(PswMasks::PSW_Z_MASK))
+            this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
         break;
     case instruction::JGT:
-        // TODO: implement
+        if (!this->psw_.psw_read(PswMasks::PSW_Z_MASK) &&
+            !this->psw_.psw_read(PswMasks::PSW_N_MASK))
+            this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
         break;
     case instruction::PUSH:
-        // TODO: implement
+        this->push_to_stack(this->operand_value(instr, 0));
         break;
     case instruction::POP:
-        // TODO: implement
+        this->write_operand(instr, 0, this->pop_from_stack());
         break;
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
