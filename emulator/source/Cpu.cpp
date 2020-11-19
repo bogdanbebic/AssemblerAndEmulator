@@ -154,7 +154,30 @@ void emulator::system::cpu::Cpu::execute_instruction_one_operand(instruction::in
 {
     switch (instr.instruction_descriptor.operation_code)
     {
-    // TODO: implement
+    case instruction::INT:
+        // TODO: implement
+        break;
+    case instruction::CALL:
+        // TODO: implement
+        break;
+    case instruction::JMP:
+        // TODO: implement
+        break;
+    case instruction::JEQ:
+        // TODO: implement
+        break;
+    case instruction::JNE:
+        // TODO: implement
+        break;
+    case instruction::JGT:
+        // TODO: implement
+        break;
+    case instruction::PUSH:
+        // TODO: implement
+        break;
+    case instruction::POP:
+        // TODO: implement
+        break;
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
     }
@@ -164,7 +187,48 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
 {
     switch (instr.instruction_descriptor.operation_code)
     {
-    // TODO: implement
+    case instruction::XCHG:
+        // TODO: implement
+        break;
+    case instruction::MOV:
+        // TODO: implement
+        break;
+    case instruction::ADD:
+        // TODO: implement
+        break;
+    case instruction::SUB:
+        // TODO: implement
+        break;
+    case instruction::MUL:
+        // TODO: implement
+        break;
+    case instruction::DIV:
+        // TODO: implement
+        break;
+    case instruction::CMP:
+        // TODO: implement
+        break;
+    case instruction::NOT:
+        // TODO: implement
+        break;
+    case instruction::AND:
+        // TODO: implement
+        break;
+    case instruction::OR:
+        // TODO: implement
+        break;
+    case instruction::XOR:
+        // TODO: implement
+        break;
+    case instruction::TEST:
+        // TODO: implement
+        break;
+    case instruction::SHL:
+        // TODO: implement
+        break;
+    case instruction::SHR:
+        // TODO: implement
+        break;
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
     }
