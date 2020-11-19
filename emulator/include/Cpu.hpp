@@ -30,6 +30,9 @@ namespace emulator
                 void work();
 
             private:
+                void push_to_stack(word_t word);
+                word_t pop_from_stack();
+
                 instruction::instruction_t fetch_instruction();
                 void execute_instruction(instruction::instruction_t instr);
                 void handle_interrupt();

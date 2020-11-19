@@ -4,6 +4,8 @@
 #include <utility>
 
 #include "InstructionsDefs.hpp"
+#include "StackOverflow.hpp"
+#include "StackUnderflow.hpp"
 
 emulator::system::cpu::Cpu::Cpu(std::shared_ptr<Memory> memory)
     : memory_(std::move(memory))
@@ -29,6 +31,25 @@ void emulator::system::cpu::Cpu::work()
         this->execute_instruction(instr);
         this->handle_interrupt();
     }
+}
+
+void emulator::system::cpu::Cpu::push_to_stack(word_t word)
+{
+    if (this->general_purpose_registers_[REG_SP] == sizeof(word_t))
+        throw exceptions::StackOverflow{};
+
+    this->general_purpose_registers_[REG_SP] -= sizeof(word_t);
+    this->memory_->write_word(this->general_purpose_registers_[REG_SP], word);
+}
+
+emulator::system::word_t emulator::system::cpu::Cpu::pop_from_stack()
+{
+    if (this->general_purpose_registers_[REG_SP] == 0)
+        throw exceptions::StackUnderflow{};
+
+    auto ret = this->memory_->read_word(this->general_purpose_registers_[REG_SP]);
+    this->general_purpose_registers_[REG_SP] += sizeof(word_t);
+    return ret;
 }
 
 emulator::system::cpu::instruction::instruction_t emulator::system::cpu::Cpu::fetch_instruction()
