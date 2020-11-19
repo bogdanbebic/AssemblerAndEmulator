@@ -11,3 +11,9 @@ size_t emulator::system::cpu::instruction::number_of_operands(emulator::system::
     else
         return 2;
 }
+
+bool emulator::system::cpu::instruction::is_operand_in_memory(instruction_t instr, size_t operand_index)
+{
+    return instr.operands[operand_index].addressing_mode != IMMEDIATE &&
+           instr.operands[operand_index].addressing_mode != REGISTER;
+}
