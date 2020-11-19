@@ -11,23 +11,25 @@
 
 namespace emulator
 {
-	namespace system
-	{
-		class Emulator
-		{
-		public:
-			void emulate();
-			void load_memory(mem_address_t base, const std::vector<emulator::system::byte_t> &memory_contents);
-			void load_memory(const std::vector<emulator::system::byte_t> &memory_contents);
-		private:
-			std::shared_ptr<Memory>   memory_	= std::make_shared<Memory>();
-			std::shared_ptr<cpu::Cpu> cpu_		= std::make_shared<cpu::Cpu>(memory_);
-			std::shared_ptr<Terminal> terminal_ = std::make_shared<Terminal>(cpu_);
-			std::shared_ptr<Timer>	  timer_	= std::make_shared<Timer>(cpu_);
+    namespace system
+    {
+        class Emulator
+        {
+        public:
+            void emulate();
+            void load_memory(mem_address_t base,
+                             const std::vector<emulator::system::byte_t> &memory_contents);
+            void load_memory(const std::vector<emulator::system::byte_t> &memory_contents);
 
-			void map_devices_to_memory();
-		};
-	}
-}
+        private:
+            std::shared_ptr<Memory> memory_ = std::make_shared<Memory>();
+            std::shared_ptr<cpu::Cpu> cpu_ = std::make_shared<cpu::Cpu>(memory_);
+            std::shared_ptr<Terminal> terminal_ = std::make_shared<Terminal>(cpu_);
+            std::shared_ptr<Timer> timer_       = std::make_shared<Timer>(cpu_);
+
+            void map_devices_to_memory();
+        };
+    } // namespace system
+} // namespace emulator
 
 #endif

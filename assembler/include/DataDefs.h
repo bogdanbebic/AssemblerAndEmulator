@@ -6,8 +6,8 @@
 
 namespace assembler
 {
-	typedef uint8_t byte_t;
-	typedef uint16_t word_t;
-}
+    typedef uint8_t byte_t;
+    typedef uint16_t word_t;
+} // namespace assembler
 
 #endif
