@@ -1,10 +1,10 @@
-#include "DataDefinitionParser.h"
+#include "DataDefinitionParser.hpp"
 
 #include <regex>
 #include <sstream>
 #include <stdexcept>
 
-#include "LiteralParser.h"
+#include "LiteralParser.hpp"
 
 #include <iostream>
 

@@ -2,8 +2,8 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "CommandOptions.h"
-#include "Parser.h"
+#include "CommandOptions.hpp"
+#include "Parser.hpp"
 
 int main(int argc, char *argv[])
 {

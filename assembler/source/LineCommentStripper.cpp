@@ -1,4 +1,4 @@
-#include "LineCommentStripper.h"
+#include "LineCommentStripper.hpp"
 
 std::string parsers::LineCommentStripper::strip_line_comment(std::string line)
 {

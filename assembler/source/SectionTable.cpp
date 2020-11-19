@@ -1,4 +1,4 @@
-#include "SectionTable.h"
+#include "SectionTable.hpp"
 
 const std::string assembler::SectionTable::undefined_section_entry_name{ "*UND*" };
 

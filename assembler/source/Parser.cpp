@@ -1,13 +1,13 @@
-#include "Parser.h"
+#include "Parser.hpp"
 
 #include <sstream>
 #include <string>
 
-#include "ParsingException.h"
+#include "ParsingException.hpp"
 
-#include "AssemblyDirectiveParser.h"
-#include "DataDefinitionParser.h"
-#include "InstructionParser.h"
+#include "AssemblyDirectiveParser.hpp"
+#include "DataDefinitionParser.hpp"
+#include "InstructionParser.hpp"
 
 parsers::Parser::Parser()
 {

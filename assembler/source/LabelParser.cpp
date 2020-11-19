@@ -1,9 +1,9 @@
-#include "LabelParser.h"
+#include "LabelParser.hpp"
 #include <iostream>
 #include <utility>
 
-#include "ParsingException.h"
-#include "SymbolTable.h"
+#include "ParsingException.hpp"
+#include "SymbolTable.hpp"
 
 parsers::LabelParser::LabelParser(std::shared_ptr<assembler::SymbolTable> symbol_table)
     : symbol_table_(std::move(symbol_table))

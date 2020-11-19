@@ -5,12 +5,12 @@
 #include <memory>
 #include <sstream>
 
-#include "LabelParser.h"
-#include "LineCommentStripper.h"
-#include "ObjectCodeArray.h"
-#include "SectionTable.h"
-#include "StatementParser.h"
-#include "SymbolTable.h"
+#include "LabelParser.hpp"
+#include "LineCommentStripper.hpp"
+#include "ObjectCodeArray.hpp"
+#include "SectionTable.hpp"
+#include "StatementParser.hpp"
+#include "SymbolTable.hpp"
 
 namespace parsers
 {
