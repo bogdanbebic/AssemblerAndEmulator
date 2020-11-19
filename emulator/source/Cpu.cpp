@@ -138,7 +138,13 @@ void emulator::system::cpu::Cpu::execute_instruction_zero_operand(instruction::i
     case instruction::HALT:
         this->cpu_running_ = false;
         break;
-    // TODO: implement
+    case instruction::IRET:
+        this->psw_.set(this->pop_from_stack());
+        this->general_purpose_registers_[REG_PC] = this->pop_from_stack();
+        break;
+    case instruction::RET:
+        this->general_purpose_registers_[REG_PC] = this->pop_from_stack();
+        break;
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
     }
