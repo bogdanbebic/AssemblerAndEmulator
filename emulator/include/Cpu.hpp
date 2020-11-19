@@ -41,6 +41,10 @@ namespace emulator
                 void execute_instruction_one_operand(instruction::instruction_t instr);
                 void execute_instruction_two_operand(instruction::instruction_t instr);
 
+                mem_address_t operand_memory_address(instruction::instruction_t instr,
+                                                     size_t operand_index);
+                word_t operand_value(instruction::instruction_t instr, size_t operand_index);
+
                 std::shared_ptr<Memory> memory_;
                 bool cpu_running_ = false;
 

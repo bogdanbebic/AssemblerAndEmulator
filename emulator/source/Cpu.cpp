@@ -233,3 +233,62 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
     }
 }
+
+emulator::system::mem_address_t
+emulator::system::cpu::Cpu::operand_memory_address(instruction::instruction_t instr,
+                                                   size_t operand_index)
+{
+    word_t ret;
+    switch (instr.operands[operand_index].addressing_mode)
+    {
+    case instruction::REGISTER_INDIRECT:
+        ret = this->general_purpose_registers_[instr.operands[operand_index].register_index];
+        break;
+    case instruction::REGISTER_INDIRECT_OFFSET:
+    {
+        auto reg_value =
+            this->general_purpose_registers_[instr.operands[operand_index].register_index];
+        auto offset = instr.operands[operand_index].operand;
+
+        ret = reg_value + offset;
+    }
+    break;
+    case instruction::MEMORY_DIRECT:
+        ret = instr.operands[operand_index].operand;
+        break;
+    default:
+        throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+    }
+
+    return ret;
+}
+
+emulator::system::word_t emulator::system::cpu::Cpu::operand_value(instruction::instruction_t instr,
+                                                                   size_t operand_index)
+{
+    word_t ret;
+    if (instruction::is_operand_in_memory(instr, operand_index))
+    {
+        ret = this->memory_->read_word(this->operand_memory_address(instr, operand_index));
+    }
+    else
+    {
+        switch (instr.operands[operand_index].addressing_mode)
+        {
+        case instruction::IMMEDIATE:
+            ret = instr.operands[operand_index].operand;
+            break;
+        case instruction::REGISTER:
+            ret = this->general_purpose_registers_[instr.operands[operand_index].register_index];
+            break;
+        default:
+            throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+        }
+    }
+
+    if ((instr.operands[operand_index].addressing_mode == instruction::REGISTER &&
+         instr.operands[operand_index].low_byte) ||
+        instr.instruction_descriptor.operand_size == instruction::OPERAND_SIZE_BYTE)
+        ret &= 0xFF;
+    return ret;
+}
