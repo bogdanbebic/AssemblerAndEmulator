@@ -292,3 +292,34 @@ emulator::system::word_t emulator::system::cpu::Cpu::operand_value(instruction::
         ret &= 0xFF;
     return ret;
 }
+
+void emulator::system::cpu::Cpu::write_operand(instruction::instruction_t instr,
+                                               size_t operand_index,
+                                               word_t value)
+{
+    if (instruction::is_operand_in_memory(instr, operand_index))
+    {
+        auto memory_address = this->operand_memory_address(instr, operand_index);
+        if (instr.instruction_descriptor.operand_size == instruction::OPERAND_SIZE_BYTE)
+            this->memory_->write_byte(memory_address, static_cast<byte_t>(value & 0xFF));
+        else if (instr.instruction_descriptor.operand_size == instruction::OPERAND_SIZE_WORD)
+            this->memory_->write_word(memory_address, value);
+    }
+    else if (instr.operands[operand_index].addressing_mode == instruction::REGISTER)
+    {
+        auto reg_index = instr.operands[operand_index].register_index;
+        if (instr.operands[operand_index].low_byte)
+            value &= 0xFF;
+
+        if (reg_index < num_gp_registers)
+            this->general_purpose_registers_[reg_index] = value;
+        else if (reg_index == instruction::psw_idx)
+            this->psw_.set(value);
+        else
+            throw std::invalid_argument{ "Usage fault: invalid register index" };
+    }
+    else
+    {
+        throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+    }
+}
