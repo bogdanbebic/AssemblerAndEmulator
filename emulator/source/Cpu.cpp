@@ -4,6 +4,8 @@
 #include <utility>
 
 #include "InstructionsDefs.hpp"
+#include "StackOverflow.hpp"
+#include "StackUnderflow.hpp"
 
 emulator::system::cpu::Cpu::Cpu(std::shared_ptr<Memory> memory)
     : memory_(std::move(memory))
@@ -29,6 +31,25 @@ void emulator::system::cpu::Cpu::work()
         this->execute_instruction(instr);
         this->handle_interrupt();
     }
+}
+
+void emulator::system::cpu::Cpu::push_to_stack(word_t word)
+{
+    if (this->general_purpose_registers_[REG_SP] == sizeof(word_t))
+        throw exceptions::StackOverflow{};
+
+    this->general_purpose_registers_[REG_SP] -= sizeof(word_t);
+    this->memory_->write_word(this->general_purpose_registers_[REG_SP], word);
+}
+
+emulator::system::word_t emulator::system::cpu::Cpu::pop_from_stack()
+{
+    if (this->general_purpose_registers_[REG_SP] == 0)
+        throw exceptions::StackUnderflow{};
+
+    auto ret = this->memory_->read_word(this->general_purpose_registers_[REG_SP]);
+    this->general_purpose_registers_[REG_SP] += sizeof(word_t);
+    return ret;
 }
 
 emulator::system::cpu::instruction::instruction_t emulator::system::cpu::Cpu::fetch_instruction()
@@ -117,7 +138,13 @@ void emulator::system::cpu::Cpu::execute_instruction_zero_operand(instruction::i
     case instruction::HALT:
         this->cpu_running_ = false;
         break;
-    // TODO: implement
+    case instruction::IRET:
+        this->psw_.set(this->pop_from_stack());
+        this->general_purpose_registers_[REG_PC] = this->pop_from_stack();
+        break;
+    case instruction::RET:
+        this->general_purpose_registers_[REG_PC] = this->pop_from_stack();
+        break;
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
     }
@@ -127,7 +154,36 @@ void emulator::system::cpu::Cpu::execute_instruction_one_operand(instruction::in
 {
     switch (instr.instruction_descriptor.operation_code)
     {
-    // TODO: implement
+    case instruction::INT:
+        this->push_to_stack(this->psw_.get());
+        this->general_purpose_registers_[REG_PC] = (this->operand_value(instr, 0) % 8) * 2;
+        break;
+    case instruction::CALL:
+        this->push_to_stack(this->general_purpose_registers_[REG_PC]);
+        this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
+        break;
+    case instruction::JMP:
+        this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
+        break;
+    case instruction::JEQ:
+        if (this->psw_.psw_read(PswMasks::PSW_Z_MASK))
+            this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
+        break;
+    case instruction::JNE:
+        if (!this->psw_.psw_read(PswMasks::PSW_Z_MASK))
+            this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
+        break;
+    case instruction::JGT:
+        if (!this->psw_.psw_read(PswMasks::PSW_Z_MASK) &&
+            !this->psw_.psw_read(PswMasks::PSW_N_MASK))
+            this->general_purpose_registers_[REG_PC] = this->operand_value(instr, 0);
+        break;
+    case instruction::PUSH:
+        this->push_to_stack(this->operand_value(instr, 0));
+        break;
+    case instruction::POP:
+        this->write_operand(instr, 0, this->pop_from_stack());
+        break;
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
     }
@@ -137,8 +193,139 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
 {
     switch (instr.instruction_descriptor.operation_code)
     {
-    // TODO: implement
+    case instruction::XCHG:
+        // TODO: implement
+        break;
+    case instruction::MOV:
+        // TODO: implement
+        break;
+    case instruction::ADD:
+        // TODO: implement
+        break;
+    case instruction::SUB:
+        // TODO: implement
+        break;
+    case instruction::MUL:
+        // TODO: implement
+        break;
+    case instruction::DIV:
+        // TODO: implement
+        break;
+    case instruction::CMP:
+        // TODO: implement
+        break;
+    case instruction::NOT:
+        // TODO: implement
+        break;
+    case instruction::AND:
+        // TODO: implement
+        break;
+    case instruction::OR:
+        // TODO: implement
+        break;
+    case instruction::XOR:
+        // TODO: implement
+        break;
+    case instruction::TEST:
+        // TODO: implement
+        break;
+    case instruction::SHL:
+        // TODO: implement
+        break;
+    case instruction::SHR:
+        // TODO: implement
+        break;
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
+    }
+}
+
+emulator::system::mem_address_t
+emulator::system::cpu::Cpu::operand_memory_address(instruction::instruction_t instr,
+                                                   size_t operand_index)
+{
+    word_t ret;
+    switch (instr.operands[operand_index].addressing_mode)
+    {
+    case instruction::REGISTER_INDIRECT:
+        ret = this->general_purpose_registers_[instr.operands[operand_index].register_index];
+        break;
+    case instruction::REGISTER_INDIRECT_OFFSET:
+    {
+        auto reg_value =
+            this->general_purpose_registers_[instr.operands[operand_index].register_index];
+        auto offset = instr.operands[operand_index].operand;
+
+        ret = reg_value + offset;
+    }
+    break;
+    case instruction::MEMORY_DIRECT:
+        ret = instr.operands[operand_index].operand;
+        break;
+    default:
+        throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+    }
+
+    return ret;
+}
+
+emulator::system::word_t emulator::system::cpu::Cpu::operand_value(instruction::instruction_t instr,
+                                                                   size_t operand_index)
+{
+    word_t ret;
+    if (instruction::is_operand_in_memory(instr, operand_index))
+    {
+        ret = this->memory_->read_word(this->operand_memory_address(instr, operand_index));
+    }
+    else
+    {
+        switch (instr.operands[operand_index].addressing_mode)
+        {
+        case instruction::IMMEDIATE:
+            ret = instr.operands[operand_index].operand;
+            break;
+        case instruction::REGISTER:
+            ret = this->general_purpose_registers_[instr.operands[operand_index].register_index];
+            break;
+        default:
+            throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+        }
+    }
+
+    if ((instr.operands[operand_index].addressing_mode == instruction::REGISTER &&
+         instr.operands[operand_index].low_byte) ||
+        instr.instruction_descriptor.operand_size == instruction::OPERAND_SIZE_BYTE)
+        ret &= 0xFF;
+    return ret;
+}
+
+void emulator::system::cpu::Cpu::write_operand(instruction::instruction_t instr,
+                                               size_t operand_index,
+                                               word_t value)
+{
+    if (instruction::is_operand_in_memory(instr, operand_index))
+    {
+        auto memory_address = this->operand_memory_address(instr, operand_index);
+        if (instr.instruction_descriptor.operand_size == instruction::OPERAND_SIZE_BYTE)
+            this->memory_->write_byte(memory_address, static_cast<byte_t>(value & 0xFF));
+        else if (instr.instruction_descriptor.operand_size == instruction::OPERAND_SIZE_WORD)
+            this->memory_->write_word(memory_address, value);
+    }
+    else if (instr.operands[operand_index].addressing_mode == instruction::REGISTER)
+    {
+        auto reg_index = instr.operands[operand_index].register_index;
+        if (instr.operands[operand_index].low_byte)
+            value &= 0xFF;
+
+        if (reg_index < num_gp_registers)
+            this->general_purpose_registers_[reg_index] = value;
+        else if (reg_index == instruction::psw_idx)
+            this->psw_.set(value);
+        else
+            throw std::invalid_argument{ "Usage fault: invalid register index" };
+    }
+    else
+    {
+        throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
     }
 }

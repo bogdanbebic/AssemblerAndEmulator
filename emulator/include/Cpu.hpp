@@ -30,6 +30,9 @@ namespace emulator
                 void work();
 
             private:
+                void push_to_stack(word_t word);
+                word_t pop_from_stack();
+
                 instruction::instruction_t fetch_instruction();
                 void execute_instruction(instruction::instruction_t instr);
                 void handle_interrupt();
@@ -37,6 +40,13 @@ namespace emulator
                 void execute_instruction_zero_operand(instruction::instruction_t instr);
                 void execute_instruction_one_operand(instruction::instruction_t instr);
                 void execute_instruction_two_operand(instruction::instruction_t instr);
+
+                mem_address_t operand_memory_address(instruction::instruction_t instr,
+                                                     size_t operand_index);
+                word_t operand_value(instruction::instruction_t instr, size_t operand_index);
+                void write_operand(instruction::instruction_t instr,
+                                   size_t operand_index,
+                                   word_t value);
 
                 std::shared_ptr<Memory> memory_;
                 bool cpu_running_ = false;
