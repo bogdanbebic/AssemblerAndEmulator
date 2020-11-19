@@ -1,12 +1,12 @@
 #ifndef DATA_DEFINITION_PARSER_H_GUARD
 #define DATA_DEFINITION_PARSER_H_GUARD
 
-#include "StatementParser.h"
+#include "StatementParser.hpp"
 
 #include <memory>
 
-#include "ObjectCodeArray.h"
-#include "SymbolTable.h"
+#include "ObjectCodeArray.hpp"
+#include "SymbolTable.hpp"
 
 namespace parsers
 {

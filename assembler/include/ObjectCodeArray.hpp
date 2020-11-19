@@ -4,7 +4,7 @@
 #include <sstream>
 #include <vector>
 
-#include "DataDefs.h"
+#include "DataDefs.hpp"
 
 namespace assembler
 {

@@ -1,4 +1,4 @@
-#include "CommandOptions.h"
+#include "CommandOptions.hpp"
 
 #include <stdexcept>
 

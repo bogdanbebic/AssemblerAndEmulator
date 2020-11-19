@@ -15,52 +15,52 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\assembler\include\AssemblyDirectiveParser.h">
+    <ClInclude Include="..\..\..\assembler\include\AssemblyDirectiveParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\CommandOptions.h">
+    <ClInclude Include="..\..\..\assembler\include\CommandOptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\DataDefinitionParser.h">
+    <ClInclude Include="..\..\..\assembler\include\DataDefinitionParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\DataDefs.h">
+    <ClInclude Include="..\..\..\assembler\include\DataDefs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\InstructionParser.h">
+    <ClInclude Include="..\..\..\assembler\include\InstructionParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\LabelParser.h">
+    <ClInclude Include="..\..\..\assembler\include\LabelParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\LineCommentStripper.h">
+    <ClInclude Include="..\..\..\assembler\include\LineCommentStripper.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\LiteralParser.h">
+    <ClInclude Include="..\..\..\assembler\include\LiteralParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\LiteralParsingException.h">
+    <ClInclude Include="..\..\..\assembler\include\LiteralParsingException.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\ObjectCodeArray.h">
+    <ClInclude Include="..\..\..\assembler\include\ObjectCodeArray.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\Parser.h">
+    <ClInclude Include="..\..\..\assembler\include\Parser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\ParsingException.h">
+    <ClInclude Include="..\..\..\assembler\include\ParsingException.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\SectionTable.h">
+    <ClInclude Include="..\..\..\assembler\include\SectionTable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\Statement.h">
+    <ClInclude Include="..\..\..\assembler\include\Statement.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\StatementParser.h">
+    <ClInclude Include="..\..\..\assembler\include\StatementParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\assembler\include\SymbolTable.h">
+    <ClInclude Include="..\..\..\assembler\include\SymbolTable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

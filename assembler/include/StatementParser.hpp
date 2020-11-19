@@ -1,7 +1,7 @@
 #ifndef STATEMENT_PARSER_H_GUARD
 #define STATEMENT_PARSER_H_GUARD
 
-#include "Statement.h"
+#include "Statement.hpp"
 #include <memory>
 #include <string>
 

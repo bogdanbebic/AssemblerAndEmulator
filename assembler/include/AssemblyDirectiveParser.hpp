@@ -1,9 +1,9 @@
 #ifndef ASSEMBLY_DIRECTIVE_PARSER_H_GUARD
 #define ASSEMBLY_DIRECTIVE_PARSER_H_GUARD
 
-#include "SectionTable.h"
-#include "StatementParser.h"
-#include "SymbolTable.h"
+#include "SectionTable.hpp"
+#include "StatementParser.hpp"
+#include "SymbolTable.hpp"
 
 namespace parsers
 {

@@ -1,4 +1,4 @@
-#include "ObjectCodeArray.h"
+#include "ObjectCodeArray.hpp"
 
 void assembler::ObjectCodeArray::skip_bytes(size_t number_of_bytes_to_skip)
 {

@@ -1,4 +1,4 @@
-#include "InstructionParser.h"
+#include "InstructionParser.hpp"
 
 #include <iostream>
 #include <regex>

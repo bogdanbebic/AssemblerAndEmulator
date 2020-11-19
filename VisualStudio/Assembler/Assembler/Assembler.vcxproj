@@ -19,22 +19,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\assembler\include\AssemblyDirectiveParser.h" />
-    <ClInclude Include="..\..\..\assembler\include\CommandOptions.h" />
-    <ClInclude Include="..\..\..\assembler\include\DataDefinitionParser.h" />
-    <ClInclude Include="..\..\..\assembler\include\DataDefs.h" />
-    <ClInclude Include="..\..\..\assembler\include\InstructionParser.h" />
-    <ClInclude Include="..\..\..\assembler\include\LabelParser.h" />
-    <ClInclude Include="..\..\..\assembler\include\LineCommentStripper.h" />
-    <ClInclude Include="..\..\..\assembler\include\LiteralParser.h" />
-    <ClInclude Include="..\..\..\assembler\include\LiteralParsingException.h" />
-    <ClInclude Include="..\..\..\assembler\include\ObjectCodeArray.h" />
-    <ClInclude Include="..\..\..\assembler\include\Parser.h" />
-    <ClInclude Include="..\..\..\assembler\include\ParsingException.h" />
-    <ClInclude Include="..\..\..\assembler\include\SectionTable.h" />
-    <ClInclude Include="..\..\..\assembler\include\Statement.h" />
-    <ClInclude Include="..\..\..\assembler\include\StatementParser.h" />
-    <ClInclude Include="..\..\..\assembler\include\SymbolTable.h" />
+    <ClInclude Include="..\..\..\assembler\include\AssemblyDirectiveParser.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\CommandOptions.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\DataDefinitionParser.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\DataDefs.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\InstructionParser.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\LabelParser.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\LineCommentStripper.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\LiteralParser.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\LiteralParsingException.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\ObjectCodeArray.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\Parser.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\ParsingException.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\SectionTable.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\Statement.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\StatementParser.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\SymbolTable.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\assembler\source\AssemblyDirectiveParser.cpp" />

@@ -1,10 +1,10 @@
-#include "LiteralParser.h"
+#include "LiteralParser.hpp"
 
 #include <algorithm>
 #include <ios>
 #include <sstream>
 
-#include "LiteralParsingException.h"
+#include "LiteralParsingException.hpp"
 
 std::regex parsers::LiteralParser::char_literal_regex_{ "^[+-]?'.'$" };
 std::regex parsers::LiteralParser::decimal_literal_regex_{ "^[+-]?[1-9][0-9]*$" };

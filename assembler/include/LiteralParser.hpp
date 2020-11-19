@@ -4,7 +4,7 @@
 #include <regex>
 #include <string>
 
-#include "SymbolTable.h"
+#include "SymbolTable.hpp"
 
 namespace parsers
 {
