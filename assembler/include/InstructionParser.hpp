@@ -1,5 +1,5 @@
-#ifndef INSTRUCTION_PARSER_H_GUARD
-#define INSTRUCTION_PARSER_H_GUARD
+#ifndef _INSTRUCTION_PARSER_HPP_
+#define _INSTRUCTION_PARSER_HPP_
 
 #include "StatementParser.hpp"
 

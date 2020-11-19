@@ -1,5 +1,5 @@
-#ifndef _TERMINAL_H_
-#define _TERMINAL_H_
+#ifndef _TERMINAL_HPP_
+#define _TERMINAL_HPP_
 
 #include <memory>
 #include <thread>

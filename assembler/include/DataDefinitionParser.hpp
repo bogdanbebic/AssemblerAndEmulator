@@ -1,5 +1,5 @@
-#ifndef DATA_DEFINITION_PARSER_H_GUARD
-#define DATA_DEFINITION_PARSER_H_GUARD
+#ifndef _DATA_DEFINITION_PARSER_HPP_
+#define _DATA_DEFINITION_PARSER_HPP_
 
 #include "StatementParser.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef PARSER_H_GUARD
-#define PARSER_H_GUARD
+#ifndef _PARSER_HPP_
+#define _PARSER_HPP_
 
 #include <iostream>
 #include <memory>

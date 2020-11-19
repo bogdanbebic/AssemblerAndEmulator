@@ -1,5 +1,5 @@
-#ifndef LABEL_PARSER_H_GUARD
-#define LABEL_PARSER_H_GUARD
+#ifndef _LABEL_PARSER_HPP_
+#define _LABEL_PARSER_HPP_
 
 #include <memory>
 #include <regex>

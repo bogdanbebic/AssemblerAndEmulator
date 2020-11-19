@@ -1,5 +1,5 @@
-#ifndef _CPU_DEFS_H_
-#define _CPU_DEFS_H_
+#ifndef _CPU_DEFS_HPP_
+#define _CPU_DEFS_HPP_
 
 #include <cstdlib>
 

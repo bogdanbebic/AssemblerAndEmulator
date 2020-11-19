@@ -1,5 +1,5 @@
-#ifndef OBJECT_CODE_ARRAY_H_GUARD
-#define OBJECT_CODE_ARRAY_H_GUARD
+#ifndef _OBJECT_CODE_ARRAY_HPP_
+#define _OBJECT_CODE_ARRAY_HPP_
 
 #include <sstream>
 #include <vector>

@@ -1,5 +1,5 @@
-#ifndef SECTION_TABLE_H_GUARD
-#define SECTION_TABLE_H_GUARD
+#ifndef _SECTION_TABLE_HPP_
+#define _SECTION_TABLE_HPP_
 
 #include <map>
 #include <sstream>

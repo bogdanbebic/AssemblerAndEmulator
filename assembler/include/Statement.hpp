@@ -1,5 +1,5 @@
-#ifndef STATEMENT_H_GUARD
-#define STATEMENT_H_GUARD
+#ifndef _STATEMENT_HPP_
+#define _STATEMENT_HPP_
 
 #include <cstddef>
 #include <string>

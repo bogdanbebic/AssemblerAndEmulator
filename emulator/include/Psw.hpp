@@ -1,5 +1,5 @@
-#ifndef _PSW_H_
-#define _PSW_H_
+#ifndef _PSW_HPP_
+#define _PSW_HPP_
 
 #include "CpuDefs.hpp"
 #include "Typedefs.hpp"

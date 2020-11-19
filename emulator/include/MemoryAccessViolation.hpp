@@ -1,5 +1,5 @@
-#ifndef _MEMORY_ACCESS_VIOLATION_H_
-#define _MEMORY_ACCESS_VIOLATION_H_
+#ifndef _MEMORY_ACCESS_VIOLATION_HPP_
+#define _MEMORY_ACCESS_VIOLATION_HPP_
 
 #include <exception>
 

@@ -1,5 +1,5 @@
-#ifndef ASSEMBLY_DIRECTIVE_PARSER_H_GUARD
-#define ASSEMBLY_DIRECTIVE_PARSER_H_GUARD
+#ifndef _ASSEMBLY_DIRECTIVE_PARSER_HPP_
+#define _ASSEMBLY_DIRECTIVE_PARSER_HPP_
 
 #include "SectionTable.hpp"
 #include "StatementParser.hpp"

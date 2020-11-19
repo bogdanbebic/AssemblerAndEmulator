@@ -1,5 +1,5 @@
-#ifndef _COMMAND_LINE_OPTIONS_H_
-#define _COMMAND_LINE_OPTIONS_H_
+#ifndef _COMMAND_LINE_OPTIONS_HPP_
+#define _COMMAND_LINE_OPTIONS_HPP_
 
 #include <map>
 #include <regex>

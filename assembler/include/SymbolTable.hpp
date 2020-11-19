@@ -1,5 +1,5 @@
-#ifndef SYMBOL_TABLE_H_GUARD
-#define SYMBOL_TABLE_H_GUARD
+#ifndef _SYMBOL_TABLE_HPP_
+#define _SYMBOL_TABLE_HPP_
 
 #include <map>
 #include <sstream>

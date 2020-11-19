@@ -1,5 +1,5 @@
-#ifndef _INSTRUCTION_DEFS_H_
-#define _INSTRUCTION_DEFS_H_
+#ifndef _INSTRUCTION_DEFS_HPP_
+#define _INSTRUCTION_DEFS_HPP_
 
 namespace emulator
 {

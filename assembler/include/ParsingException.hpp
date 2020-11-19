@@ -1,5 +1,5 @@
-#ifndef PARSING_EXCEPTION_H_GUARD
-#define PARSING_EXCEPTION_H_GUARD
+#ifndef _PARSING_EXCEPTION_HPP_
+#define _PARSING_EXCEPTION_HPP_
 
 #include <exception>
 

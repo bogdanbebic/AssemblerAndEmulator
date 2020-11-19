@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _LITERAL_PARSING_EXCEPTION_HPP_
+#define _LITERAL_PARSING_EXCEPTION_HPP_
+
 #include "ParsingException.hpp"
 
 namespace parsers
@@ -12,3 +14,5 @@ namespace parsers
         }
     };
 } // namespace parsers
+
+#endif
