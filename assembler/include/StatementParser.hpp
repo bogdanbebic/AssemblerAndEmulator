@@ -1,5 +1,5 @@
-#ifndef STATEMENT_PARSER_H_GUARD
-#define STATEMENT_PARSER_H_GUARD
+#ifndef _STATEMENT_PARSER_HPP_
+#define _STATEMENT_PARSER_HPP_
 
 #include "Statement.hpp"
 #include <memory>

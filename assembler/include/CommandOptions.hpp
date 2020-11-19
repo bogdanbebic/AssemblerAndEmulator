@@ -1,5 +1,5 @@
-#ifndef COMMAND_OPTIONS_H_GUARD
-#define COMMAND_OPTIONS_H_GUARD
+#ifndef _COMMAND_OPTIONS_HPP_
+#define _COMMAND_OPTIONS_HPP_
 
 #include <string>
 

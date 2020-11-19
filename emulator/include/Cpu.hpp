@@ -1,5 +1,5 @@
-#ifndef _CPU_H_
-#define _CPU_H_
+#ifndef _CPU_HPP_
+#define _CPU_HPP_
 
 #include <atomic>
 #include <memory>

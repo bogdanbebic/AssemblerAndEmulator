@@ -1,5 +1,5 @@
-#ifndef _LINKER_H_
-#define _LINKER_H_
+#ifndef _LINKER_HPP_
+#define _LINKER_HPP_
 
 #include <map>
 #include <string>

@@ -1,5 +1,6 @@
-#ifndef LITERAL_PARSER_H_GUARD
-#define LITERAL_PARSER_H_GUARD
+#ifndef _LITERAL_PARSER_HPP_
+#define _LITERAL_PARSER_HPP_
+
 #include <memory>
 #include <regex>
 #include <string>

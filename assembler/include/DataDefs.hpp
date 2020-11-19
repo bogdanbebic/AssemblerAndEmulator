@@ -1,6 +1,6 @@
-#ifndef DATA_DEFS_H_GUARD
+#ifndef _DATA_DEFS_HPP_
 // ReSharper disable once IdentifierTypo
-#define DATA_DEFS_H_GUARD
+#define _DATA_DEFS_HPP_
 
 #include <cstdint>
 

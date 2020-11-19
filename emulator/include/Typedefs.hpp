@@ -1,5 +1,5 @@
-#ifndef _TYPEDEFS_H_
-#define _TYPEDEFS_H_
+#ifndef _TYPEDEFS_HPP_
+#define _TYPEDEFS_HPP_
 
 #include <cstdint>
 

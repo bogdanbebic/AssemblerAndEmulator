@@ -1,5 +1,5 @@
-#ifndef LINE_COMMENT_STRIPPER_H_GUARD
-#define LINE_COMMENT_STRIPPER_H_GUARD
+#ifndef _LINE_COMMENT_STRIPPER_HPP_
+#define _LINE_COMMENT_STRIPPER_HPP_
 
 #include <regex>
 #include <string>
