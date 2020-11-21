@@ -228,7 +228,8 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
         alu_result = this->alu_.execute_operation(
             static_cast<instruction::OperationCodes>(opcode),
             this->operand_value(instr, 0),
-            this->operand_value(instr, 1));
+            this->operand_value(instr, 1),
+            instruction::operand_size(instr, 0));
 
         this->psw_.psw_write(PswMasks::PSW_O_MASK, alu_result.o_flag);
         this->psw_.psw_write(PswMasks::PSW_C_MASK, alu_result.c_flag);
@@ -255,7 +256,8 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
         alu_result = this->alu_.execute_operation(
             static_cast<instruction::OperationCodes>(opcode),
             this->operand_value(instr, 0),
-            this->operand_value(instr, 1));
+            this->operand_value(instr, 1),
+            instruction::operand_size(instr, 0));
 
         this->psw_.psw_write(PswMasks::PSW_Z_MASK, alu_result.z_flag);
         this->psw_.psw_write(PswMasks::PSW_C_MASK, alu_result.c_flag);
@@ -272,7 +274,8 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
         alu_result = this->alu_.execute_operation(
             static_cast<instruction::OperationCodes>(opcode),
             this->operand_value(instr, 0),
-            this->operand_value(instr, 1));
+            this->operand_value(instr, 1),
+            instruction::operand_size(instr, 0));
 
         this->psw_.psw_write(PswMasks::PSW_Z_MASK, alu_result.z_flag);
         this->psw_.psw_write(PswMasks::PSW_N_MASK, alu_result.n_flag);

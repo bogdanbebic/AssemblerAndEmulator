@@ -24,10 +24,8 @@ namespace emulator
             public:
                 alu_result_t execute_operation(instruction::OperationCodes opcode,
                                                word_t op0,
-                                               word_t op1);
-                alu_result_t execute_byte_operation(instruction::OperationCodes opcode,
-                                                    byte_t op0,
-                                                    byte_t op1);
+                                               word_t op1,
+                                               byte_t operand_size);
             };
         } // namespace cpu
     }     // namespace system
