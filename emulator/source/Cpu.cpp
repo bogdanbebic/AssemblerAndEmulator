@@ -191,50 +191,91 @@ void emulator::system::cpu::Cpu::execute_instruction_one_operand(instruction::in
 
 void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::instruction_t instr)
 {
-    switch (instr.instruction_descriptor.operation_code)
+    alu_result_t alu_result;
+    auto opcode = instr.instruction_descriptor.operation_code;
+    switch (opcode)
     {
     case instruction::XCHG:
-        // TODO: implement
+    {
+        auto op0 = this->operand_value(instr, 0);
+        auto op1 = this->operand_value(instr, 1);
+
+        this->write_operand(instr, 1, op0);
+        this->write_operand(instr, 0, op1);
+
         break;
+    }
+
     case instruction::MOV:
-        // TODO: implement
+    {
+        auto op0 = this->operand_value(instr, 0);
+
+        this->psw_.psw_write(PswMasks::PSW_Z_MASK, op0 == 0);
+        // this->psw_.psw_write(PswMasks::PSW_N_MASK, <TODO>);
+
+        this->write_operand(instr, 1, op0);
+
         break;
+    }
+
+    // ALU instructions
     case instruction::ADD:
-        // TODO: implement
-        break;
     case instruction::SUB:
-        // TODO: implement
-        break;
+
+        alu_result = this->alu_.execute_operation(
+            static_cast<instruction::OperationCodes>(opcode),
+            this->operand_value(instr, 0),
+            this->operand_value(instr, 1));
+
+        this->psw_.psw_write(PswMasks::PSW_O_MASK, alu_result.o_flag);
+        this->psw_.psw_write(PswMasks::PSW_C_MASK, alu_result.c_flag);
+
+        [[fallthrough]];
+
     case instruction::MUL:
-        // TODO: implement
-        break;
     case instruction::DIV:
-        // TODO: implement
-        break;
-    case instruction::CMP:
-        // TODO: implement
-        break;
     case instruction::NOT:
-        // TODO: implement
-        break;
     case instruction::AND:
-        // TODO: implement
-        break;
     case instruction::OR:
-        // TODO: implement
-        break;
     case instruction::XOR:
-        // TODO: implement
+
+        this->psw_.psw_write(PswMasks::PSW_Z_MASK, alu_result.z_flag);
+        this->psw_.psw_write(PswMasks::PSW_N_MASK, alu_result.n_flag);
+
+        this->write_operand(instr, 1, alu_result.result);
+
         break;
-    case instruction::TEST:
-        // TODO: implement
-        break;
+
     case instruction::SHL:
-        // TODO: implement
-        break;
     case instruction::SHR:
-        // TODO: implement
+
+        alu_result = this->alu_.execute_operation(
+            static_cast<instruction::OperationCodes>(opcode),
+            this->operand_value(instr, 0),
+            this->operand_value(instr, 1));
+
+        this->psw_.psw_write(PswMasks::PSW_Z_MASK, alu_result.z_flag);
+        this->psw_.psw_write(PswMasks::PSW_C_MASK, alu_result.c_flag);
+        this->psw_.psw_write(PswMasks::PSW_N_MASK, alu_result.n_flag);
+
+        this->write_operand(
+            instr, opcode == instruction::SHL ? 1 : 0, alu_result.result);
+
         break;
+
+    case instruction::CMP:
+    case instruction::TEST:
+
+        alu_result = this->alu_.execute_operation(
+            static_cast<instruction::OperationCodes>(opcode),
+            this->operand_value(instr, 0),
+            this->operand_value(instr, 1));
+
+        this->psw_.psw_write(PswMasks::PSW_Z_MASK, alu_result.z_flag);
+        this->psw_.psw_write(PswMasks::PSW_N_MASK, alu_result.n_flag);
+
+        break;
+
     default:
         throw std::invalid_argument{ "Usage fault: invalid opcode" };
     }

@@ -54,6 +54,9 @@
     <ClInclude Include="..\..\..\emulator\include\Typedefs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\emulator\include\Alu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\emulator\source\CommandLineOptionsParser.cpp">
@@ -81,6 +84,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\emulator\source\Linker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\emulator\source\Alu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

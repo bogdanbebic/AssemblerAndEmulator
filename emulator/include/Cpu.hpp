@@ -4,6 +4,7 @@
 #include <atomic>
 #include <memory>
 
+#include "Alu.hpp"
 #include "CpuDefs.hpp"
 #include "Instruction.hpp"
 #include "Memory.hpp"
@@ -50,6 +51,8 @@ namespace emulator
 
                 std::shared_ptr<Memory> memory_;
                 bool cpu_running_ = false;
+
+                Alu alu_;
 
                 byte_t memory_mapped_registers_[size_memory_mapped_registers] = {
                     0,
