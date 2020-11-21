@@ -211,7 +211,10 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
         auto op0 = this->operand_value(instr, 0);
 
         this->psw_.psw_write(PswMasks::PSW_Z_MASK, op0 == 0);
-        // this->psw_.psw_write(PswMasks::PSW_N_MASK, <TODO>);
+        if (instruction::operand_size(instr, 0) == instruction::OPERAND_SIZE_BYTE)
+            this->psw_.psw_write(PswMasks::PSW_N_MASK, static_cast<signed_byte_t>(op0) < 0);
+        else
+            this->psw_.psw_write(PswMasks::PSW_N_MASK, static_cast<signed_word_t>(op0) < 0);
 
         this->write_operand(instr, 1, op0);
 
