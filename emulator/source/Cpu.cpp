@@ -333,9 +333,7 @@ emulator::system::word_t emulator::system::cpu::Cpu::operand_value(instruction::
         }
     }
 
-    if ((instr.operands[operand_index].addressing_mode == instruction::REGISTER &&
-         instr.operands[operand_index].low_byte) ||
-        instr.instruction_descriptor.operand_size == instruction::OPERAND_SIZE_BYTE)
+    if (instruction::operand_size(instr, operand_index))
         ret &= 0xFF;
     return ret;
 }
