@@ -12,11 +12,11 @@ namespace emulator
         {
             typedef struct
             {
-                word_t result;
-                bool z_flag;
-                bool o_flag;
-                bool c_flag;
-                bool n_flag;
+                word_t result = 0;
+                bool z_flag   = false;
+                bool o_flag   = false;
+                bool c_flag   = false;
+                bool n_flag   = false;
             } alu_result_t;
 
             class Alu
