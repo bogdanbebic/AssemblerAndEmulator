@@ -122,8 +122,8 @@ void emulator::system::cpu::Cpu::handle_interrupt()
         if (this->interrupt_pending_[i])
         {
             this->interrupt_pending_[i] = false;
-            // TODO: push pc
-            // TODO: push psw
+            this->push_to_stack(this->general_purpose_registers_[REG_PC]);
+            this->push_to_stack(this->psw_.get());
             this->general_purpose_registers_[REG_PC] = this->memory_->read_word(
                 this->interrupt_vector_table_pointer_ + i * 2);
             break;
