@@ -69,6 +69,9 @@
     <ClInclude Include="..\..\..\assembler\include\Operand.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\assembler\include\RegisterDirectParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\assembler\source\AssemblyDirectiveParser.cpp">
@@ -114,6 +117,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\assembler\source\OperandParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\assembler\source\RegisterDirectParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

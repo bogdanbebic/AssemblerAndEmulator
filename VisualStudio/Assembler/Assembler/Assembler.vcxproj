@@ -33,6 +33,7 @@
     <ClInclude Include="..\..\..\assembler\include\OperandParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\Parser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\ParsingException.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\RegisterDirectParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\SectionTable.hpp" />
     <ClInclude Include="..\..\..\assembler\include\Statement.hpp" />
     <ClInclude Include="..\..\..\assembler\include\StatementParser.hpp" />
@@ -50,6 +51,7 @@
     <ClCompile Include="..\..\..\assembler\source\ObjectCodeArray.cpp" />
     <ClCompile Include="..\..\..\assembler\source\OperandParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\Parser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\RegisterDirectParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\SectionTable.cpp" />
     <ClCompile Include="..\..\..\assembler\source\Statement.cpp" />
     <ClCompile Include="..\..\..\assembler\source\StatementParser.cpp" />
