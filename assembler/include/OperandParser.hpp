@@ -11,7 +11,7 @@ namespace parsers
     class OperandParser
     {
     public:
-        virtual statement::operand_t parse(std::string operand);
+        virtual std::shared_ptr<statement::operand_t> parse(std::string operand);
         void set_next(std::shared_ptr<OperandParser> operand_parser);
 
         OperandParser()                      = default;
