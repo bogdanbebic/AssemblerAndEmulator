@@ -25,9 +25,7 @@ std::shared_ptr<statements::Statement> parsers::AssemblyDirectiveParser::parse(s
 
         const std::regex regex{ R"(^\.(global|extern|section|equ)\s*(.*)$)" };
         const std::regex symbol_regex{ "([a-zA-Z_][a-zA-Z_0-9]*)" };
-        const std::regex symbol_list_regex{
-            R"(^([a-zA-Z_][a-zA-Z_0-9]*)\s*(,\s*([a-zA-Z_][a-zA-Z_0-9]*))*\s*$)"
-        };
+        const std::regex symbol_list_regex{ R"(^([a-zA-Z_][a-zA-Z_0-9]*)\s*(,\s*([a-zA-Z_][a-zA-Z_0-9]*))*\s*$)" };
         const std::regex section_name_regex{ "^([a-zA-Z_][a-zA-Z_0-9]*):\\s*$" };
 
         std::smatch match;

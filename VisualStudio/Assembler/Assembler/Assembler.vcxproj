@@ -29,8 +29,11 @@
     <ClInclude Include="..\..\..\assembler\include\LiteralParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\LiteralParsingException.hpp" />
     <ClInclude Include="..\..\..\assembler\include\ObjectCodeArray.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\Operand.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\OperandParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\Parser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\ParsingException.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\RegisterDirectParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\SectionTable.hpp" />
     <ClInclude Include="..\..\..\assembler\include\Statement.hpp" />
     <ClInclude Include="..\..\..\assembler\include\StatementParser.hpp" />
@@ -46,7 +49,9 @@
     <ClCompile Include="..\..\..\assembler\source\LiteralParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\Main.cpp" />
     <ClCompile Include="..\..\..\assembler\source\ObjectCodeArray.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\OperandParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\Parser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\RegisterDirectParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\SectionTable.cpp" />
     <ClCompile Include="..\..\..\assembler\source\Statement.cpp" />
     <ClCompile Include="..\..\..\assembler\source\StatementParser.cpp" />
