@@ -57,6 +57,7 @@ namespace emulator
 
                 size_t number_of_operands(instruction_t instr);
                 bool is_operand_in_memory(instruction_t instr, size_t operand_index);
+                byte_t operand_size(instruction_t instr, size_t operand_index);
             } // namespace instruction
         }     // namespace cpu
     }         // namespace system

@@ -1,6 +1,8 @@
 #ifndef _INSTRUCTION_DEFS_HPP_
 #define _INSTRUCTION_DEFS_HPP_
 
+#include <cstddef>
+
 namespace emulator
 {
     namespace system

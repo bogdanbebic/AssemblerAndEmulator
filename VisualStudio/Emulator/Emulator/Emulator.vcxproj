@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\emulator\include\Alu.hpp" />
     <ClInclude Include="..\..\..\emulator\include\CommandLineOptionsParser.hpp" />
     <ClInclude Include="..\..\..\emulator\include\Cpu.hpp" />
     <ClInclude Include="..\..\..\emulator\include\CpuDefs.hpp" />
@@ -34,6 +35,7 @@
     <ClInclude Include="..\..\..\emulator\include\Typedefs.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\emulator\source\Alu.cpp" />
     <ClCompile Include="..\..\..\emulator\source\CommandLineOptionsParser.cpp" />
     <ClCompile Include="..\..\..\emulator\source\Cpu.cpp" />
     <ClCompile Include="..\..\..\emulator\source\Emulator.cpp" />
