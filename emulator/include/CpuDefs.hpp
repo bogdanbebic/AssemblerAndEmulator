@@ -16,8 +16,8 @@ namespace emulator
             constexpr size_t num_gp_registers = 8;
             enum GpRegisters
             {
-                REG_PC = 6,
-                REG_SP = 7,
+                REG_SP = 6,
+                REG_PC = 7,
             };
 
             constexpr size_t ivt_num_entries = 8;
