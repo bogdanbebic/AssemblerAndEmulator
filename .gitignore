@@ -3,6 +3,7 @@ test_input/
 
 # python venv
 venv/*
+venv_old/*
 
 # vscode
 .vscode/
