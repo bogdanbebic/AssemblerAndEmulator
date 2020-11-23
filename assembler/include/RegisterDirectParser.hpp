@@ -11,7 +11,7 @@ namespace parsers
         std::shared_ptr<statement::operand_t> parse(std::string operand) override;
 
     private:
-        bool can_parse(std::string operand);
+        bool can_parse(const std::string &operand) const;
     };
 } // namespace parsers
 
