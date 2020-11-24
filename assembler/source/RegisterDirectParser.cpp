@@ -15,11 +15,11 @@ std::shared_ptr<statement::operand_t> parsers::RegisterDirectParser::parse(std::
 
     if (std::regex_match(operand, match, regex))
         ret->register_index = std::stoi(match[1].str());
-    else if (operand == "pc" || operand == "*pc")
+    else if (operand == "%pc" || operand == "*%pc")
         ret->register_index = 7;
-    else if (operand == "sp" || operand == "*sp")
+    else if (operand == "%sp" || operand == "*%sp")
         ret->register_index = 6;
-    else if (operand == "psw" || operand == "*psw")
+    else if (operand == "%psw" || operand == "*%psw")
         ret->register_index = 0xF;
 
     return ret;
