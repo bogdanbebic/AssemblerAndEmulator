@@ -8,8 +8,12 @@ PYTHON_VENV_DIR=${ROOT_DIR}/venv
 # activate python venv
 source ${PYTHON_VENV_DIR}/bin/activate
 
+pushd $ROOT_DIR > /dev/null
+
 # run tests
 behave ${FEATURES_DIR} -k $@
+
+popd > /dev/null
 
 # leave python venv
 deactivate
