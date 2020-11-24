@@ -51,12 +51,12 @@ parsers::RegisterIndirectParser::parse_jump_instruction(std::string operand)
 
 bool parsers::RegisterIndirectParser::can_parse(const std::string &operand) const
 {
-    const std::regex register_direct_regex{ "^\\(%(r[0-7]|pc|sp|psw)\\)$" };
-    return std::regex_match(operand, register_direct_regex);
+    const std::regex register_indirect_regex{ "^\\(%(r[0-7]|pc|sp|psw)\\)$" };
+    return std::regex_match(operand, register_indirect_regex);
 }
 
 bool parsers::RegisterIndirectParser::can_parse_jump_instruction(const std::string &operand) const
 {
-    const std::regex register_direct_regex{ "^\\*\\(%(r[0-7]|pc|sp|psw)\\)$" };
-    return std::regex_match(operand, register_direct_regex);
+    const std::regex register_indirect_regex{ "^\\*\\(%(r[0-7]|pc|sp|psw)\\)$" };
+    return std::regex_match(operand, register_indirect_regex);
 }
