@@ -29,7 +29,7 @@ std::shared_ptr<statement::operand_t>
 parsers::RegisterDirectParser::parse_jump_instruction(std::string operand)
 {
     if (!this->can_parse_jump_instruction(operand))
-        return OperandParser::parse(operand);
+        return OperandParser::parse_jump_instruction(operand);
 
     auto ret             = std::make_shared<statement::operand_t>();
     ret->addressing_mode = statement::REGISTER;
