@@ -32,8 +32,7 @@ BOOST_AUTO_TEST_CASE(sp)
     test_equal(expected, *res);
 
     res = reg_dir_parser->parse("*%sp");
-    BOOST_TEST(res != nullptr);
-    test_equal(expected, *res);
+    BOOST_TEST(res == nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(pc)
@@ -44,8 +43,7 @@ BOOST_AUTO_TEST_CASE(pc)
     test_equal(expected, *res);
 
     res = reg_dir_parser->parse("*%pc");
-    BOOST_TEST(res != nullptr);
-    test_equal(expected, *res);
+    BOOST_TEST(res == nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(psw)
@@ -56,8 +54,7 @@ BOOST_AUTO_TEST_CASE(psw)
     test_equal(expected, *res);
 
     res = reg_dir_parser->parse("*%psw");
-    BOOST_TEST(res != nullptr);
-    test_equal(expected, *res);
+    BOOST_TEST(res == nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(r_index)
@@ -73,8 +70,57 @@ BOOST_AUTO_TEST_CASE(r_index)
 
         std::string operand_asterisk = "*%r" + std::to_string(i);
         res                          = reg_dir_parser->parse(operand_asterisk);
+        BOOST_TEST(res == nullptr);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(sp_jump)
+{
+    statement::operand_t expected{ statement::REGISTER, 6, { 0, 0 } };
+    auto res = reg_dir_parser->parse_jump_instruction("*%sp");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected, *res);
+
+    res = reg_dir_parser->parse_jump_instruction("%sp");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(pc_jump)
+{
+    statement::operand_t expected{ statement::REGISTER, 7, { 0, 0 } };
+    auto res = reg_dir_parser->parse_jump_instruction("*%pc");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected, *res);
+
+    res = reg_dir_parser->parse_jump_instruction("%pc");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(psw_jump)
+{
+    statement::operand_t expected{ statement::REGISTER, 0xF, { 0, 0 } };
+    auto res = reg_dir_parser->parse_jump_instruction("*%psw");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected, *res);
+
+    res = reg_dir_parser->parse_jump_instruction("%psw");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(r_index_jump)
+{
+    for (uint8_t i = 0; i < 8; i++)
+    {
+        statement::operand_t expected{ statement::REGISTER, i, { 0, 0 } };
+
+        std::string operand_asterisk = "*%r" + std::to_string(i);
+        auto res = reg_dir_parser->parse_jump_instruction(operand_asterisk);
         BOOST_TEST(res != nullptr);
         test_equal(expected, *res);
+
+        std::string operand = "%r" + std::to_string(i);
+        res                 = reg_dir_parser->parse_jump_instruction(operand);
+        BOOST_TEST(res == nullptr);
     }
 }
 
