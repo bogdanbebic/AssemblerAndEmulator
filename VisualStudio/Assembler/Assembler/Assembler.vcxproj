@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\..\assembler\include\CommandOptions.hpp" />
     <ClInclude Include="..\..\..\assembler\include\DataDefinitionParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\DataDefs.hpp" />
+    <ClInclude Include="..\..\..\assembler\include\ImmediateParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\InstructionParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\LabelParser.hpp" />
     <ClInclude Include="..\..\..\assembler\include\LineCommentStripper.hpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="..\..\..\assembler\source\AssemblyDirectiveParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\CommandOptions.cpp" />
     <ClCompile Include="..\..\..\assembler\source\DataDefinitionParser.cpp" />
+    <ClCompile Include="..\..\..\assembler\source\ImmediateParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\InstructionParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\LabelParser.cpp" />
     <ClCompile Include="..\..\..\assembler\source\LineCommentStripper.cpp" />

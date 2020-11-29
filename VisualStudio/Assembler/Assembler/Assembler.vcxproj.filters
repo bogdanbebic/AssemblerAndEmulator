@@ -75,6 +75,9 @@
     <ClInclude Include="..\..\..\assembler\include\RegisterIndirectParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\assembler\include\ImmediateParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\assembler\source\AssemblyDirectiveParser.cpp">
@@ -126,6 +129,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\assembler\source\RegisterIndirectParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\assembler\source\ImmediateParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
