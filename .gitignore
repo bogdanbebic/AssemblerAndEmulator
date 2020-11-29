@@ -8,5 +8,8 @@ venv_old/*
 # vscode
 .vscode/
 
+# Visual Studio
+VisualStudio/
+
 # Doxyfile generated docs
 docs/*
