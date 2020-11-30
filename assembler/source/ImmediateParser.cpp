@@ -42,12 +42,12 @@ parsers::ImmediateParser::ImmediateParser(std::shared_ptr<assembler::SymbolTable
 
 bool parsers::ImmediateParser::can_parse(const std::string &operand) const
 {
-    const std::regex regex{ "^\\$[_a-zA-Z0-9]*$" };
+    const std::regex regex{ "^\\$[_a-zA-Z0-9]+$" };
     return std::regex_match(operand, regex);
 }
 
 bool parsers::ImmediateParser::can_parse_jump_instruction(const std::string &operand) const
 {
-    const std::regex regex{ "^[_a-zA-Z0-9]*$" };
+    const std::regex regex{ "^[_a-zA-Z0-9]+$" };
     return std::regex_match(operand, regex);
 }
