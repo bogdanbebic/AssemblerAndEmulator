@@ -1,0 +1,15 @@
+<map id="emulator/include/InstructionsDefs.hpp" name="emulator/include/InstructionsDefs.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="511,5,701,47"/>
+<area shape="rect" id="node2" href="$Alu_8hpp.html" title=" " alt="" coords="365,95,529,121"/>
+<area shape="rect" id="node11" href="$Cpu_8cpp.html" title=" " alt="" coords="561,244,728,271"/>
+<area shape="rect" id="node13" href="$Instruction_8cpp.html" title=" " alt="" coords="644,95,848,121"/>
+<area shape="rect" id="node3" href="$Cpu_8hpp.html" title=" " alt="" coords="363,169,531,196"/>
+<area shape="rect" id="node12" href="$Alu_8cpp.html" title=" " alt="" coords="177,169,339,196"/>
+<area shape="rect" id="node4" href="$Emulator_8hpp.html" title=" " alt="" coords="223,319,419,345"/>
+<area shape="rect" id="node7" href="$Terminal_8hpp.html" title=" " alt="" coords="89,244,283,271"/>
+<area shape="rect" id="node9" href="$Timer_8hpp.html" title=" " alt="" coords="358,244,537,271"/>
+<area shape="rect" id="node5" href="$Emulator_8cpp.html" title=" " alt="" coords="126,401,321,427"/>
+<area shape="rect" id="node6" href="$main__emu_8cpp.html" title=" " alt="" coords="345,393,491,435"/>
+<area shape="rect" id="node8" href="$Terminal_8cpp.html" title=" " alt="" coords="5,319,199,345"/>
+<area shape="rect" id="node10" href="$Timer_8cpp.html" title=" " alt="" coords="443,319,619,345"/>
+</map>
