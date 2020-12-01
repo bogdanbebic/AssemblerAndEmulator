@@ -1,0 +1,19 @@
+name: Build docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: mattnotmitt/doxygen-action@v1.2.1
+    - uses: EndBug/add-and-commit@v4
+      with:
+        message: '[automated] Build docs'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
