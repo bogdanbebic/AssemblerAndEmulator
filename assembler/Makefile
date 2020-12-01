@@ -11,7 +11,7 @@ SRC_FILES =
 SRC_FILES += $(wildcard $(SRC_DIR)/*.cpp)
 
 TEST_SRC_FILES = 
-TEST_SRC_FILES += $(filter-out $(SRC_DIR)/main.cpp, $(SRC_FILES))
+TEST_SRC_FILES += $(filter-out $(SRC_DIR)/main_as.cpp, $(SRC_FILES))
 TEST_SRC_FILES += $(wildcard $(TEST_DIR)/*.cpp)
 
 OBJ_FILES = 
