@@ -1,8 +1,0 @@
-<map id="assembler/include/LiteralParser.hpp" name="assembler/include/LiteralParser.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="453,5,620,47"/>
-<area shape="rect" id="node2" href="$DataDefinitionParser_8cpp.html" title=" " alt="" coords="5,95,215,136"/>
-<area shape="rect" id="node3" href="$ImmediateParser_8cpp.html" title=" " alt="" coords="239,95,429,136"/>
-<area shape="rect" id="node4" href="$LiteralParser_8cpp.html" title=" " alt="" coords="454,95,619,136"/>
-<area shape="rect" id="node5" href="$MemoryDirectParser_8cpp.html" title=" " alt="" coords="644,95,853,136"/>
-<area shape="rect" id="node6" href="$RegisterIndirectOffsetParser_8cpp.html" title=" " alt="" coords="877,95,1055,136"/>
-</map>
