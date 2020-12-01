@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,111,83,138"/>
+<area shape="rect" id="node2" href="$classemulator_1_1system_1_1exceptions_1_1MemoryAccessViolation.html" title=" " alt="" coords="131,5,319,47"/>
+<area shape="rect" id="node3" href="$classemulator_1_1system_1_1exceptions_1_1StackOverflow.html" title=" " alt="" coords="131,71,319,112"/>
+<area shape="rect" id="node4" href="$classemulator_1_1system_1_1exceptions_1_1StackUnderflow.html" title=" " alt="" coords="131,136,319,177"/>
+<area shape="rect" id="node5" href="$classparsers_1_1ParsingException.html" title=" " alt="" coords="139,202,310,229"/>
+<area shape="rect" id="node6" href="$classparsers_1_1LiteralParsingException.html" title=" " alt="" coords="367,202,573,229"/>
+</map>
