@@ -10,6 +10,3 @@ venv_old/*
 
 # Visual Studio
 VisualStudio/
-
-# Doxyfile generated docs
-docs/html/*
