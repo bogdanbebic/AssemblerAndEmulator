@@ -12,8 +12,11 @@ pushd $ROOT_DIR > /dev/null
 
 # run tests
 behave ${FEATURES_DIR} -k $@
+exit_code=$?
 
 popd > /dev/null
 
 # leave python venv
 deactivate
+
+exit $exit_code
