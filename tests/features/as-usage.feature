@@ -7,7 +7,7 @@ Feature: Run assembler with different arguments
   Scenario: print usage
      Given we have assembler
       When we run assembler with "--help" as arguments
-      Then assembler will print "Usage:"
+      Then assembler will print "Usdage:"
 
   Scenario: invalid arguments
      Given we have assembler

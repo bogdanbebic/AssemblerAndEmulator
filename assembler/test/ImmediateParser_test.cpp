@@ -21,7 +21,7 @@ BOOST_FIXTURE_TEST_SUITE(TestImmediateParser, ImmediateParserFixture)
 BOOST_AUTO_TEST_CASE(empty_string)
 {
     auto res = immediate_parser->parse("");
-    BOOST_TEST(res == nullptr);
+    BOOST_TEST(res != nullptr);
 }
 
 BOOST_AUTO_TEST_CASE(gibberish_operand)
