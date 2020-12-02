@@ -5,6 +5,9 @@ TESTS_DIR=${ROOT_DIR}/tests
 FEATURES_DIR=${TESTS_DIR}/features
 PYTHON_VENV_DIR=${ROOT_DIR}/venv
 
+# make as and emu
+${ROOT_DIR}/scripts/make.sh
+
 # activate python venv
 source ${PYTHON_VENV_DIR}/bin/activate 2> /dev/null
 
