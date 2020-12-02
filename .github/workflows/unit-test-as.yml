@@ -1,0 +1,17 @@
+name: Run as unit tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Boost test
+      run: sudo apt-get install libboost-all-dev
+    - name: Run unit tests
+      run: chmod +x ./scripts/* && ./scripts/unit_test_as.sh
