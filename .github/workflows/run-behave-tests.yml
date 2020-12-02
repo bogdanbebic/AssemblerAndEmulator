@@ -12,10 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup Python
+      uses: actions/setup-python@v2
       with:
         python-version: '3.x'
     - name: Install python packages
-      uses: actions/setup-python@v2
       run: python -m pip install behave pexpect
     - name: Run behave tests
       run: ./scripts/run_behave_tests.sh
