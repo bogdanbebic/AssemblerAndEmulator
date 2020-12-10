@@ -35,7 +35,7 @@ std::shared_ptr<statement::operand_t> parsers::RegisterIndirectOffsetParser::par
         auto offset_value =
             LiteralParser::evaluate_expression(operand_offset, this->symbol_table_);
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
-        ret->operand[1] = static_cast<uint8_t>(offset_value & 0xFF00) >> 8;
+        ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
     }
     else
     {
@@ -78,7 +78,7 @@ parsers::RegisterIndirectOffsetParser::parse_jump_instruction(std::string operan
         auto offset_value =
             LiteralParser::evaluate_expression(operand_offset, this->symbol_table_);
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
-        ret->operand[1] = static_cast<uint8_t>(offset_value & 0xFF00) >> 8;
+        ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
     }
     else
     {
