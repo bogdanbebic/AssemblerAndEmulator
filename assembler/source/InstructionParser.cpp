@@ -94,6 +94,19 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
     throw std::invalid_argument{ "Invalid number of operands for instruction: " + statement };
 }
 
+bool parsers::InstructionParser::is_jump_instruction(const std::string &statement)
+{
+    const std::regex jump_instructions_regex{ "^(int"
+                                              "|call"
+                                              "|jmp"
+                                              "|jeq"
+                                              "|jne"
+                                              "|jgt)"
+                                              ".*$" };
+
+    return std::regex_match(statement, jump_instructions_regex);
+}
+
 bool parsers::InstructionParser::can_parse(const std::string &statement) const
 {
     const std::regex instructions_regex{ "^(halt"

@@ -19,6 +19,8 @@ namespace parsers
         std::shared_ptr<statements::Statement> parse(std::string statement) override;
 
     private:
+        static bool is_jump_instruction(const std::string &statement);
+
         bool can_parse(const std::string &statement) const;
 
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
