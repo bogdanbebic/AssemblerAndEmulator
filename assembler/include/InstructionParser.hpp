@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "ObjectCodeArray.hpp"
+#include "OperandParser.hpp"
 #include "SymbolTable.hpp"
 
 namespace parsers
@@ -25,6 +26,8 @@ namespace parsers
 
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
         std::shared_ptr<assembler::ObjectCodeArray> object_code_;
+
+        std::shared_ptr<OperandParser> operand_parser_chain_ = nullptr;
     };
 } // namespace parsers
 
