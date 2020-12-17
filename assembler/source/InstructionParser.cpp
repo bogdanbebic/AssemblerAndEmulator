@@ -74,9 +74,10 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
     std::smatch match;
     if (std::regex_match(statement, match, zero_operand_regex))
     {
-        std::cout << "INSTRUCTION 0:'" << statement << "'" << match[1].str() << "\n";
-
-        return nullptr;
+        std::string mnemonic = match[1].str();
+        std::cout << "INSTRUCTION 0:'" << statement << "'" << mnemonic << "\n";
+        this->object_code_->push_back_byte(to_object_code(mnemonic));
+        return std::make_shared<statements::Statement>(1, false);
     }
 
     if (std::regex_match(statement, match, one_operand_regex))
@@ -104,7 +105,12 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
             throw std::invalid_argument{ "Invalid operand for instruction: " + statement };
         }
 
-        return nullptr;
+        size_t location_counter_increment = 1;
+        this->object_code_->push_back_byte(to_object_code(short_mnemonic, operand_size_specifier));
+
+        size_t operand_size = operand_size_specifier == 'b' ? 1 : 2;
+        location_counter_increment += this->add_operand_object_code(operand0, operand_size);
+        return std::make_shared<statements::Statement>(location_counter_increment, false);
     }
 
     if (std::regex_match(statement, match, two_operand_regex))
@@ -137,7 +143,14 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
             throw std::invalid_argument{ "Invalid operands for instruction: " + statement };
         }
 
-        return nullptr;
+        size_t location_counter_increment = 1;
+        this->object_code_->push_back_byte(to_object_code(short_mnemonic, operand_size_specifier));
+
+        size_t operand_size = operand_size_specifier == 'b' ? 1 : 2;
+        location_counter_increment += this->add_operand_object_code(operand0, operand_size);
+        location_counter_increment += this->add_operand_object_code(operand1, operand_size);
+
+        return std::make_shared<statements::Statement>(location_counter_increment, false);
     }
 
     throw std::invalid_argument{ "Invalid number of operands for instruction: " + statement };
@@ -154,6 +167,22 @@ bool parsers::InstructionParser::is_jump_instruction(const std::string &statemen
                                               ".*$" };
 
     return std::regex_match(statement, jump_instructions_regex);
+}
+
+uint8_t parsers::InstructionParser::to_object_code(const std::string &mnemonic, char size_char)
+{
+    std::map<std::string, uint8_t> mnemonic_to_op_code = {
+        { "halt", 0 }, { "iret", 1 }, { "ret", 2 },   { "int", 3 },
+        { "call", 4 }, { "jmp", 5 },  { "jeq", 6 },   { "jne", 7 },
+        { "jgt", 8 },  { "push", 9 }, { "pop", 10 },  { "xchg", 11 },
+        { "mov", 12 }, { "add", 13 }, { "sub", 14 },  { "mul", 15 },
+        { "div", 16 }, { "cmp", 17 }, { "not", 18 },  { "and", 19 },
+        { "or", 20 },  { "xor", 21 }, { "test", 22 }, { "shl", 23 },
+        { "shr", 24 },
+    };
+    uint8_t op_code = mnemonic_to_op_code[mnemonic];
+    uint8_t size    = size_char == 'b' ? 0 : 1;
+    return (op_code << 3) | (size << 2);
 }
 
 bool parsers::InstructionParser::can_parse(const std::string &statement) const
@@ -186,4 +215,24 @@ bool parsers::InstructionParser::can_parse(const std::string &statement) const
                                          ".*$" };
 
     return std::regex_match(statement, instructions_regex);
+}
+
+size_t parsers::InstructionParser::add_operand_object_code(
+    const std::shared_ptr<statement::operand_t> &operand, size_t operand_size)
+{
+    uint8_t op_descr = (operand->addressing_mode << 5) | (operand->register_index << 1);
+    this->object_code_->push_back_byte(op_descr);
+    size_t ret = 1;
+    if (operand->addressing_mode == statement::IMMEDIATE ||
+        operand->addressing_mode == statement::MEMORY_DIRECT ||
+        operand->addressing_mode == statement::REGISTER_INDIRECT_OFFSET)
+    {
+        for (size_t i = 0; i < operand_size; i++)
+        {
+            this->object_code_->push_back_byte(operand->operand[i]);
+            ret += 1;
+        }
+    }
+
+    return ret;
 }

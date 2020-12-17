@@ -21,8 +21,12 @@ namespace parsers
 
     private:
         static bool is_jump_instruction(const std::string &statement);
+        static uint8_t to_object_code(const std::string &mnemonic, char size = 'b');
 
         bool can_parse(const std::string &statement) const;
+
+        size_t add_operand_object_code(const std::shared_ptr<statement::operand_t> &operand,
+                                       size_t operand_size);
 
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
         std::shared_ptr<assembler::ObjectCodeArray> object_code_;
