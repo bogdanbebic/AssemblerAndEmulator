@@ -16,12 +16,12 @@ parsers::InstructionParser::InstructionParser(std::shared_ptr<assembler::SymbolT
 {
     // initialize operand parsing chain
 
-    auto immediate_parser     = std::make_shared<ImmediateParser>(symbol_table);
-    auto memory_direct_parser = std::make_shared<MemoryDirectParser>(symbol_table);
+    auto immediate_parser = std::make_shared<ImmediateParser>(this->symbol_table_);
+    auto memory_direct_parser = std::make_shared<MemoryDirectParser>(this->symbol_table_);
     auto register_direct_parser   = std::make_shared<RegisterDirectParser>();
     auto register_indirect_parser = std::make_shared<RegisterIndirectParser>();
     auto register_indirect_offset_parser =
-        std::make_shared<RegisterIndirectOffsetParser>(symbol_table);
+        std::make_shared<RegisterIndirectOffsetParser>(this->symbol_table_);
 
     register_indirect_parser->set_next(register_indirect_offset_parser);
     register_direct_parser->set_next(register_indirect_parser);
