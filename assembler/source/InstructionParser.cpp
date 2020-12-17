@@ -220,7 +220,8 @@ bool parsers::InstructionParser::can_parse(const std::string &statement) const
 size_t parsers::InstructionParser::add_operand_object_code(
     const std::shared_ptr<statement::operand_t> &operand, size_t operand_size)
 {
-    uint8_t op_descr = (operand->addressing_mode << 5) | (operand->register_index << 1);
+    uint8_t op_descr = (operand->addressing_mode << 5) |
+                       (operand->register_index << 1) | operand->low_high_byte;
     this->object_code_->push_back_byte(op_descr);
     size_t ret = 1;
     if (operand->addressing_mode == statement::IMMEDIATE ||

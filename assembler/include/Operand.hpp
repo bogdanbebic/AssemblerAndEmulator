@@ -17,6 +17,7 @@ namespace statement
         uint8_t addressing_mode;
         uint8_t register_index;
         uint8_t operand[2];
+        uint8_t low_high_byte = 0;
     } operand_t;
 } // namespace statement
 
