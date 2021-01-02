@@ -12,13 +12,20 @@ std::shared_ptr<statement::operand_t> parsers::RegisterIndirectOffsetParser::par
     auto ret             = std::make_shared<statement::operand_t>();
     ret->addressing_mode = statement::REGISTER_INDIRECT_OFFSET;
 
-    const std::regex register_indirect_offset_regex{ "^([_a-zA-Z0-9]+)\\(%(r[0-7]|pc|sp|psw)\\)$" };
+    const std::regex register_indirect_offset_regex{ "^([_a-zA-Z0-9]+)\\(%(r[0-7]|pc|sp|psw)([hl]?)\\)$" };
     std::smatch match;
 
     if (std::regex_match(operand, match, register_indirect_offset_regex))
     {
         auto operand_offset = match[1].str();
         auto base_register  = match[2].str();
+        auto low_high_byte  = match[3].str();
+        if (low_high_byte.size() == 1)
+        {
+            ret->low_high_byte_exists = 1;
+            if (low_high_byte == "h")
+                ret->low_high_byte = 1;
+        }
 
         const std::regex regex_base_reg{ "^r([0-7])$" };
         std::smatch match_base_reg;
@@ -55,13 +62,20 @@ parsers::RegisterIndirectOffsetParser::parse_jump_instruction(std::string operan
     auto ret             = std::make_shared<statement::operand_t>();
     ret->addressing_mode = statement::REGISTER_INDIRECT_OFFSET;
 
-    const std::regex register_indirect_offset_regex{ "^\\*([_a-zA-Z0-9]+)\\(%(r[0-7]|pc|sp|psw)\\)$" };
+    const std::regex register_indirect_offset_regex{ "^\\*([_a-zA-Z0-9]+)\\(%(r[0-7]|pc|sp|psw)([hl]?)\\)$" };
     std::smatch match;
 
     if (std::regex_match(operand, match, register_indirect_offset_regex))
     {
         auto operand_offset = match[1].str();
         auto base_register  = match[2].str();
+        auto low_high_byte  = match[3].str();
+        if (low_high_byte.size() == 1)
+        {
+            ret->low_high_byte_exists = 1;
+            if (low_high_byte == "h")
+                ret->low_high_byte = 1;
+        }
 
         const std::regex regex_base_reg{ "^r([0-7])$" };
         std::smatch match_base_reg;
