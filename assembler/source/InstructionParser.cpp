@@ -105,6 +105,12 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
             throw std::invalid_argument{ "Invalid operand for instruction: " + statement };
         }
 
+        if (operand_size_specifier == 'w' && operand0->low_high_byte_exists)
+        {
+            throw std::invalid_argument{ "Invalid operand - operand size mismatch for instruction: " +
+                                         statement };
+        }
+
         size_t location_counter_increment = 1;
         this->object_code_->push_back_byte(to_object_code(short_mnemonic, operand_size_specifier));
 
@@ -141,6 +147,13 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
         if (operand0 == nullptr && operand1 == nullptr)
         {
             throw std::invalid_argument{ "Invalid operands for instruction: " + statement };
+        }
+
+        if (operand_size_specifier == 'w' &&
+            (operand0->low_high_byte_exists || operand1->low_high_byte_exists))
+        {
+            throw std::invalid_argument{ "Invalid operand - operand size mismatch for instruction: " +
+                                         statement };
         }
 
         size_t location_counter_increment = 1;
