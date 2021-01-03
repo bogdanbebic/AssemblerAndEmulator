@@ -20,5 +20,7 @@ var searchData=
   ['location_5fcounter_5fincrement_117',['location_counter_increment',['../classstatements_1_1Statement.html#ae3609e1b957db69fe31dcf0180490c19',1,'statements::Statement']]],
   ['low_5fbyte_118',['low_byte',['../structemulator_1_1system_1_1cpu_1_1instruction_1_1OperandDescriptor.html#a7b2a23565689a5ef29c8b3c83438b7de',1,'emulator::system::cpu::instruction::OperandDescriptor']]],
   ['low_5fbyte_5fmask_119',['LOW_BYTE_MASK',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#af9a7c76ff0f2a12357975fc87ff212f3ab7097520d17c46fb2b86e413920e3186',1,'emulator::system::cpu::instruction']]],
-  ['low_5fbyte_5foffset_120',['LOW_BYTE_OFFSET',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#af9a7c76ff0f2a12357975fc87ff212f3ad9d34d8d4bca5a62118dbb68013d6113',1,'emulator::system::cpu::instruction']]]
+  ['low_5fbyte_5foffset_120',['LOW_BYTE_OFFSET',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#af9a7c76ff0f2a12357975fc87ff212f3ad9d34d8d4bca5a62118dbb68013d6113',1,'emulator::system::cpu::instruction']]],
+  ['low_5fhigh_5fbyte_121',['low_high_byte',['../structstatement_1_1operand__t.html#a03004f12227a438e8ac467da38705455',1,'statement::operand_t']]],
+  ['low_5fhigh_5fbyte_5fexists_122',['low_high_byte_exists',['../structstatement_1_1operand__t.html#a04b3acdc71f15381fa0680d15613cdbf',1,'statement::operand_t']]]
 ];

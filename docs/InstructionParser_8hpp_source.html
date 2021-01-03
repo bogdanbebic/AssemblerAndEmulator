@@ -77,37 +77,48 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ObjectCodeArray_8hpp.html">ObjectCodeArray.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SymbolTable_8hpp.html">SymbolTable.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceparsers.html">parsers</a></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classparsers_1_1InstructionParser.html">   13</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classparsers_1_1InstructionParser.html">InstructionParser</a> : <span class="keyword">public</span> <a class="code" href="classparsers_1_1StatementParser.html">StatementParser</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classparsers_1_1InstructionParser.html#aff79f9a2feabe3ef17de78b1676bc46e">InstructionParser</a>(std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                                   std::shared_ptr&lt;assembler::ObjectCodeArray&gt; object_code);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::shared_ptr&lt;statements::Statement&gt; <a class="code" href="classparsers_1_1InstructionParser.html#a8b0a08ab8763060972e72b4a3e1fc6d6">parse</a>(std::string <a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">bool</span> can_parse(<span class="keyword">const</span> std::string &amp;<a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table_;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        std::shared_ptr&lt;assembler::ObjectCodeArray&gt; object_code_;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;} <span class="comment">// namespace parsers</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="OperandParser_8hpp.html">OperandParser.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SymbolTable_8hpp.html">SymbolTable.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceparsers.html">parsers</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classparsers_1_1InstructionParser.html">   14</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classparsers_1_1InstructionParser.html">InstructionParser</a> : <span class="keyword">public</span> <a class="code" href="classparsers_1_1StatementParser.html">StatementParser</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classparsers_1_1InstructionParser.html#aff79f9a2feabe3ef17de78b1676bc46e">InstructionParser</a>(std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                   std::shared_ptr&lt;assembler::ObjectCodeArray&gt; object_code);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        std::shared_ptr&lt;statements::Statement&gt; <a class="code" href="classparsers_1_1InstructionParser.html#a8b0a08ab8763060972e72b4a3e1fc6d6">parse</a>(std::string <a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> is_jump_instruction(<span class="keyword">const</span> std::string &amp;<a class="code" href="namespacestatement.html">statement</a>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">static</span> uint8_t to_object_code(<span class="keyword">const</span> std::string &amp;mnemonic, <span class="keywordtype">char</span> size = <span class="charliteral">&#39;b&#39;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">bool</span> can_parse(<span class="keyword">const</span> std::string &amp;<a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">size_t</span> add_operand_object_code(<span class="keyword">const</span> std::shared_ptr&lt;statement::operand_t&gt; &amp;operand,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                       <span class="keywordtype">size_t</span> <a class="code" href="namespaceemulator_1_1system_1_1cpu_1_1instruction.html#a92c3d7232d66ddfd4aef4b7ecd0bbacf">operand_size</a>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table_;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        std::shared_ptr&lt;assembler::ObjectCodeArray&gt; object_code_;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        std::shared_ptr&lt;OperandParser&gt; operand_parser_chain_ = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <span class="comment">// namespace parsers</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassparsers_1_1StatementParser_html"><div class="ttname"><a href="classparsers_1_1StatementParser.html">parsers::StatementParser</a></div><div class="ttdef"><b>Definition:</b> StatementParser.hpp:11</div></div>
-<div class="ttc" id="aclassparsers_1_1InstructionParser_html_aff79f9a2feabe3ef17de78b1676bc46e"><div class="ttname"><a href="classparsers_1_1InstructionParser.html#aff79f9a2feabe3ef17de78b1676bc46e">parsers::InstructionParser::InstructionParser</a></div><div class="ttdeci">InstructionParser(std::shared_ptr&lt; assembler::SymbolTable &gt; symbol_table, std::shared_ptr&lt; assembler::ObjectCodeArray &gt; object_code)</div><div class="ttdef"><b>Definition:</b> InstructionParser.cpp:7</div></div>
+<div class="ttc" id="aclassparsers_1_1InstructionParser_html_aff79f9a2feabe3ef17de78b1676bc46e"><div class="ttname"><a href="classparsers_1_1InstructionParser.html#aff79f9a2feabe3ef17de78b1676bc46e">parsers::InstructionParser::InstructionParser</a></div><div class="ttdeci">InstructionParser(std::shared_ptr&lt; assembler::SymbolTable &gt; symbol_table, std::shared_ptr&lt; assembler::ObjectCodeArray &gt; object_code)</div><div class="ttdef"><b>Definition:</b> InstructionParser.cpp:13</div></div>
 <div class="ttc" id="anamespaceparsers_html"><div class="ttname"><a href="namespaceparsers.html">parsers</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:9</div></div>
 <div class="ttc" id="aSymbolTable_8hpp_html"><div class="ttname"><a href="SymbolTable_8hpp.html">SymbolTable.hpp</a></div></div>
-<div class="ttc" id="aclassparsers_1_1InstructionParser_html"><div class="ttname"><a href="classparsers_1_1InstructionParser.html">parsers::InstructionParser</a></div><div class="ttdef"><b>Definition:</b> InstructionParser.hpp:14</div></div>
+<div class="ttc" id="aclassparsers_1_1InstructionParser_html"><div class="ttname"><a href="classparsers_1_1InstructionParser.html">parsers::InstructionParser</a></div><div class="ttdef"><b>Definition:</b> InstructionParser.hpp:15</div></div>
 <div class="ttc" id="anamespacestatement_html"><div class="ttname"><a href="namespacestatement.html">statement</a></div><div class="ttdef"><b>Definition:</b> Operand.hpp:5</div></div>
 <div class="ttc" id="aStatementParser_8hpp_html"><div class="ttname"><a href="StatementParser_8hpp.html">StatementParser.hpp</a></div></div>
+<div class="ttc" id="anamespaceemulator_1_1system_1_1cpu_1_1instruction_html_a92c3d7232d66ddfd4aef4b7ecd0bbacf"><div class="ttname"><a href="namespaceemulator_1_1system_1_1cpu_1_1instruction.html#a92c3d7232d66ddfd4aef4b7ecd0bbacf">emulator::system::cpu::instruction::operand_size</a></div><div class="ttdeci">byte_t operand_size(instruction_t instr, size_t operand_index)</div><div class="ttdef"><b>Definition:</b> Instruction.cpp:22</div></div>
 <div class="ttc" id="aObjectCodeArray_8hpp_html"><div class="ttname"><a href="ObjectCodeArray_8hpp.html">ObjectCodeArray.hpp</a></div></div>
-<div class="ttc" id="aclassparsers_1_1InstructionParser_html_a8b0a08ab8763060972e72b4a3e1fc6d6"><div class="ttname"><a href="classparsers_1_1InstructionParser.html#a8b0a08ab8763060972e72b4a3e1fc6d6">parsers::InstructionParser::parse</a></div><div class="ttdeci">std::shared_ptr&lt; statements::Statement &gt; parse(std::string statement) override</div><div class="ttdef"><b>Definition:</b> InstructionParser.cpp:14</div></div>
+<div class="ttc" id="aclassparsers_1_1InstructionParser_html_a8b0a08ab8763060972e72b4a3e1fc6d6"><div class="ttname"><a href="classparsers_1_1InstructionParser.html#a8b0a08ab8763060972e72b4a3e1fc6d6">parsers::InstructionParser::parse</a></div><div class="ttdeci">std::shared_ptr&lt; statements::Statement &gt; parse(std::string statement) override</div><div class="ttdef"><b>Definition:</b> InstructionParser.cpp:34</div></div>
+<div class="ttc" id="aOperandParser_8hpp_html"><div class="ttname"><a href="OperandParser_8hpp.html">OperandParser.hpp</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
