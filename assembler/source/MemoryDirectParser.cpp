@@ -14,7 +14,7 @@ std::shared_ptr<statement::operand_t> parsers::MemoryDirectParser::parse(std::st
 
     auto value = LiteralParser::evaluate_expression(operand, this->symbol_table_);
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
-    ret->operand[1] = static_cast<uint8_t>(value & 0xFF00) >> 8;
+    ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
 
     return ret;
 }
@@ -31,7 +31,7 @@ parsers::MemoryDirectParser::parse_jump_instruction(std::string operand)
     auto operand_stripped = operand.substr(1);
     auto value = LiteralParser::evaluate_expression(operand_stripped, this->symbol_table_);
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
-    ret->operand[1] = static_cast<uint8_t>(value & 0xFF00) >> 8;
+    ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
 
     return ret;
 }
