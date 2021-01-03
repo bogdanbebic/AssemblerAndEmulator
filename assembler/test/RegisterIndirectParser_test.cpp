@@ -124,6 +124,176 @@ BOOST_AUTO_TEST_CASE(r_index_jump)
     }
 }
 
+BOOST_AUTO_TEST_CASE(sp_byte)
+{
+    statement::operand_t expected_low{ statement::REGISTER_INDIRECT, 6, { 0, 0 }, 0, 1 };
+    auto res = reg_ind_parser->parse("(%spl)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_low, *res);
+
+    res = reg_ind_parser->parse("*(%spl)");
+    BOOST_TEST(res == nullptr);
+
+    statement::operand_t expected_high{ statement::REGISTER_INDIRECT, 6, { 0, 0 }, 1, 1 };
+    res = reg_ind_parser->parse("(%sph)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_high, *res);
+
+    res = reg_ind_parser->parse("*(%sph)");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(pc_byte)
+{
+    statement::operand_t expected_low{ statement::REGISTER_INDIRECT, 7, { 0, 0 }, 0, 1 };
+    auto res = reg_ind_parser->parse("(%pcl)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_low, *res);
+
+    res = reg_ind_parser->parse("*(%pcl)");
+    BOOST_TEST(res == nullptr);
+
+    statement::operand_t expected_high{ statement::REGISTER_INDIRECT, 7, { 0, 0 }, 1, 1 };
+    res = reg_ind_parser->parse("(%pch)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_high, *res);
+
+    res = reg_ind_parser->parse("*(%pch)");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(psw_byte)
+{
+    statement::operand_t expected_low{ statement::REGISTER_INDIRECT, 0xF, { 0, 0 }, 0, 1 };
+    auto res = reg_ind_parser->parse("(%pswl)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_low, *res);
+
+    res = reg_ind_parser->parse("*(%pswl)");
+    BOOST_TEST(res == nullptr);
+
+    statement::operand_t expected_high{ statement::REGISTER_INDIRECT, 0xF, { 0, 0 }, 1, 1 };
+    res = reg_ind_parser->parse("(%pswh)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_high, *res);
+
+    res = reg_ind_parser->parse("*(%pswh)");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(r_index_byte)
+{
+    for (uint8_t i = 0; i < 8; i++)
+    {
+        statement::operand_t expected_low{ statement::REGISTER_INDIRECT, i, { 0, 0 }, 0, 1 };
+
+        std::string operand = "(%r" + std::to_string(i) + "l)";
+        auto res            = reg_ind_parser->parse(operand);
+        BOOST_TEST(res != nullptr);
+        test_equal(expected_low, *res);
+
+        std::string operand_asterisk = "*(%r" + std::to_string(i) + "l)";
+        res                          = reg_ind_parser->parse(operand_asterisk);
+        BOOST_TEST(res == nullptr);
+
+        statement::operand_t expected_high{ statement::REGISTER_INDIRECT, i, { 0, 0 }, 1, 1 };
+
+        operand = "(%r" + std::to_string(i) + "h)";
+        res     = reg_ind_parser->parse(operand);
+        BOOST_TEST(res != nullptr);
+        test_equal(expected_high, *res);
+
+        operand_asterisk = "*(%r" + std::to_string(i) + "h)";
+        res              = reg_ind_parser->parse(operand_asterisk);
+        BOOST_TEST(res == nullptr);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(sp_jump_byte)
+{
+    statement::operand_t expected_low{ statement::REGISTER_INDIRECT, 6, { 0, 0 }, 0, 1 };
+    auto res = reg_ind_parser->parse_jump_instruction("*(%spl)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_low, *res);
+
+    res = reg_ind_parser->parse_jump_instruction("(%spl)");
+    BOOST_TEST(res == nullptr);
+
+    statement::operand_t expected_high{ statement::REGISTER_INDIRECT, 6, { 0, 0 }, 1, 1 };
+    res = reg_ind_parser->parse_jump_instruction("*(%sph)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_high, *res);
+
+    res = reg_ind_parser->parse_jump_instruction("(%sph)");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(pc_jump_byte)
+{
+    statement::operand_t expected_low{ statement::REGISTER_INDIRECT, 7, { 0, 0 }, 0, 1 };
+    auto res = reg_ind_parser->parse_jump_instruction("*(%pcl)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_low, *res);
+
+    res = reg_ind_parser->parse_jump_instruction("(%pcl)");
+    BOOST_TEST(res == nullptr);
+
+    statement::operand_t expected_high{ statement::REGISTER_INDIRECT, 7, { 0, 0 }, 1, 1 };
+    res = reg_ind_parser->parse_jump_instruction("*(%pch)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_high, *res);
+
+    res = reg_ind_parser->parse_jump_instruction("(%pch)");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(psw_jump_byte)
+{
+    statement::operand_t expected_low{ statement::REGISTER_INDIRECT, 0xF, { 0, 0 }, 0, 1 };
+    auto res = reg_ind_parser->parse_jump_instruction("*(%pswl)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_low, *res);
+
+    res = reg_ind_parser->parse_jump_instruction("(%pswl)");
+    BOOST_TEST(res == nullptr);
+
+    statement::operand_t expected_high{ statement::REGISTER_INDIRECT, 0xF, { 0, 0 }, 1, 1 };
+    res = reg_ind_parser->parse_jump_instruction("*(%pswh)");
+    BOOST_TEST(res != nullptr);
+    test_equal(expected_high, *res);
+
+    res = reg_ind_parser->parse_jump_instruction("(%pswh)");
+    BOOST_TEST(res == nullptr);
+}
+
+BOOST_AUTO_TEST_CASE(r_index_jump_byte)
+{
+    for (uint8_t i = 0; i < 8; i++)
+    {
+        statement::operand_t expected_low{ statement::REGISTER_INDIRECT, i, { 0, 0 }, 0, 1 };
+
+        std::string operand_asterisk = "*(%r" + std::to_string(i) + "l)";
+        auto res = reg_ind_parser->parse_jump_instruction(operand_asterisk);
+        BOOST_TEST(res != nullptr);
+        test_equal(expected_low, *res);
+
+        std::string operand = "(%r" + std::to_string(i) + "l)";
+        res                 = reg_ind_parser->parse_jump_instruction(operand);
+        BOOST_TEST(res == nullptr);
+
+        statement::operand_t expected_high{ statement::REGISTER_INDIRECT, i, { 0, 0 }, 1, 1 };
+
+        operand_asterisk = "*(%r" + std::to_string(i) + "h)";
+        res = reg_ind_parser->parse_jump_instruction(operand_asterisk);
+        BOOST_TEST(res != nullptr);
+        test_equal(expected_high, *res);
+
+        operand = "(%r" + std::to_string(i) + "h)";
+        res     = reg_ind_parser->parse_jump_instruction(operand);
+        BOOST_TEST(res == nullptr);
+    }
+}
+
 BOOST_AUTO_TEST_CASE(r_index_out_of_range)
 {
     auto res = reg_ind_parser->parse("(%r9)");
