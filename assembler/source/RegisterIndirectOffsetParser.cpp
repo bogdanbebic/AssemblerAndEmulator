@@ -112,12 +112,12 @@ parsers::RegisterIndirectOffsetParser::RegisterIndirectOffsetParser(
 
 bool parsers::RegisterIndirectOffsetParser::can_parse(const std::string &operand) const
 {
-    const std::regex register_indirect_offset_regex{ "^[_a-zA-Z0-9]+\\(%(r[0-7]|pc|sp|psw)\\)$" };
+    const std::regex register_indirect_offset_regex{ "^[_a-zA-Z0-9]+\\(%(r[0-7]|pc|sp|psw)([hl]?)\\)$" };
     return std::regex_match(operand, register_indirect_offset_regex);
 }
 
 bool parsers::RegisterIndirectOffsetParser::can_parse_jump_instruction(const std::string &operand) const
 {
-    const std::regex register_indirect_offset_regex{ "^\\*[_a-zA-Z0-9]+\\(%(r[0-7]|pc|sp|psw)\\)$" };
+    const std::regex register_indirect_offset_regex{ "^\\*[_a-zA-Z0-9]+\\(%(r[0-7]|pc|sp|psw)([hl]?)\\)$" };
     return std::regex_match(operand, register_indirect_offset_regex);
 }
