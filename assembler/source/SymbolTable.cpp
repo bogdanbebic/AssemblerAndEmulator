@@ -50,6 +50,14 @@ void assembler::SymbolTable::make_extern(const key_type &key)
     }
 }
 
+void assembler::SymbolTable::make_declaration(const key_type &key)
+{
+    if (this->symbol_table_.find(key) == this->symbol_table_.end())
+    {
+        this->symbol_table_[key] = { key, 0, 0, false };
+    }
+}
+
 std::stringstream assembler::SymbolTable::to_school_elf() const
 {
     std::stringstream school_elf_stream;
