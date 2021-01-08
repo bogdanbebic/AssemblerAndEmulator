@@ -41,7 +41,7 @@ void parsers::Parser::parse(std::istream &is)
         }
         catch (std::exception &exception)
         {
-            // TODO: LOG error
+            // log error
             std::cerr << exception.what() << "\n";
         }
 

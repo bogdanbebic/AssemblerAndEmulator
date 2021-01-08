@@ -23,7 +23,6 @@ std::string parsers::LabelParser::parse(std::string line, size_t section_index, 
                 symbol, line_counter, section_index, false
             };
 
-            // TODO: check if already exists - maybe throw an exception
             this->symbol_table_->insert({ symbol, entry });
 
             return this->match_[2].str();

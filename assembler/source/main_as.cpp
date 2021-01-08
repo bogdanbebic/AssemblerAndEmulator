@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
             return 0;
         }
 
-        // TODO: delete
         std::cout << "Input file: " << command_options.input_file_name() << "\n";
         std::cout << "Output file: " << command_options.output_file_name() << "\n";
 

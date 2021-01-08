@@ -9,6 +9,7 @@ assembler::SymbolTable::mapped_type &assembler::SymbolTable::at(const key_type &
 
 void assembler::SymbolTable::insert(const std::pair<key_type, mapped_type> &entry)
 {
+    // TODO: check if already exists
     this->symbol_table_.insert(entry);
 }
 
@@ -37,7 +38,7 @@ void assembler::SymbolTable::make_extern(const key_type &key)
     }
     else
     {
-        // TODO: implement
+        // TODO: throw exception
     }
 }
 
