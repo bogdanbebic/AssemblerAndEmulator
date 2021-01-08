@@ -1,6 +1,7 @@
 #include "SymbolTable.hpp"
 
 #include <algorithm>
+#include <stdexcept>
 
 assembler::SymbolTable::mapped_type &assembler::SymbolTable::at(const key_type &key)
 {
@@ -9,8 +10,15 @@ assembler::SymbolTable::mapped_type &assembler::SymbolTable::at(const key_type &
 
 void assembler::SymbolTable::insert(const std::pair<key_type, mapped_type> &entry)
 {
-    // TODO: check if already exists
-    this->symbol_table_.insert(entry);
+    if (this->symbol_table_.find(entry.first) == this->symbol_table_.end())
+    {
+        this->symbol_table_.insert(entry);
+    }
+    else
+    {
+        this->symbol_table_[entry.first].section_index = entry.second.section_index;
+        this->symbol_table_[entry.first].value         = entry.second.value;
+    }
 }
 
 void assembler::SymbolTable::erase(const key_type &key)
@@ -26,7 +34,7 @@ void assembler::SymbolTable::make_global(const key_type &key)
     }
     else
     {
-        // TODO: implement
+        this->symbol_table_[key] = { key, 0, 0, true };
     }
 }
 
@@ -38,7 +46,7 @@ void assembler::SymbolTable::make_extern(const key_type &key)
     }
     else
     {
-        // TODO: throw exception
+        throw std::invalid_argument{ "Cannot be extern, already defined" };
     }
 }
 
