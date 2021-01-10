@@ -1,5 +1,8 @@
 <map id="emulator/include/Memory.hpp" name="emulator/include/Memory.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,196,32"/>
-<area shape="rect" id="node2" href="$Typedefs_8hpp.html" title=" " alt="" coords="51,80,150,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="70,155,131,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="88,5,279,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,73,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="98,80,157,107"/>
+<area shape="rect" id="node4" href="$MmioDevice_8hpp.html" title=" " alt="" coords="180,80,299,107"/>
+<area shape="rect" id="node5" href="$Typedefs_8hpp.html" title=" " alt="" coords="238,155,337,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="257,229,318,256"/>
 </map>

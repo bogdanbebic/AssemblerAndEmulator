@@ -1,0 +1,5 @@
+<map id="emulator::system::MmioDevice" name="emulator::system::MmioDevice">
+<area shape="rect" id="node1" title=" " alt="" coords="90,5,289,32"/>
+<area shape="rect" id="node2" href="$classemulator_1_1system_1_1Terminal.html" title=" " alt="" coords="5,80,181,107"/>
+<area shape="rect" id="node3" href="$classemulator_1_1system_1_1Timer.html" title=" " alt="" coords="206,80,365,107"/>
+</map>
