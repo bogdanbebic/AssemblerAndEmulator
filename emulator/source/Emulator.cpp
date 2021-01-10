@@ -20,5 +20,6 @@ void emulator::system::Emulator::load_memory(const std::vector<emulator::system:
 
 void emulator::system::Emulator::map_devices_to_memory()
 {
-    // TODO: implement
+    this->memory_->add_mmio_device(this->terminal_, MMIO_TERMINAL_START, MMIO_TERMINAL_END);
+    this->memory_->add_mmio_device(this->timer_, MMIO_TIMER_START, MMIO_TIMER_END);
 }

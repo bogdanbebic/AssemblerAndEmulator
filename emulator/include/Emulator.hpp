@@ -27,6 +27,15 @@ namespace emulator
             std::shared_ptr<Terminal> terminal_ = std::make_shared<Terminal>(cpu_);
             std::shared_ptr<Timer> timer_       = std::make_shared<Timer>(cpu_);
 
+            enum MmioAdrresses
+            {
+                MMIO_TERMINAL_START = 0xFF00,
+                MMIO_TERMINAL_END   = MMIO_TERMINAL_START + 4,
+
+                MMIO_TIMER_START = 0xFF10,
+                MMIO_TIMER_END   = MMIO_TIMER_START + 2,
+            };
+
             void map_devices_to_memory();
         };
     } // namespace system
