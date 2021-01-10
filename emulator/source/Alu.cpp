@@ -7,17 +7,32 @@
 emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operation(
     instruction::OperationCodes opcode, word_t op0, word_t op1, byte_t operand_size)
 {
+    word_t highest_bit_mask = operand_size == instruction::OPERAND_SIZE_BYTE ? 0x0080 : 0x8000;
     alu_result_t ret;
     switch (opcode)
     {
     case instruction::ADD:
         ret.result = op1 + op0;
-        // TODO: O C
+        ret.c_flag = (op0 & op1 & highest_bit_mask) != 0;
+        // TODO: O
         break;
 
     case instruction::SUB:
         ret.result = op1 - op0;
-        // TODO: O C
+        for (word_t mask = highest_bit_mask; mask > 0; mask >>= 1)
+        {
+            if (op1 & mask && (op0 & mask) == 0)
+            {
+                break;
+            }
+            if (op0 & mask && (op1 & mask) == 0)
+            {
+                ret.c_flag = true;
+                break;
+            }
+        }
+
+        // TODO: O
         break;
 
     case instruction::MUL:
@@ -31,7 +46,20 @@ emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operatio
     case instruction::CMP:
         // will not be used
         ret.result = op1 - op0;
-        // TODO: O C
+        for (word_t mask = highest_bit_mask; mask > 0; mask >>= 1)
+        {
+            if (op1 & mask && (op0 & mask) == 0)
+            {
+                break;
+            }
+            if (op0 & mask && (op1 & mask) == 0)
+            {
+                ret.c_flag = true;
+                break;
+            }
+        }
+
+        // TODO: O
         break;
 
     case instruction::NOT:
@@ -57,12 +85,14 @@ emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operatio
 
     case instruction::SHL:
         ret.result = op1 << op0;
-        // TODO: C
+        if (op0 > 0)
+            ret.c_flag = ((op1 << (op0 - 1)) & highest_bit_mask) != 0;
         break;
 
     case instruction::SHR:
         ret.result = op0 >> op1;
-        // TODO: C
+        if (op0 > 0)
+            ret.c_flag = ((op0 >> (op1 - 1)) & 1) != 0;
         break;
 
     default:
