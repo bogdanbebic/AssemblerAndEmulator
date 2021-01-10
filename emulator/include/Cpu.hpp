@@ -54,9 +54,6 @@ namespace emulator
 
                 Alu alu_;
 
-                byte_t memory_mapped_registers_[size_memory_mapped_registers] = {
-                    0,
-                };
                 word_t general_purpose_registers_[num_gp_registers] = {
                     0,
                 };

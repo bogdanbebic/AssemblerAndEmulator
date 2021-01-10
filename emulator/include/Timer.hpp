@@ -6,6 +6,8 @@
 #include <memory>
 #include <thread>
 
+#include "MmioDevice.hpp"
+
 #include "Cpu.hpp"
 #include "Typedefs.hpp"
 
@@ -13,10 +15,11 @@ namespace emulator
 {
     namespace system
     {
-        class Timer
+        class Timer : public MmioDevice
         {
         public:
-            void set_timer_cfg(word_t timer_cfg);
+            word_t get_memory(mem_address_t offset) override;
+            void set_memory(mem_address_t offset, word_t value) override;
 
             explicit Timer(std::shared_ptr<cpu::Cpu> cpu);
 
@@ -29,6 +32,13 @@ namespace emulator
 
         private:
             void timer() const;
+
+            void set_timer_cfg(word_t timer_cfg);
+
+            enum RegsOffset
+            {
+                TIMER_CFG = 0,
+            };
 
             std::shared_ptr<cpu::Cpu> cpu_;
 

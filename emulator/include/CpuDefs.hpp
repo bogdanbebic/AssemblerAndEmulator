@@ -11,8 +11,6 @@ namespace emulator
     {
         namespace cpu
         {
-            constexpr size_t size_memory_mapped_registers = 256;
-
             constexpr size_t num_gp_registers = 8;
             enum GpRegisters
             {
