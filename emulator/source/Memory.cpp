@@ -4,9 +4,9 @@
 
 void emulator::system::Memory::write_byte(const mem_address_t base_address, const byte_t data)
 {
-    if (base_address >= MEM_MAP_REGISTERS_START_ADDRESS)
+    if (base_address >= MMIO_START_ADDRESS && base_address < MMIO_END_ADDRESS)
     {
-        this->write_mem_mapped_register_byte(base_address, data);
+        this->write_mmio_byte(base_address, data);
         return;
     }
 
@@ -15,9 +15,9 @@ void emulator::system::Memory::write_byte(const mem_address_t base_address, cons
 
 emulator::system::byte_t emulator::system::Memory::read_byte(const mem_address_t base_address)
 {
-    if (base_address >= MEM_MAP_REGISTERS_START_ADDRESS)
+    if (base_address >= MMIO_START_ADDRESS && base_address < MMIO_END_ADDRESS)
     {
-        return this->read_mem_mapped_register_byte(base_address);
+        return this->read_mmio_byte(base_address);
     }
 
     return this->memory_[base_address];
@@ -30,9 +30,9 @@ void emulator::system::Memory::write_word(const mem_address_t base_address, cons
         throw exceptions::MemoryAccessViolation{};
     }
 
-    if (base_address >= MEM_MAP_REGISTERS_START_ADDRESS)
+    if (base_address >= MMIO_START_ADDRESS && base_address < MMIO_END_ADDRESS)
     {
-        this->write_mem_mapped_register_word(base_address, data);
+        this->write_mmio_word(base_address, data);
         return;
     }
 
@@ -47,34 +47,32 @@ emulator::system::word_t emulator::system::Memory::read_word(const mem_address_t
         throw exceptions::MemoryAccessViolation{};
     }
 
-    if (base_address >= MEM_MAP_REGISTERS_START_ADDRESS)
+    if (base_address >= MMIO_START_ADDRESS && base_address < MMIO_END_ADDRESS)
     {
-        return this->read_mem_mapped_register_word(base_address);
+        return this->read_mmio_word(base_address);
     }
 
     const auto memory = reinterpret_cast<word_t *>(this->memory_);
     return memory[base_address / sizeof(byte_t) * sizeof(word_t)];
 }
 
-void emulator::system::Memory::write_mem_mapped_register_byte(mem_address_t register_address,
-                                                              byte_t data)
+void emulator::system::Memory::write_mmio_byte(mem_address_t address, byte_t data)
 {
     // TODO: implementation
 }
 
-emulator::system::byte_t emulator::system::Memory::read_mem_mapped_register_byte(mem_address_t register_address)
+emulator::system::byte_t emulator::system::Memory::read_mmio_byte(mem_address_t address)
 {
     // TODO: implementation
     return 0;
 }
 
-void emulator::system::Memory::write_mem_mapped_register_word(mem_address_t register_address,
-                                                              word_t data)
+void emulator::system::Memory::write_mmio_word(mem_address_t address, word_t data)
 {
     // TODO: implementation
 }
 
-emulator::system::word_t emulator::system::Memory::read_mem_mapped_register_word(mem_address_t register_address)
+emulator::system::word_t emulator::system::Memory::read_mmio_word(mem_address_t address)
 {
     // TODO: implementation
     return 0;
