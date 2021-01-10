@@ -7,7 +7,8 @@
 emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operation(
     instruction::OperationCodes opcode, word_t op0, word_t op1, byte_t operand_size)
 {
-    word_t highest_bit_mask = operand_size == instruction::OPERAND_SIZE_BYTE ? 0x0080 : 0x8000;
+    const word_t highest_bit_mask =
+        operand_size == instruction::OPERAND_SIZE_BYTE ? 0x0080 : 0x8000;
     alu_result_t ret;
     switch (opcode)
     {
