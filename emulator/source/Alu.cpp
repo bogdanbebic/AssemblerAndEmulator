@@ -14,7 +14,9 @@ emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operatio
     case instruction::ADD:
         ret.result = op1 + op0;
         ret.c_flag = (op0 & op1 & highest_bit_mask) != 0;
-        // TODO: O
+        ret.o_flag = (op1 & op0 & highest_bit_mask && !(ret.result & highest_bit_mask)) ||
+                     (!(op1 & highest_bit_mask) && !(op0 & highest_bit_mask) &&
+                      ret.result & highest_bit_mask);
         break;
 
     case instruction::SUB:
@@ -32,7 +34,10 @@ emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operatio
             }
         }
 
-        // TODO: O
+        ret.o_flag = (op1 & highest_bit_mask && !(op0 & highest_bit_mask) &&
+                      !(ret.result & highest_bit_mask)) ||
+                     (!(op1 & highest_bit_mask) && op0 & highest_bit_mask &&
+                      ret.result & highest_bit_mask);
         break;
 
     case instruction::MUL:
@@ -59,7 +64,10 @@ emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operatio
             }
         }
 
-        // TODO: O
+        ret.o_flag = (op1 & highest_bit_mask && !(op0 & highest_bit_mask) &&
+                      !(ret.result & highest_bit_mask)) ||
+                     (!(op1 & highest_bit_mask) && op0 & highest_bit_mask &&
+                      ret.result & highest_bit_mask);
         break;
 
     case instruction::NOT:
