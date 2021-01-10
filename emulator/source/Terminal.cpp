@@ -10,6 +10,29 @@
 #include <unistd.h>
 #endif
 
+emulator::system::word_t emulator::system::Terminal::get_memory(mem_address_t offset)
+{
+    switch (offset)
+    {
+    case DATA_IN:
+        return this->data_in();
+    default:
+        throw std::invalid_argument{ "Invalid memory offset" };
+    }
+}
+
+void emulator::system::Terminal::set_memory(mem_address_t offset, word_t value)
+{
+    switch (offset)
+    {
+    case DATA_OUT:
+        this->set_data_out(value);
+        break;
+    default:
+        throw std::invalid_argument{ "Invalid memory offset" };
+    }
+}
+
 void emulator::system::Terminal::set_data_out(const word_t data_out)
 {
     this->data_out_ = data_out & data_out_mask;

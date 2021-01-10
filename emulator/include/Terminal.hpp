@@ -8,6 +8,8 @@
 #include <termios.h>
 #endif
 
+#include "MmioDevice.hpp"
+
 #include "Cpu.hpp"
 #include "Typedefs.hpp"
 
@@ -15,9 +17,12 @@ namespace emulator
 {
     namespace system
     {
-        class Terminal
+        class Terminal : public MmioDevice
         {
         public:
+            word_t get_memory(mem_address_t offset) override;
+            void set_memory(mem_address_t offset, word_t value) override;
+
             void set_data_out(word_t data_out);
             word_t data_in() const;
 
@@ -35,6 +40,12 @@ namespace emulator
 
             void enter_raw_mode();
             void exit_raw_mode();
+
+            enum RegsOffset
+            {
+                DATA_OUT = 0,
+                DATA_IN  = 2,
+            };
 
             std::shared_ptr<cpu::Cpu> cpu_;
 
