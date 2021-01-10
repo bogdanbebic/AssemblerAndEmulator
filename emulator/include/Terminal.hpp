@@ -23,9 +23,6 @@ namespace emulator
             word_t get_memory(mem_address_t offset) override;
             void set_memory(mem_address_t offset, word_t value) override;
 
-            void set_data_out(word_t data_out);
-            word_t data_in() const;
-
             explicit Terminal(std::shared_ptr<cpu::Cpu> cpu);
 
             Terminal(const Terminal &) = delete;
@@ -40,6 +37,9 @@ namespace emulator
 
             void enter_raw_mode();
             void exit_raw_mode();
+
+            void set_data_out(word_t data_out);
+            word_t data_in() const;
 
             enum RegsOffset
             {
