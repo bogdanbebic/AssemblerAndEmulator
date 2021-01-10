@@ -1,5 +1,6 @@
 #include "Timer.hpp"
 
+#include <stdexcept>
 #include <utility>
 
 #include "CpuDefs.hpp"
@@ -14,6 +15,27 @@ std::map<emulator::system::word_t, std::chrono::milliseconds> emulator::system::
     { 0x6, std::chrono::seconds{ 30 } },
     { 0x7, std::chrono::seconds{ 60 } },
 };
+
+emulator::system::word_t emulator::system::Timer::get_memory(mem_address_t offset)
+{
+    switch (offset)
+    {
+    default:
+        throw std::invalid_argument{ "Invalid memory offset" };
+    }
+}
+
+void emulator::system::Timer::set_memory(mem_address_t offset, word_t value)
+{
+    switch (offset)
+    {
+    case TIMER_CFG:
+        this->set_timer_cfg(value);
+        break;
+    default:
+        throw std::invalid_argument{ "Invalid memory offset" };
+    }
+}
 
 void emulator::system::Timer::set_timer_cfg(const word_t timer_cfg)
 {
