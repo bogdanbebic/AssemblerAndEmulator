@@ -1,4 +1,4 @@
-name: Run as unit tests
+name: Run unit tests
 
 on:
   pull_request:
@@ -14,4 +14,4 @@ jobs:
     - name: Install Boost test
       run: sudo apt-get install libboost-all-dev
     - name: Run unit tests
-      run: chmod +x ./scripts/* && ./scripts/unit_test_as.sh
+      run: chmod +x ./scripts/* && ./scripts/unit_test_as.sh && ./scripts/unit_test_emu.sh
