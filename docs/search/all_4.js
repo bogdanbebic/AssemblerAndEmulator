@@ -4,5 +4,6 @@ var searchData=
   ['datadefinitionparser_2ecpp_35',['DataDefinitionParser.cpp',['../DataDefinitionParser_8cpp.html',1,'']]],
   ['datadefinitionparser_2ehpp_36',['DataDefinitionParser.hpp',['../DataDefinitionParser_8hpp.html',1,'']]],
   ['datadefs_2ehpp_37',['DataDefs.hpp',['../DataDefs_8hpp.html',1,'']]],
-  ['div_38',['DIV',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#ab73cee2c5eed0fa7de283c49c4a4e40daea4bafd7a43e021f90aae2e5ca32b38a',1,'emulator::system::cpu::instruction']]]
+  ['descriptor_38',['descriptor',['../structlinker_1_1elf_1_1Section.html#aba27b0f4d5484dce8a02e72e684a191a',1,'linker::elf::Section']]],
+  ['div_39',['DIV',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#ab73cee2c5eed0fa7de283c49c4a4e40daea4bafd7a43e021f90aae2e5ca32b38a',1,'emulator::system::cpu::instruction']]]
 ];

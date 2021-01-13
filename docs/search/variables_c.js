@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['value_525',['value',['../structassembler_1_1SymbolTable_1_1SymbolTableEntry.html#a77bb051008d0b4d07d37e9eb2115ad7c',1,'assembler::SymbolTable::SymbolTableEntry']]]
+  ['undefined_5fsection_5fentry_548',['undefined_section_entry',['../classassembler_1_1SectionTable.html#afdf154eb5c766ac34dc13759dcee4735',1,'assembler::SectionTable']]],
+  ['undefined_5fsection_5fentry_5fname_549',['undefined_section_entry_name',['../classassembler_1_1SectionTable.html#aa37a2616f9921f508a1b673d029927a9',1,'assembler::SectionTable']]]
 ];

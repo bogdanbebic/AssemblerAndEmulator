@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['signed_5fbyte_5ft_536',['signed_byte_t',['../namespaceemulator_1_1system.html#abc190c1e265eb43ecbea033a8b21bfa1',1,'emulator::system']]],
-  ['signed_5fword_5ft_537',['signed_word_t',['../namespaceemulator_1_1system.html#a6b2923d3c218daf297547987f6803349',1,'emulator::system']]]
+  ['relocation_5ftable_5fentry_5ft_561',['relocation_table_entry_t',['../namespacelinker_1_1elf.html#a482a26748dbd8a1969f42cb7e6643d5b',1,'linker::elf']]]
 ];

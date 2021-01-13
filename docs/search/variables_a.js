@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['section_519',['section',['../structassembler_1_1SectionTable_1_1SectionTableEntry.html#a18a641d4f2b5735ce822d1dc34a51dcd',1,'assembler::SectionTable::SectionTableEntry']]],
-  ['section_5findex_520',['section_index',['../structassembler_1_1SymbolTable_1_1SymbolTableEntry.html#aec5deb13ef2cea82ab59fac42fbf517d',1,'assembler::SymbolTable::SymbolTableEntry']]],
-  ['size_521',['size',['../structassembler_1_1SectionTable_1_1SectionTableEntry.html#abcbed4b9611be13cab60aa2d1ec01f9d',1,'assembler::SectionTable::SectionTableEntry']]],
-  ['symbol_522',['symbol',['../structassembler_1_1SymbolTable_1_1SymbolTableEntry.html#a7d9dab092864d99ddcc884401e375cc9',1,'assembler::SymbolTable::SymbolTableEntry']]]
+  ['register_5findex_542',['register_index',['../structstatement_1_1operand__t.html#a3cb9207b2dda038bfdf1f3354de14927',1,'statement::operand_t::register_index()'],['../structemulator_1_1system_1_1cpu_1_1instruction_1_1OperandDescriptor.html#a6481c5184160e5bfacd2f4daa436c71a',1,'emulator::system::cpu::instruction::OperandDescriptor::register_index()']]],
+  ['result_543',['result',['../structemulator_1_1system_1_1cpu_1_1alu__result__t.html#a469b8452a512576498b90bb3f1e11f4f',1,'emulator::system::cpu::alu_result_t']]]
 ];
