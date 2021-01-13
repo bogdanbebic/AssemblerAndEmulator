@@ -6,7 +6,8 @@
 
 struct ElfStructsFixture
 {
-    void test_equal(linker::elf::symbol_table_entry_t expected, linker::elf::symbol_table_entry_t actual)
+    void test_equal(linker::elf::symbol_table_entry_t expected,
+                    linker::elf::symbol_table_entry_t actual)
     {
         BOOST_TEST(expected.symbol == actual.symbol);
         BOOST_TEST(expected.value == actual.value);
@@ -14,7 +15,8 @@ struct ElfStructsFixture
         BOOST_TEST(expected.is_global == actual.is_global);
     }
 
-    void test_equal(linker::elf::section_table_entry_t expected, linker::elf::section_table_entry_t actual)
+    void test_equal(linker::elf::section_table_entry_t expected,
+                    linker::elf::section_table_entry_t actual)
     {
         BOOST_TEST(expected.section == actual.section);
         BOOST_TEST(expected.idx == actual.idx);
