@@ -1,6 +1,7 @@
 #include "Parser.hpp"
 
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 #include "ParsingException.hpp"
@@ -28,6 +29,7 @@ parsers::Parser::Parser()
 
 void parsers::Parser::parse(std::istream &is)
 {
+    bool errors_found = false;
     std::string line;
     is >> std::ws;
     while (std::getline(is, line))
@@ -42,6 +44,7 @@ void parsers::Parser::parse(std::istream &is)
         }
         catch (std::exception &exception)
         {
+            errors_found = true;
             // log error
             std::cerr << exception.what() << "\n";
         }
@@ -50,6 +53,9 @@ void parsers::Parser::parse(std::istream &is)
     }
 
     this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
+
+    if (errors_found)
+        throw std::invalid_argument{ "Parsing errors detected" };
 }
 
 std::stringstream parsers::Parser::to_school_elf() const
