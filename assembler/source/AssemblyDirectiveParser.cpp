@@ -23,7 +23,7 @@ std::shared_ptr<statements::Statement> parsers::AssemblyDirectiveParser::parse(s
             return std::make_shared<statements::Statement>(0, true);
         }
 
-        const std::regex regex{ R"(^\.(global|extern|section|equ)\s*(.*)$)" };
+        const std::regex regex{ R"(^\.(global|extern|section)\s*(.*)$)" };
         const std::regex symbol_regex{ "([a-zA-Z_][a-zA-Z_0-9]*)" };
         const std::regex symbol_list_regex{ R"(^([a-zA-Z_][a-zA-Z_0-9]*)\s*(,\s*([a-zA-Z_][a-zA-Z_0-9]*))*\s*$)" };
         const std::regex section_name_regex{ "^([a-zA-Z_][a-zA-Z_0-9]*):\\s*$" };
@@ -92,11 +92,6 @@ std::shared_ptr<statements::Statement> parsers::AssemblyDirectiveParser::parse(s
                     throw std::invalid_argument{ "Invalid args for .extern directive" };
                 }
             }
-
-            if (directive == "equ")
-            {
-                // TODO: implement
-            }
         }
 
         return nullptr;
@@ -108,7 +103,7 @@ std::shared_ptr<statements::Statement> parsers::AssemblyDirectiveParser::parse(s
 bool parsers::AssemblyDirectiveParser::can_parse(const std::string &statement) const
 {
     const std::regex directive_end_regex{ "^\\.end\\s*$" };
-    const std::regex regex{ "^\\.(global|extern|section|equ)\\s+.*$" };
+    const std::regex regex{ "^\\.(global|extern|section)\\s+.*$" };
     return std::regex_match(statement, directive_end_regex) ||
            std::regex_match(statement, regex);
 }
