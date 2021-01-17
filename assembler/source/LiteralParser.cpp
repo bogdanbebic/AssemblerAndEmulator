@@ -6,6 +6,7 @@
 
 #include "DataDefs.hpp"
 #include "LiteralParsingException.hpp"
+#include "SymbolTable.hpp"
 
 std::regex parsers::LiteralParser::char_literal_regex_{ "^[+-]?'.'$" };
 std::regex parsers::LiteralParser::decimal_literal_regex_{ "^[+-]?[1-9][0-9]*$" };

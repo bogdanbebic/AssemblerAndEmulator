@@ -5,7 +5,12 @@
 #include <regex>
 #include <string>
 
-#include "SymbolTable.hpp"
+#include "DataDefs.hpp"
+
+namespace assembler
+{
+    class SymbolTable;
+} // namespace assembler
 
 namespace parsers
 {

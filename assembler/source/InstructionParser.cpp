@@ -11,6 +11,8 @@
 #include "RegisterIndirectOffsetParser.hpp"
 #include "RegisterIndirectParser.hpp"
 
+#include "ObjectCodeArray.hpp"
+
 parsers::InstructionParser::InstructionParser(std::shared_ptr<assembler::SymbolTable> symbol_table,
                                               std::shared_ptr<assembler::ObjectCodeArray> object_code)
     : symbol_table_(std::move(symbol_table)), object_code_(std::move(object_code))

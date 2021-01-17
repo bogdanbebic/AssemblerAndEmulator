@@ -5,12 +5,18 @@
 
 #include <memory>
 
-#include "ObjectCodeArray.hpp"
-#include "OperandParser.hpp"
-#include "SymbolTable.hpp"
+#include "Operand.hpp"
+
+namespace assembler
+{
+    class ObjectCodeArray;
+    class SymbolTable;
+} // namespace assembler
 
 namespace parsers
 {
+    class OperandParser;
+
     class InstructionParser : public StatementParser
     {
     public:

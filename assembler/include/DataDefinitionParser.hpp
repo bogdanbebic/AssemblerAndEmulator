@@ -5,8 +5,11 @@
 
 #include <memory>
 
-#include "ObjectCodeArray.hpp"
-#include "SymbolTable.hpp"
+namespace assembler
+{
+    class ObjectCodeArray;
+    class SymbolTable;
+} // namespace assembler
 
 namespace parsers
 {
