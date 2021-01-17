@@ -1,15 +1,21 @@
 #include "SectionTable.hpp"
 
 const std::string assembler::SectionTable::undefined_section_entry_name{ "*UND*" };
+const std::string assembler::SectionTable::equ_section_entry_name{ "*EQU*" };
 
 const std::pair<assembler::SectionTable::key_type, assembler::SectionTable::mapped_type>
     assembler::SectionTable::undefined_section_entry = {
         undefined_section_entry_name, { undefined_section_entry_name, 0, 0 }
     };
 
+const std::pair<assembler::SectionTable::key_type, assembler::SectionTable::mapped_type>
+    assembler::SectionTable::equ_section_entry = { equ_section_entry_name,
+                                                   { equ_section_entry_name, 1, 0 } };
+
 assembler::SectionTable::SectionTable()
 {
     this->insert(SectionTable::undefined_section_entry);
+    this->insert(SectionTable::equ_section_entry);
 }
 
 assembler::SectionTable::mapped_type &assembler::SectionTable::at(const key_type &key)
