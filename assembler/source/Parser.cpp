@@ -1,12 +1,14 @@
 #include "Parser.hpp"
 
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 #include "ParsingException.hpp"
 
 #include "AssemblyDirectiveParser.hpp"
 #include "DataDefinitionParser.hpp"
+#include "EquDirectiveParser.hpp"
 #include "InstructionParser.hpp"
 
 parsers::Parser::Parser()
@@ -17,7 +19,9 @@ parsers::Parser::Parser()
         this->object_code_, this->symbol_table_);
     auto instruction_parser =
         std::make_shared<InstructionParser>(this->symbol_table_, this->object_code_);
+    auto equ_directive_parser = std::make_shared<EquDirectiveParser>(this->symbol_table_);
 
+    instruction_parser->set_next(equ_directive_parser);
     data_definition_parser->set_next(instruction_parser);
     assembly_directive_parser->set_next(data_definition_parser);
     this->statement_parser_chain_ = assembly_directive_parser;
@@ -25,6 +29,7 @@ parsers::Parser::Parser()
 
 void parsers::Parser::parse(std::istream &is)
 {
+    bool errors_found = false;
     std::string line;
     is >> std::ws;
     while (std::getline(is, line))
@@ -39,6 +44,7 @@ void parsers::Parser::parse(std::istream &is)
         }
         catch (std::exception &exception)
         {
+            errors_found = true;
             // log error
             std::cerr << exception.what() << "\n";
         }
@@ -47,6 +53,9 @@ void parsers::Parser::parse(std::istream &is)
     }
 
     this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
+
+    if (errors_found)
+        throw std::invalid_argument{ "Parsing errors detected" };
 }
 
 std::stringstream parsers::Parser::to_school_elf() const
