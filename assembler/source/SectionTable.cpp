@@ -44,6 +44,11 @@ void assembler::SectionTable::erase(const key_type &key)
     this->section_table_.erase(key);
 }
 
+size_t assembler::SectionTable::size() const
+{
+    return this->section_table_.size();
+}
+
 std::stringstream assembler::SectionTable::to_school_elf() const
 {
     std::stringstream school_elf_stream;

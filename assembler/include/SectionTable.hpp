@@ -32,6 +32,8 @@ namespace assembler
         void update_section_size(const key_type &key, size_t size);
         void erase(const key_type &key);
 
+        size_t size() const;
+
         std::stringstream to_school_elf() const;
 
     private:
