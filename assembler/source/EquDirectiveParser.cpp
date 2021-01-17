@@ -61,16 +61,12 @@ bool parsers::EquDirectiveParser::is_invalid_expression(std::string expression) 
     while (std::regex_search(expression, match, regex))
     {
         std::string operand = match.str();
-        try
+        if (!LiteralParser::is_literal(operand))
         {
             const int section_table_idx =
                 this->symbol_table_->at(operand.substr(1)).section_index;
             classification_index[section_table_idx] +=
                 (operand[0] == '-' && section_table_idx != 0 ? -1 : 1);
-        }
-        catch (std::out_of_range &ignored)
-        {
-            // operand is a literal, just skip to the next
         }
 
         expression = match.suffix();
