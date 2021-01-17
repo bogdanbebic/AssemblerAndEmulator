@@ -1,6 +1,7 @@
 #include "InstructionParser.hpp"
 
 #include <iostream>
+#include <map>
 #include <regex>
 #include <utility>
 
