@@ -15,9 +15,10 @@ namespace parsers
         static bool is_literal(const std::string &string);
         static int parse(const std::string &string);
         static bool is_expression(const std::string &string);
-        static int evaluate_expression(std::string string);
-        static int evaluate_expression(std::string string,
-                                       std::shared_ptr<assembler::SymbolTable> symbol_table);
+        static assembler::word_t evaluate_expression(std::string string);
+        static assembler::word_t
+        evaluate_expression(std::string string,
+                            std::shared_ptr<assembler::SymbolTable> symbol_table);
 
     private:
         static std::regex char_literal_regex_;
