@@ -74,35 +74,38 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="OperandParser_8hpp.html">OperandParser.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SymbolTable_8hpp.html">SymbolTable.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceparsers.html">parsers</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classparsers_1_1MemoryDirectParser.html">   10</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classparsers_1_1MemoryDirectParser.html">MemoryDirectParser</a> : <span class="keyword">public</span> <a class="code" href="classparsers_1_1OperandParser.html">OperandParser</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        std::shared_ptr&lt;statement::operand_t&gt; <a class="code" href="classparsers_1_1MemoryDirectParser.html#a089c7c6328a7479241c8456deab39b72">parse</a>(std::string operand);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        std::shared_ptr&lt;statement::operand_t&gt; <a class="code" href="classparsers_1_1MemoryDirectParser.html#af52f6a0362f0a75b1048495922f9a36a">parse_jump_instruction</a>(std::string operand);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classparsers_1_1MemoryDirectParser.html#a107e25c44a3bc3fdab1225bd15d2cf5d">MemoryDirectParser</a>(std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">bool</span> can_parse(<span class="keyword">const</span> std::string &amp;operand) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordtype">bool</span> can_parse_jump_instruction(<span class="keyword">const</span> std::string &amp;operand) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table_;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;} <span class="comment">// namespace parsers</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceassembler.html">assembler</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">class </span>SymbolTable;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;} <span class="comment">// namespace assembler</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceparsers.html">parsers</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classparsers_1_1MemoryDirectParser.html">   13</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classparsers_1_1MemoryDirectParser.html">MemoryDirectParser</a> : <span class="keyword">public</span> <a class="code" href="classparsers_1_1OperandParser.html">OperandParser</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        std::shared_ptr&lt;statement::operand_t&gt; <a class="code" href="classparsers_1_1MemoryDirectParser.html#a089c7c6328a7479241c8456deab39b72">parse</a>(std::string operand);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        std::shared_ptr&lt;statement::operand_t&gt; <a class="code" href="classparsers_1_1MemoryDirectParser.html#af52f6a0362f0a75b1048495922f9a36a">parse_jump_instruction</a>(std::string operand);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classparsers_1_1MemoryDirectParser.html#a107e25c44a3bc3fdab1225bd15d2cf5d">MemoryDirectParser</a>(std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">bool</span> can_parse(<span class="keyword">const</span> std::string &amp;operand) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">bool</span> can_parse_jump_instruction(<span class="keyword">const</span> std::string &amp;operand) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table_;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    };</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;} <span class="comment">// namespace parsers</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aOperandParser_8hpp_html"><div class="ttname"><a href="OperandParser_8hpp.html">OperandParser.hpp</a></div></div>
-<div class="ttc" id="aSymbolTable_8hpp_html"><div class="ttname"><a href="SymbolTable_8hpp.html">SymbolTable.hpp</a></div></div>
-<div class="ttc" id="aclassparsers_1_1MemoryDirectParser_html"><div class="ttname"><a href="classparsers_1_1MemoryDirectParser.html">parsers::MemoryDirectParser</a></div><div class="ttdef"><b>Definition:</b> MemoryDirectParser.hpp:11</div></div>
+<div class="ttc" id="aclassparsers_1_1MemoryDirectParser_html"><div class="ttname"><a href="classparsers_1_1MemoryDirectParser.html">parsers::MemoryDirectParser</a></div><div class="ttdef"><b>Definition:</b> MemoryDirectParser.hpp:14</div></div>
 <div class="ttc" id="aclassparsers_1_1MemoryDirectParser_html_a089c7c6328a7479241c8456deab39b72"><div class="ttname"><a href="classparsers_1_1MemoryDirectParser.html#a089c7c6328a7479241c8456deab39b72">parsers::MemoryDirectParser::parse</a></div><div class="ttdeci">std::shared_ptr&lt; statement::operand_t &gt; parse(std::string operand)</div><div class="ttdef"><b>Definition:</b> MemoryDirectParser.cpp:7</div></div>
 <div class="ttc" id="aclassparsers_1_1MemoryDirectParser_html_a107e25c44a3bc3fdab1225bd15d2cf5d"><div class="ttname"><a href="classparsers_1_1MemoryDirectParser.html#a107e25c44a3bc3fdab1225bd15d2cf5d">parsers::MemoryDirectParser::MemoryDirectParser</a></div><div class="ttdeci">MemoryDirectParser(std::shared_ptr&lt; assembler::SymbolTable &gt; symbol_table)</div><div class="ttdef"><b>Definition:</b> MemoryDirectParser.cpp:39</div></div>
 <div class="ttc" id="aclassparsers_1_1MemoryDirectParser_html_af52f6a0362f0a75b1048495922f9a36a"><div class="ttname"><a href="classparsers_1_1MemoryDirectParser.html#af52f6a0362f0a75b1048495922f9a36a">parsers::MemoryDirectParser::parse_jump_instruction</a></div><div class="ttdeci">std::shared_ptr&lt; statement::operand_t &gt; parse_jump_instruction(std::string operand)</div><div class="ttdef"><b>Definition:</b> MemoryDirectParser.cpp:23</div></div>
 <div class="ttc" id="aclassparsers_1_1OperandParser_html"><div class="ttname"><a href="classparsers_1_1OperandParser.html">parsers::OperandParser</a></div><div class="ttdef"><b>Definition:</b> OperandParser.hpp:12</div></div>
-<div class="ttc" id="anamespaceparsers_html"><div class="ttname"><a href="namespaceparsers.html">parsers</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:9</div></div>
+<div class="ttc" id="anamespaceassembler_html"><div class="ttname"><a href="namespaceassembler.html">assembler</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:7</div></div>
+<div class="ttc" id="anamespaceparsers_html"><div class="ttname"><a href="namespaceparsers.html">parsers</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

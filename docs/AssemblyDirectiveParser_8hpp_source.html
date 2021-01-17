@@ -72,35 +72,40 @@ $(function() {
 <a href="AssemblyDirectiveParser_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _ASSEMBLY_DIRECTIVE_PARSER_HPP_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _ASSEMBLY_DIRECTIVE_PARSER_HPP_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SectionTable_8hpp.html">SectionTable.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="StatementParser_8hpp.html">StatementParser.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SymbolTable_8hpp.html">SymbolTable.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="namespaceparsers.html">    8</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceparsers.html">parsers</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classparsers_1_1AssemblyDirectiveParser.html">   10</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classparsers_1_1AssemblyDirectiveParser.html">AssemblyDirectiveParser</a> : <span class="keyword">public</span> <a class="code" href="classparsers_1_1StatementParser.html">StatementParser</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classparsers_1_1AssemblyDirectiveParser.html#ae920779dfee34be1352beb4367c365fe">AssemblyDirectiveParser</a>(std::shared_ptr&lt;assembler::SectionTable&gt; section_table,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                                         std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        std::shared_ptr&lt;statements::Statement&gt; <a class="code" href="classparsers_1_1AssemblyDirectiveParser.html#ac7f8a3aec1b675dcec8ff6e9bcba007a">parse</a>(std::string <a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">bool</span> can_parse(<span class="keyword">const</span> std::string &amp;<a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::shared_ptr&lt;assembler::SectionTable&gt; section_table_;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table_;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    };</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <span class="comment">// namespace parsers</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aSectionTable_8hpp_html"><div class="ttname"><a href="SectionTable_8hpp.html">SectionTable.hpp</a></div></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="StatementParser_8hpp.html">StatementParser.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="namespaceassembler.html">    6</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceassembler.html">assembler</a></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">class </span><a class="code" href="classassembler_1_1SectionTable.html">SectionTable</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">class </span><a class="code" href="classassembler_1_1SymbolTable.html">SymbolTable</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;} <span class="comment">// namespace assembler</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespaceparsers.html">   12</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceparsers.html">parsers</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classparsers_1_1AssemblyDirectiveParser.html">   14</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classparsers_1_1AssemblyDirectiveParser.html">AssemblyDirectiveParser</a> : <span class="keyword">public</span> <a class="code" href="classparsers_1_1StatementParser.html">StatementParser</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classparsers_1_1AssemblyDirectiveParser.html#ae920779dfee34be1352beb4367c365fe">AssemblyDirectiveParser</a>(std::shared_ptr&lt;assembler::SectionTable&gt; section_table,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                         std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::shared_ptr&lt;statements::Statement&gt; <a class="code" href="classparsers_1_1AssemblyDirectiveParser.html#ac7f8a3aec1b675dcec8ff6e9bcba007a">parse</a>(std::string <a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">bool</span> can_parse(<span class="keyword">const</span> std::string &amp;<a class="code" href="namespacestatement.html">statement</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        std::shared_ptr&lt;assembler::SectionTable&gt; section_table_;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        std::shared_ptr&lt;assembler::SymbolTable&gt; symbol_table_;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    };</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;} <span class="comment">// namespace parsers</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aStatementParser_8hpp_html"><div class="ttname"><a href="StatementParser_8hpp.html">StatementParser.hpp</a></div></div>
-<div class="ttc" id="aSymbolTable_8hpp_html"><div class="ttname"><a href="SymbolTable_8hpp.html">SymbolTable.hpp</a></div></div>
-<div class="ttc" id="aclassparsers_1_1AssemblyDirectiveParser_html"><div class="ttname"><a href="classparsers_1_1AssemblyDirectiveParser.html">parsers::AssemblyDirectiveParser</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:11</div></div>
-<div class="ttc" id="aclassparsers_1_1AssemblyDirectiveParser_html_ac7f8a3aec1b675dcec8ff6e9bcba007a"><div class="ttname"><a href="classparsers_1_1AssemblyDirectiveParser.html#ac7f8a3aec1b675dcec8ff6e9bcba007a">parsers::AssemblyDirectiveParser::parse</a></div><div class="ttdeci">std::shared_ptr&lt; statements::Statement &gt; parse(std::string statement) override</div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.cpp:15</div></div>
-<div class="ttc" id="aclassparsers_1_1AssemblyDirectiveParser_html_ae920779dfee34be1352beb4367c365fe"><div class="ttname"><a href="classparsers_1_1AssemblyDirectiveParser.html#ae920779dfee34be1352beb4367c365fe">parsers::AssemblyDirectiveParser::AssemblyDirectiveParser</a></div><div class="ttdeci">AssemblyDirectiveParser(std::shared_ptr&lt; assembler::SectionTable &gt; section_table, std::shared_ptr&lt; assembler::SymbolTable &gt; symbol_table)</div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.cpp:7</div></div>
+<div class="ttc" id="aclassassembler_1_1SectionTable_html"><div class="ttname"><a href="classassembler_1_1SectionTable.html">assembler::SectionTable</a></div><div class="ttdef"><b>Definition:</b> SectionTable.hpp:11</div></div>
+<div class="ttc" id="aclassassembler_1_1SymbolTable_html"><div class="ttname"><a href="classassembler_1_1SymbolTable.html">assembler::SymbolTable</a></div><div class="ttdef"><b>Definition:</b> SymbolTable.hpp:14</div></div>
+<div class="ttc" id="aclassparsers_1_1AssemblyDirectiveParser_html"><div class="ttname"><a href="classparsers_1_1AssemblyDirectiveParser.html">parsers::AssemblyDirectiveParser</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:15</div></div>
+<div class="ttc" id="aclassparsers_1_1AssemblyDirectiveParser_html_ac7f8a3aec1b675dcec8ff6e9bcba007a"><div class="ttname"><a href="classparsers_1_1AssemblyDirectiveParser.html#ac7f8a3aec1b675dcec8ff6e9bcba007a">parsers::AssemblyDirectiveParser::parse</a></div><div class="ttdeci">std::shared_ptr&lt; statements::Statement &gt; parse(std::string statement) override</div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.cpp:18</div></div>
+<div class="ttc" id="aclassparsers_1_1AssemblyDirectiveParser_html_ae920779dfee34be1352beb4367c365fe"><div class="ttname"><a href="classparsers_1_1AssemblyDirectiveParser.html#ae920779dfee34be1352beb4367c365fe">parsers::AssemblyDirectiveParser::AssemblyDirectiveParser</a></div><div class="ttdeci">AssemblyDirectiveParser(std::shared_ptr&lt; assembler::SectionTable &gt; section_table, std::shared_ptr&lt; assembler::SymbolTable &gt; symbol_table)</div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.cpp:10</div></div>
 <div class="ttc" id="aclassparsers_1_1StatementParser_html"><div class="ttname"><a href="classparsers_1_1StatementParser.html">parsers::StatementParser</a></div><div class="ttdef"><b>Definition:</b> StatementParser.hpp:11</div></div>
-<div class="ttc" id="anamespaceparsers_html"><div class="ttname"><a href="namespaceparsers.html">parsers</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:9</div></div>
+<div class="ttc" id="anamespaceassembler_html"><div class="ttname"><a href="namespaceassembler.html">assembler</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:7</div></div>
+<div class="ttc" id="anamespaceparsers_html"><div class="ttname"><a href="namespaceparsers.html">parsers</a></div><div class="ttdef"><b>Definition:</b> AssemblyDirectiveParser.hpp:13</div></div>
 <div class="ttc" id="anamespacestatement_html"><div class="ttname"><a href="namespacestatement.html">statement</a></div><div class="ttdef"><b>Definition:</b> Operand.hpp:5</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
