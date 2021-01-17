@@ -88,6 +88,7 @@ assembler::word_t parsers::LiteralParser::evaluate_expression(
         }
         else
         {
+            symbol_table->make_declaration(operand.substr(1));
             const int value = symbol_table->at(operand.substr(1)).value;
             expression_value += (operand[0] == '-' ? -value : value);
         }
