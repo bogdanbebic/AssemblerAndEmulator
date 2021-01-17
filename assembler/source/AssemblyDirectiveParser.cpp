@@ -4,6 +4,9 @@
 #include <regex>
 #include <utility>
 
+#include "SectionTable.hpp"
+#include "SymbolTable.hpp"
+
 parsers::AssemblyDirectiveParser::AssemblyDirectiveParser(
     std::shared_ptr<assembler::SectionTable> section_table,
     std::shared_ptr<assembler::SymbolTable> symbol_table)

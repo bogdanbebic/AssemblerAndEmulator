@@ -46,7 +46,7 @@ void parsers::Parser::parse(std::istream &is)
         {
             errors_found = true;
             // log error
-            std::cerr << exception.what() << "\n";
+            std::cerr << "ERROR: " << exception.what() << "\n";
         }
 
         is >> std::ws;

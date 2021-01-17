@@ -1,9 +1,13 @@
 #ifndef _ASSEMBLY_DIRECTIVE_PARSER_HPP_
 #define _ASSEMBLY_DIRECTIVE_PARSER_HPP_
 
-#include "SectionTable.hpp"
 #include "StatementParser.hpp"
-#include "SymbolTable.hpp"
+
+namespace assembler
+{
+    class SectionTable;
+    class SymbolTable;
+} // namespace assembler
 
 namespace parsers
 {

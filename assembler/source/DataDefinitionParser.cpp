@@ -5,6 +5,7 @@
 #include <stdexcept>
 
 #include "LiteralParser.hpp"
+#include "ObjectCodeArray.hpp"
 
 #include <iostream>
 

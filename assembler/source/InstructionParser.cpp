@@ -1,6 +1,7 @@
 #include "InstructionParser.hpp"
 
 #include <iostream>
+#include <map>
 #include <regex>
 #include <utility>
 
@@ -9,6 +10,8 @@
 #include "RegisterDirectParser.hpp"
 #include "RegisterIndirectOffsetParser.hpp"
 #include "RegisterIndirectParser.hpp"
+
+#include "ObjectCodeArray.hpp"
 
 parsers::InstructionParser::InstructionParser(std::shared_ptr<assembler::SymbolTable> symbol_table,
                                               std::shared_ptr<assembler::ObjectCodeArray> object_code)

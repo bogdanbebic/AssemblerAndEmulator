@@ -2,7 +2,11 @@
 #define _EQU_DIRECTIVE_PARSER_HPP_
 
 #include "StatementParser.hpp"
-#include "SymbolTable.hpp"
+
+namespace assembler
+{
+    class SymbolTable;
+} // namespace assembler
 
 namespace parsers
 {

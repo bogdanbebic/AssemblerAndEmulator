@@ -4,7 +4,9 @@
 #include <ios>
 #include <sstream>
 
+#include "DataDefs.hpp"
 #include "LiteralParsingException.hpp"
+#include "SymbolTable.hpp"
 
 std::regex parsers::LiteralParser::char_literal_regex_{ "^[+-]?'.'$" };
 std::regex parsers::LiteralParser::decimal_literal_regex_{ "^[+-]?[1-9][0-9]*$" };
@@ -43,7 +45,7 @@ bool parsers::LiteralParser::is_expression(const std::string &string)
     return std::regex_match(string.c_str(), match_, expression_regex_);
 }
 
-int parsers::LiteralParser::evaluate_expression(std::string string)
+assembler::word_t parsers::LiteralParser::evaluate_expression(std::string string)
 {
     string.erase(std::remove_if(string.begin(),
                                 string.end(),
@@ -51,7 +53,7 @@ int parsers::LiteralParser::evaluate_expression(std::string string)
                  string.end());
 
     std::smatch match;
-    int expression_value = 0;
+    assembler::word_t expression_value = 0;
     while (std::regex_search(string, match, literal_regex_))
     {
         expression_value += parse(match.str());
@@ -61,8 +63,8 @@ int parsers::LiteralParser::evaluate_expression(std::string string)
     return expression_value;
 }
 
-int parsers::LiteralParser::evaluate_expression(std::string string,
-                                                std::shared_ptr<assembler::SymbolTable> symbol_table)
+assembler::word_t parsers::LiteralParser::evaluate_expression(
+    std::string string, std::shared_ptr<assembler::SymbolTable> symbol_table)
 {
     string.erase(std::remove_if(string.begin(),
                                 string.end(),
@@ -76,7 +78,7 @@ int parsers::LiteralParser::evaluate_expression(std::string string,
 
     const std::regex regex("[\\+-][^\\+-]+");
     std::smatch match;
-    int expression_value = 0;
+    assembler::word_t expression_value = 0;
     while (std::regex_search(string, match, regex))
     {
         std::string operand = match.str();

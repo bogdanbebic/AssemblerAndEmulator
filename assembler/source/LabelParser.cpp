@@ -20,7 +20,7 @@ std::string parsers::LabelParser::parse(std::string line, size_t section_index, 
             std::cout << "LABEL:'" << this->match_[1].str() << "'\n";
             std::string symbol = this->match_[1].str();
             assembler::SymbolTable::SymbolTableEntry entry = {
-                symbol, line_counter, section_index, false
+                symbol, static_cast<assembler::word_t>(line_counter), section_index, false
             };
 
             this->symbol_table_->insert({ symbol, entry });
