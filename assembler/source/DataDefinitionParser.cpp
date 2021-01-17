@@ -24,6 +24,9 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
         const std::regex data_skip_regex{ R"(^\.skip\s+([^\s]+)\s*$)" };
         const std::regex data_byte_regex{ R"(^\.byte\s+(.+)$)" };
         const std::regex data_word_regex{ R"(^\.word\s+(.+)$)" };
+
+        const std::regex single_symbol{ "\\s*(\\w+|'.'|[1-9][0-9]*|0x[0-9a-f]+|0[0-7]*)\\s*" };
+
         std::smatch match;
 
         if (std::regex_match(statement, match, data_skip_regex))
@@ -49,6 +52,9 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
             size_t bytes_defs_count = 0;
             while (std::getline(ss, byte_def, ','))
             {
+                if (!std::regex_match(byte_def, single_symbol))
+                    throw std::invalid_argument{ "Invalid argument for .byte directive" };
+
                 std::cout << byte_def;
                 auto value = LiteralParser::evaluate_expression(byte_def, this->symbol_table_);
                 std::cout << " : " << value << std::endl;
@@ -67,6 +73,9 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
             size_t word_defs_count = 0;
             while (std::getline(ss, word_def, ','))
             {
+                if (!std::regex_match(word_def, single_symbol))
+                    throw std::invalid_argument{ "Invalid argument for .word directive" };
+
                 std::cout << word_def;
                 auto value = LiteralParser::evaluate_expression(word_def, this->symbol_table_);
                 std::cout << " : " << value << std::endl;

@@ -5,6 +5,7 @@
 
 namespace assembler
 {
+    class SectionTable;
     class SymbolTable;
 } // namespace assembler
 
@@ -13,12 +14,15 @@ namespace parsers
     class EquDirectiveParser : public StatementParser
     {
     public:
-        explicit EquDirectiveParser(std::shared_ptr<assembler::SymbolTable> symbol_table);
+        explicit EquDirectiveParser(std::shared_ptr<assembler::SectionTable> section_table,
+                                    std::shared_ptr<assembler::SymbolTable> symbol_table);
         std::shared_ptr<statements::Statement> parse(std::string statement) override;
 
     private:
         bool can_parse(const std::string &statement) const;
+        bool is_invalid_expression(std::string expression) const;
 
+        std::shared_ptr<assembler::SectionTable> section_table_;
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
     };
 } // namespace parsers
