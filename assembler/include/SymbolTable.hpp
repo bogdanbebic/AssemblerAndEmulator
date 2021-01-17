@@ -6,6 +6,8 @@
 #include <string>
 #include <utility>
 
+#include "DataDefs.hpp"
+
 namespace assembler
 {
     class SymbolTable
@@ -14,7 +16,7 @@ namespace assembler
         struct SymbolTableEntry
         {
             std::string symbol   = "";
-            size_t value         = 0;
+            word_t value         = 0;
             size_t section_index = 0;
             bool is_global       = false;
         };
