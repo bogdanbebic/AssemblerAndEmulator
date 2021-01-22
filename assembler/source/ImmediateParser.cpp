@@ -1,6 +1,6 @@
 #include "ImmediateParser.hpp"
 
-#include "LiteralParser.hpp"
+#include "ExpressionParser.hpp"
 
 std::shared_ptr<statement::operand_t> parsers::ImmediateParser::parse(std::string operand)
 {
@@ -11,7 +11,7 @@ std::shared_ptr<statement::operand_t> parsers::ImmediateParser::parse(std::strin
     ret->addressing_mode = statement::IMMEDIATE;
 
     auto operand_stripped = operand.substr(1);
-    auto value = LiteralParser::evaluate_expression(operand_stripped, this->symbol_table_);
+    auto value = ExpressionParser::evaluate_expression(operand_stripped, this->symbol_table_);
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
     ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
 
@@ -27,7 +27,7 @@ parsers::ImmediateParser::parse_jump_instruction(std::string operand)
     auto ret             = std::make_shared<statement::operand_t>();
     ret->addressing_mode = statement::IMMEDIATE;
 
-    auto value = LiteralParser::evaluate_expression(operand, this->symbol_table_);
+    auto value = ExpressionParser::evaluate_expression(operand, this->symbol_table_);
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
     ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
 

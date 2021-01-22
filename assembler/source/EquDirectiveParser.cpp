@@ -3,7 +3,7 @@
 #include <regex>
 #include <vector>
 
-#include "LiteralParser.hpp"
+#include "ExpressionParser.hpp"
 #include "SectionTable.hpp"
 #include "SymbolTable.hpp"
 
@@ -25,7 +25,7 @@ std::shared_ptr<statements::Statement> parsers::EquDirectiveParser::parse(std::s
     {
         auto symbol     = match[1].str();
         auto expression = match[2].str();
-        auto value = LiteralParser::evaluate_expression(expression, this->symbol_table_);
+        auto value = ExpressionParser::evaluate_expression(expression, this->symbol_table_);
 
         auto relocation_symbol = this->get_relocation_symbol(expression);
 
@@ -61,7 +61,7 @@ std::string parsers::EquDirectiveParser::get_relocation_symbol(std::string expre
     while (std::regex_search(expression, match, regex))
     {
         std::string operand = match.str();
-        if (!LiteralParser::is_literal(operand))
+        if (!ExpressionParser::is_literal(operand))
         {
             const size_t section_table_idx =
                 this->symbol_table_->at(operand.substr(1)).section_index;

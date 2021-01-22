@@ -4,7 +4,7 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "LiteralParser.hpp"
+#include "ExpressionParser.hpp"
 #include "ObjectCodeArray.hpp"
 
 #include <iostream>
@@ -33,9 +33,9 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
         {
             const auto arg = match[1].str();
             std::cout << "literal:'" + arg + "'\n";
-            if (LiteralParser::is_literal(arg))
+            if (ExpressionParser::is_literal(arg))
             {
-                int literal = LiteralParser::parse(arg);
+                int literal = ExpressionParser::parse(arg);
                 this->object_code_->skip_bytes(literal);
                 return std::make_shared<statements::Statement>(literal, false);
             }
@@ -56,7 +56,7 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                     throw std::invalid_argument{ "Invalid argument for .byte directive" };
 
                 std::cout << byte_def;
-                auto value = LiteralParser::evaluate_expression(byte_def, this->symbol_table_);
+                auto value = ExpressionParser::evaluate_expression(byte_def, this->symbol_table_);
                 std::cout << " : " << value << std::endl;
                 this->object_code_->push_back_byte(static_cast<assembler::byte_t>(value));
                 bytes_defs_count++;
@@ -77,7 +77,7 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                     throw std::invalid_argument{ "Invalid argument for .word directive" };
 
                 std::cout << word_def;
-                auto value = LiteralParser::evaluate_expression(word_def, this->symbol_table_);
+                auto value = ExpressionParser::evaluate_expression(word_def, this->symbol_table_);
                 std::cout << " : " << value << std::endl;
                 this->object_code_->push_back_word(static_cast<assembler::word_t>(value));
                 word_defs_count++;

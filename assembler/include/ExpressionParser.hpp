@@ -1,5 +1,5 @@
-#ifndef _LITERAL_PARSER_HPP_
-#define _LITERAL_PARSER_HPP_
+#ifndef _EXPRESSION_PARSER_HPP_
+#define _EXPRESSION_PARSER_HPP_
 
 #include <memory>
 #include <regex>
@@ -14,7 +14,7 @@ namespace assembler
 
 namespace parsers
 {
-    class LiteralParser
+    class ExpressionParser
     {
     public:
         static bool is_literal(const std::string &string);

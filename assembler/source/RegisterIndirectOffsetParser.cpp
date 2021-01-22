@@ -2,7 +2,7 @@
 
 #include <regex>
 
-#include "LiteralParser.hpp"
+#include "ExpressionParser.hpp"
 
 std::shared_ptr<statement::operand_t> parsers::RegisterIndirectOffsetParser::parse(std::string operand)
 {
@@ -40,7 +40,7 @@ std::shared_ptr<statement::operand_t> parsers::RegisterIndirectOffsetParser::par
             ret->register_index = 0xF;
 
         auto offset_value =
-            LiteralParser::evaluate_expression(operand_offset, this->symbol_table_);
+            ExpressionParser::evaluate_expression(operand_offset, this->symbol_table_);
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
         ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
     }
@@ -90,7 +90,7 @@ parsers::RegisterIndirectOffsetParser::parse_jump_instruction(std::string operan
             ret->register_index = 0xF;
 
         auto offset_value =
-            LiteralParser::evaluate_expression(operand_offset, this->symbol_table_);
+            ExpressionParser::evaluate_expression(operand_offset, this->symbol_table_);
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
         ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
     }
