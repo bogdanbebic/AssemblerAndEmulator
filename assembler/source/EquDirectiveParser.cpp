@@ -27,8 +27,7 @@ std::shared_ptr<statements::Statement> parsers::EquDirectiveParser::parse(std::s
         auto expression = match[2].str();
         auto value = LiteralParser::evaluate_expression(expression, this->symbol_table_);
 
-        if (this->is_invalid_expression(expression))
-            throw std::invalid_argument{ "EQU expression invalid" };
+        auto relocation_symbol = this->get_relocation_symbol(expression);
 
         this->symbol_table_->insert({ symbol, { symbol, value, 1, false } });
     }
@@ -42,9 +41,10 @@ bool parsers::EquDirectiveParser::can_parse(const std::string &statement) const
     return std::regex_match(statement, regex);
 }
 
-bool parsers::EquDirectiveParser::is_invalid_expression(std::string expression) const
+std::string parsers::EquDirectiveParser::get_relocation_symbol(std::string expression) const
 {
     std::vector<int> classification_index(this->section_table_->size());
+    std::vector<std::string> relocation_symbols(this->section_table_->size());
 
     expression.erase(std::remove_if(expression.begin(),
                                     expression.end(),
@@ -67,26 +67,36 @@ bool parsers::EquDirectiveParser::is_invalid_expression(std::string expression) 
                 this->symbol_table_->at(operand.substr(1)).section_index;
             classification_index[section_table_idx] +=
                 (operand[0] == '-' && section_table_idx != 0 ? -1 : 1);
+            relocation_symbols[section_table_idx] = operand.substr(1);
         }
 
         expression = match.suffix();
     }
 
+    std::string ret;
     bool is_one = false;
+    size_t i    = 0;
     for (auto &elem : classification_index)
     {
         if (elem == 1)
         {
             if (is_one)
-                return true;
+            {
+                throw std::invalid_argument{ "EQU expression invalid" };
+            }
             else
+            {
                 is_one = true;
+                ret    = relocation_symbols[i];
+            }
         }
         else if (elem != 0)
         {
-            return true;
+            throw std::invalid_argument{ "EQU expression invalid" };
         }
+
+        i++;
     }
 
-    return false;
+    return ret;
 }

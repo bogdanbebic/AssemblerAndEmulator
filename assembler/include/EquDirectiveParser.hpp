@@ -20,7 +20,7 @@ namespace parsers
 
     private:
         bool can_parse(const std::string &statement) const;
-        bool is_invalid_expression(std::string expression) const;
+        std::string get_relocation_symbol(std::string expression) const;
 
         std::shared_ptr<assembler::SectionTable> section_table_;
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
