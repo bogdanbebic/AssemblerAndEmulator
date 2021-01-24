@@ -8,6 +8,7 @@
 #include "LabelParser.hpp"
 #include "LineCommentStripper.hpp"
 #include "ObjectCodeArray.hpp"
+#include "RelocationTable.hpp"
 #include "SectionTable.hpp"
 #include "StatementParser.hpp"
 #include "SymbolTable.hpp"
@@ -36,6 +37,8 @@ namespace parsers
             std::make_shared<assembler::SectionTable>();
         std::shared_ptr<assembler::ObjectCodeArray> object_code_ =
             std::make_shared<assembler::ObjectCodeArray>();
+        std::shared_ptr<assembler::RelocationTable> relocation_table_ =
+            std::make_shared<assembler::RelocationTable>(this->symbol_table_);
 
         LineCommentStripper line_comment_stripper_;
         LabelParser label_parser_{ symbol_table_ };

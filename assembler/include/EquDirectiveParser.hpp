@@ -7,6 +7,7 @@ namespace assembler
 {
     class SectionTable;
     class SymbolTable;
+    class RelocationTable;
 } // namespace assembler
 
 namespace parsers
@@ -15,7 +16,8 @@ namespace parsers
     {
     public:
         explicit EquDirectiveParser(std::shared_ptr<assembler::SectionTable> section_table,
-                                    std::shared_ptr<assembler::SymbolTable> symbol_table);
+                                    std::shared_ptr<assembler::SymbolTable> symbol_table,
+                                    std::shared_ptr<assembler::RelocationTable> relocation_table);
         std::shared_ptr<statements::Statement> parse(std::string statement) override;
 
     private:
@@ -24,6 +26,7 @@ namespace parsers
 
         std::shared_ptr<assembler::SectionTable> section_table_;
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
+        std::shared_ptr<assembler::RelocationTable> relocation_table_;
     };
 } // namespace parsers
 

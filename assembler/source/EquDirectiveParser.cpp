@@ -4,12 +4,17 @@
 #include <vector>
 
 #include "ExpressionParser.hpp"
+#include "RelocationTable.hpp"
 #include "SectionTable.hpp"
 #include "SymbolTable.hpp"
 
-parsers::EquDirectiveParser::EquDirectiveParser(std::shared_ptr<assembler::SectionTable> section_table,
-                                                std::shared_ptr<assembler::SymbolTable> symbol_table)
-    : section_table_(std::move(section_table)), symbol_table_(std::move(symbol_table))
+parsers::EquDirectiveParser::EquDirectiveParser(
+    std::shared_ptr<assembler::SectionTable> section_table,
+    std::shared_ptr<assembler::SymbolTable> symbol_table,
+    std::shared_ptr<assembler::RelocationTable> relocation_table)
+    : section_table_(std::move(section_table))
+    , symbol_table_(std::move(symbol_table))
+    , relocation_table_(std::move(relocation_table))
 {
     // empty body
 }
@@ -28,6 +33,8 @@ std::shared_ptr<statements::Statement> parsers::EquDirectiveParser::parse(std::s
         auto value = ExpressionParser::evaluate_expression(expression, this->symbol_table_);
 
         auto relocation_symbol = this->get_relocation_symbol(expression);
+        if (relocation_symbol != "")
+            this->relocation_table_->add_equ_relocation(symbol, relocation_symbol);
 
         this->symbol_table_->insert({ symbol, { symbol, value, 1, false } });
     }
