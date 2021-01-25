@@ -15,8 +15,12 @@ namespace assembler
     public:
         typedef enum RelocationType
         {
-            R_X86_64_16 = 12,
-            R_X86_64_8  = 14,
+            R_16   = 12,
+            R_PC16 = 13,
+            R_8    = 14,
+
+            R_SECTION16 = 15,
+            R_SECTION8  = 16,
         } relocation_type_t;
 
         using relocation_offset_t = size_t;
