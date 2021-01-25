@@ -64,7 +64,8 @@ std::stringstream parsers::Parser::to_school_elf() const
     std::stringstream ret;
     ret << this->symbol_table_->to_school_elf().str()
         << this->section_table_->to_school_elf().str()
-        << this->object_code_->to_school_elf().str();
+        << this->object_code_->to_school_elf().str()
+        << this->relocation_table_->to_school_elf().str();
     return ret;
 }
 
