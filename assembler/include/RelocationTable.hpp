@@ -30,6 +30,8 @@ namespace assembler
 
         explicit RelocationTable(std::shared_ptr<SymbolTable> symbol_table);
 
+        void insert(relocation_table_entry_t entry);
+
         void add_equ_relocation(const std::string &equ_entry_key,
                                 const std::string &relocation_entry_key);
 

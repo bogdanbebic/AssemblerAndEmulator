@@ -10,6 +10,11 @@ assembler::RelocationTable::RelocationTable(std::shared_ptr<SymbolTable> symbol_
     // empty body
 }
 
+void assembler::RelocationTable::insert(relocation_table_entry_t entry)
+{
+    this->relocation_table_.push_back(entry);
+}
+
 void assembler::RelocationTable::add_equ_relocation(const std::string &equ_entry_key,
                                                     const std::string &relocation_entry_key)
 {
