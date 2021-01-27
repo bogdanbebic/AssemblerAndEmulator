@@ -17,8 +17,8 @@ parsers::Parser::Parser()
         this->section_table_, this->symbol_table_);
     auto data_definition_parser = std::make_shared<DataDefinitionParser>(
         this->object_code_, this->symbol_table_);
-    auto instruction_parser =
-        std::make_shared<InstructionParser>(this->symbol_table_, this->object_code_);
+    auto instruction_parser = std::make_shared<InstructionParser>(
+        this->symbol_table_, this->object_code_, this->relocation_table_);
     auto equ_directive_parser = std::make_shared<EquDirectiveParser>(
         this->section_table_, this->symbol_table_, this->relocation_table_);
 

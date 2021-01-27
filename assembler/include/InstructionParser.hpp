@@ -11,6 +11,7 @@ namespace assembler
 {
     class ObjectCodeArray;
     class SymbolTable;
+    class RelocationTable;
 } // namespace assembler
 
 namespace parsers
@@ -21,7 +22,8 @@ namespace parsers
     {
     public:
         explicit InstructionParser(std::shared_ptr<assembler::SymbolTable> symbol_table,
-                                   std::shared_ptr<assembler::ObjectCodeArray> object_code);
+                                   std::shared_ptr<assembler::ObjectCodeArray> object_code,
+                                   std::shared_ptr<assembler::RelocationTable> relocation_table);
 
         std::shared_ptr<statements::Statement> parse(std::string statement) override;
 
@@ -36,6 +38,7 @@ namespace parsers
 
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
         std::shared_ptr<assembler::ObjectCodeArray> object_code_;
+        std::shared_ptr<assembler::RelocationTable> relocation_table_;
 
         std::shared_ptr<OperandParser> operand_parser_chain_ = nullptr;
     };

@@ -13,9 +13,13 @@
 
 #include "ObjectCodeArray.hpp"
 
-parsers::InstructionParser::InstructionParser(std::shared_ptr<assembler::SymbolTable> symbol_table,
-                                              std::shared_ptr<assembler::ObjectCodeArray> object_code)
-    : symbol_table_(std::move(symbol_table)), object_code_(std::move(object_code))
+parsers::InstructionParser::InstructionParser(
+    std::shared_ptr<assembler::SymbolTable> symbol_table,
+    std::shared_ptr<assembler::ObjectCodeArray> object_code,
+    std::shared_ptr<assembler::RelocationTable> relocation_table)
+    : symbol_table_(std::move(symbol_table))
+    , object_code_(std::move(object_code))
+    , relocation_table_(std::move(relocation_table))
 {
     // initialize operand parsing chain
 
@@ -240,6 +244,15 @@ size_t parsers::InstructionParser::add_operand_object_code(
                        (operand->register_index << 1) | operand->low_high_byte;
     this->object_code_->push_back_byte(op_descr);
     size_t ret = 1;
+
+    if (operand->relocation != nullptr &&
+        (operand->addressing_mode == statement::MEMORY_DIRECT ||
+         operand->addressing_mode == statement::REGISTER_INDIRECT_OFFSET))
+    {
+        operand->relocation->offset = this->object_code_->size();
+        this->relocation_table_->insert(*operand->relocation);
+    }
+
     if (operand->addressing_mode == statement::IMMEDIATE ||
         operand->addressing_mode == statement::MEMORY_DIRECT ||
         operand->addressing_mode == statement::REGISTER_INDIRECT_OFFSET)
