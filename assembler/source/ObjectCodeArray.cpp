@@ -36,3 +36,8 @@ std::stringstream assembler::ObjectCodeArray::to_school_elf() const
     school_elf_stream << "\n##########\n";
     return school_elf_stream;
 }
+
+size_t assembler::ObjectCodeArray::size() const
+{
+    return this->object_code_.size();
+}
