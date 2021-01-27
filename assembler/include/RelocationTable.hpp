@@ -29,7 +29,7 @@ namespace assembler
         {
             std::string symbol;
             relocation_type_t type;
-            relocation_offset_t offset;
+            relocation_offset_t offset = 0;
         } relocation_table_entry_t;
 
         explicit RelocationTable(std::shared_ptr<SymbolTable> symbol_table);
