@@ -16,6 +16,9 @@ namespace assembler
         void push_back_byte(byte_t byte);
         void push_back_word(word_t word);
 
+        void increment_byte(size_t offset, byte_t increment);
+        void increment_word(size_t offset, word_t increment);
+
         std::stringstream to_school_elf() const;
 
         size_t size() const;

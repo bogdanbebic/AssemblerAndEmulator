@@ -22,6 +22,23 @@ void assembler::ObjectCodeArray::push_back_word(word_t word)
     this->object_code_.push_back(upper_byte);
 }
 
+void assembler::ObjectCodeArray::increment_byte(size_t offset, byte_t increment)
+{
+    this->object_code_.at(offset) += increment;
+}
+
+void assembler::ObjectCodeArray::increment_word(size_t offset, word_t increment)
+{
+    const word_t result = increment + this->object_code_.at(offset) +
+                          (static_cast<word_t>(this->object_code_.at(offset + 1)) << 8);
+
+    const auto lower_byte = static_cast<byte_t>(result & 0xff);
+    const auto upper_byte = static_cast<byte_t>((result & 0xff00) >> 8);
+
+    this->object_code_.at(offset)     = lower_byte;
+    this->object_code_.at(offset + 1) = upper_byte;
+}
+
 std::stringstream assembler::ObjectCodeArray::to_school_elf() const
 {
     std::stringstream school_elf_stream;
