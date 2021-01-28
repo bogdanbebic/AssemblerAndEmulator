@@ -38,7 +38,8 @@ namespace parsers
         std::shared_ptr<assembler::ObjectCodeArray> object_code_ =
             std::make_shared<assembler::ObjectCodeArray>();
         std::shared_ptr<assembler::RelocationTable> relocation_table_ =
-            std::make_shared<assembler::RelocationTable>(this->symbol_table_);
+            std::make_shared<assembler::RelocationTable>(this->symbol_table_,
+                                                         this->object_code_);
 
         LineCommentStripper line_comment_stripper_;
         LabelParser label_parser_{ symbol_table_ };
