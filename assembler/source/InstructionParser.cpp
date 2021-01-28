@@ -249,6 +249,14 @@ size_t parsers::InstructionParser::add_operand_object_code(
         (operand->addressing_mode == statement::MEMORY_DIRECT ||
          operand->addressing_mode == statement::REGISTER_INDIRECT_OFFSET))
     {
+        if (operand->addressing_mode == statement::MEMORY_DIRECT && operand_size == 1)
+        {
+            if (operand->relocation->type == assembler::RelocationTable::R_SECTION16)
+                operand->relocation->type = assembler::RelocationTable::R_SECTION8;
+            if (operand->relocation->type == assembler::RelocationTable::R_16)
+                operand->relocation->type = assembler::RelocationTable::R_8;
+        }
+
         operand->relocation->offset = this->object_code_->size();
         this->relocation_table_->insert(*operand->relocation);
     }
