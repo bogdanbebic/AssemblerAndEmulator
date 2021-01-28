@@ -39,6 +39,8 @@ namespace assembler
         void add_equ_relocation(const std::string &equ_entry_key,
                                 const std::string &relocation_entry_key);
 
+        void cleanup_equ_relocations();
+
         std::stringstream to_school_elf() const;
 
     private:

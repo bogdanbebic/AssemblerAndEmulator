@@ -21,6 +21,18 @@ void assembler::RelocationTable::add_equ_relocation(const std::string &equ_entry
     this->equ_relocations_.insert({ equ_entry_key, relocation_entry_key });
 }
 
+void assembler::RelocationTable::cleanup_equ_relocations()
+{
+    for (auto &relocation_entry : this->relocation_table_)
+    {
+        auto equ_relocation_entry = this->equ_relocations_.find(relocation_entry.symbol);
+        if (equ_relocation_entry != this->equ_relocations_.end())
+        {
+            relocation_entry.symbol = equ_relocation_entry->second;
+        }
+    }
+}
+
 std::stringstream assembler::RelocationTable::to_school_elf() const
 {
     std::stringstream school_elf_stream;

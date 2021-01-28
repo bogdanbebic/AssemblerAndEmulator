@@ -54,6 +54,7 @@ void parsers::Parser::parse(std::istream &is)
     }
 
     this->section_table_->update_section_size(this->current_section_name_, this->line_counter_);
+    this->relocation_table_->cleanup_equ_relocations();
 
     if (errors_found)
         throw std::invalid_argument{ "Parsing errors detected" };
