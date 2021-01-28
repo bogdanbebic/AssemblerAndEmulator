@@ -103,12 +103,16 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a519841df8b13e390eaa9d5910a98a09d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classassembler_1_1RelocationTable.html#a519841df8b13e390eaa9d5910a98a09d">RelocationTable</a> (std::shared_ptr&lt; <a class="el" href="classassembler_1_1SymbolTable.html">SymbolTable</a> &gt; symbol_table)</td></tr>
-<tr class="separator:a519841df8b13e390eaa9d5910a98a09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa583d30e43d3eb0cbf6280090f8a3b2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classassembler_1_1RelocationTable.html#aa583d30e43d3eb0cbf6280090f8a3b2d">RelocationTable</a> (std::shared_ptr&lt; <a class="el" href="classassembler_1_1SymbolTable.html">SymbolTable</a> &gt; symbol_table, std::shared_ptr&lt; <a class="el" href="classassembler_1_1ObjectCodeArray.html">ObjectCodeArray</a> &gt; object_code)</td></tr>
+<tr class="separator:aa583d30e43d3eb0cbf6280090f8a3b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a414ffffd5883b61ddfc00a0d62288b25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classassembler_1_1RelocationTable.html#a414ffffd5883b61ddfc00a0d62288b25">insert</a> (<a class="el" href="classassembler_1_1RelocationTable.html#a767c45e5d62639a7f08647804114a2a9">relocation_table_entry_t</a> entry)</td></tr>
 <tr class="separator:a414ffffd5883b61ddfc00a0d62288b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73ce10eb7ba0dc914c05d6c1f5847156"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classassembler_1_1RelocationTable.html#a73ce10eb7ba0dc914c05d6c1f5847156">add_equ_relocation</a> (const std::string &amp;equ_entry_key, const std::string &amp;relocation_entry_key)</td></tr>
 <tr class="separator:a73ce10eb7ba0dc914c05d6c1f5847156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8896fa4e22c57620975f1dca45d20124"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classassembler_1_1RelocationTable.html#a8896fa4e22c57620975f1dca45d20124">cleanup_equ_relocations</a> ()</td></tr>
+<tr class="separator:a8896fa4e22c57620975f1dca45d20124"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c4cf2f130cd567d5477504c06293b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classassembler_1_1RelocationTable.html#aa8c4cf2f130cd567d5477504c06293b3">cleanup_forward_references</a> ()</td></tr>
+<tr class="separator:aa8c4cf2f130cd567d5477504c06293b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0d5d20c1a975004480a3b50cd78d6ea"><td class="memItemLeft" align="right" valign="top">std::stringstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classassembler_1_1RelocationTable.html#ab0d5d20c1a975004480a3b50cd78d6ea">to_school_elf</a> () const</td></tr>
 <tr class="separator:ab0d5d20c1a975004480a3b50cd78d6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -178,8 +182,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a519841df8b13e390eaa9d5910a98a09d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a519841df8b13e390eaa9d5910a98a09d">&#9670;&nbsp;</a></span>RelocationTable()</h2>
+<a id="aa583d30e43d3eb0cbf6280090f8a3b2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa583d30e43d3eb0cbf6280090f8a3b2d">&#9670;&nbsp;</a></span>RelocationTable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,8 +195,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">assembler::RelocationTable::RelocationTable </td>
           <td>(</td>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classassembler_1_1SymbolTable.html">SymbolTable</a> &gt;&#160;</td>
-          <td class="paramname"><em>symbol_table</em></td><td>)</td>
+          <td class="paramname"><em>symbol_table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="classassembler_1_1ObjectCodeArray.html">ObjectCodeArray</a> &gt;&#160;</td>
+          <td class="paramname"><em>object_code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -227,6 +241,40 @@ Public Member Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8896fa4e22c57620975f1dca45d20124"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8896fa4e22c57620975f1dca45d20124">&#9670;&nbsp;</a></span>cleanup_equ_relocations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void assembler::RelocationTable::cleanup_equ_relocations </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8c4cf2f130cd567d5477504c06293b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c4cf2f130cd567d5477504c06293b3">&#9670;&nbsp;</a></span>cleanup_forward_references()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void assembler::RelocationTable::cleanup_forward_references </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
