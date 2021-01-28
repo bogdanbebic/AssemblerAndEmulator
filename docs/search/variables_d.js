@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['undefined_5fsection_5fentry_562',['undefined_section_entry',['../classassembler_1_1SectionTable.html#afdf154eb5c766ac34dc13759dcee4735',1,'assembler::SectionTable']]],
-  ['undefined_5fsection_5fentry_5fname_563',['undefined_section_entry_name',['../classassembler_1_1SectionTable.html#aa37a2616f9921f508a1b673d029927a9',1,'assembler::SectionTable']]]
+  ['type_591',['type',['../structassembler_1_1RelocationTable_1_1RelocationTableEntry.html#ad0482c58116b520c933d255f5e8d0f19',1,'assembler::RelocationTable::RelocationTableEntry']]]
 ];

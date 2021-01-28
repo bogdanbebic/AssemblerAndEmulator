@@ -1,6 +1,9 @@
 <map id="assembler/include/OperandParser.hpp" name="assembler/include/OperandParser.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="35,5,215,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,73,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="97,95,152,121"/>
-<area shape="rect" id="node4" href="$Operand_8hpp.html" title=" " alt="" coords="176,95,271,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="47,5,227,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,244,73,271"/>
+<area shape="rect" id="node3" title=" " alt="" coords="252,244,307,271"/>
+<area shape="rect" id="node4" href="$Operand_8hpp.html" title=" " alt="" coords="89,95,184,121"/>
+<area shape="rect" id="node5" href="$RelocationTable_8hpp.html" title=" " alt="" coords="103,169,242,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="97,244,144,271"/>
+<area shape="rect" id="node7" title=" " alt="" coords="169,244,227,271"/>
 </map>

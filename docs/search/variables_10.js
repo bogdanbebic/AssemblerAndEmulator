@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_5fflag_566',['z_flag',['../structemulator_1_1system_1_1cpu_1_1alu__result__t.html#aa277b39d7e1c64f9161b971095927df9',1,'emulator::system::cpu::alu_result_t']]]
+  ['word_5fmax_595',['word_max',['../namespaceemulator_1_1system.html#a977616d05e7f16de355b0cbcb5f7fc78',1,'emulator::system']]]
 ];

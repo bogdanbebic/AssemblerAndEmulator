@@ -1,7 +1,10 @@
 <map id="assembler/include/RegisterDirectParser.hpp" name="assembler/include/RegisterDirectParser.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="35,5,214,47"/>
-<area shape="rect" id="node2" href="$OperandParser_8hpp.html" title=" " alt="" coords="58,95,191,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,73,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="97,169,152,196"/>
-<area shape="rect" id="node5" href="$Operand_8hpp.html" title=" " alt="" coords="176,169,271,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="47,5,226,47"/>
+<area shape="rect" id="node2" href="$OperandParser_8hpp.html" title=" " alt="" coords="70,95,203,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,319,73,345"/>
+<area shape="rect" id="node4" title=" " alt="" coords="252,319,307,345"/>
+<area shape="rect" id="node5" href="$Operand_8hpp.html" title=" " alt="" coords="89,169,184,196"/>
+<area shape="rect" id="node6" href="$RelocationTable_8hpp.html" title=" " alt="" coords="103,244,242,271"/>
+<area shape="rect" id="node7" title=" " alt="" coords="97,319,144,345"/>
+<area shape="rect" id="node8" title=" " alt="" coords="169,319,227,345"/>
 </map>

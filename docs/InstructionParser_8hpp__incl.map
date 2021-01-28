@@ -1,9 +1,12 @@
 <map id="assembler/include/InstructionParser.hpp" name="assembler/include/InstructionParser.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="153,5,345,47"/>
-<area shape="rect" id="node2" href="$StatementParser_8hpp.html" title=" " alt="" coords="68,95,212,121"/>
-<area shape="rect" id="node6" title=" " alt="" coords="206,169,274,196"/>
-<area shape="rect" id="node7" href="$Operand_8hpp.html" title=" " alt="" coords="287,95,382,121"/>
+<area shape="rect" id="node1" title=" " alt="" coords="261,5,453,47"/>
+<area shape="rect" id="node2" href="$StatementParser_8hpp.html" title=" " alt="" coords="99,95,243,121"/>
+<area shape="rect" id="node6" title=" " alt="" coords="373,244,441,271"/>
+<area shape="rect" id="node7" href="$Operand_8hpp.html" title=" " alt="" coords="310,95,405,121"/>
 <area shape="rect" id="node3" href="$Statement_8hpp.html" title=" " alt="" coords="5,169,112,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="118,244,173,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="122,244,177,271"/>
 <area shape="rect" id="node4" title=" " alt="" coords="26,244,91,271"/>
+<area shape="rect" id="node8" href="$RelocationTable_8hpp.html" title=" " alt="" coords="187,169,325,196"/>
+<area shape="rect" id="node9" title=" " alt="" coords="297,244,343,271"/>
+<area shape="rect" id="node10" title=" " alt="" coords="213,244,272,271"/>
 </map>
