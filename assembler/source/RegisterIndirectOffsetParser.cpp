@@ -2,7 +2,8 @@
 
 #include <regex>
 
-#include "LiteralParser.hpp"
+#include "ExpressionParser.hpp"
+#include "SymbolTable.hpp"
 
 std::shared_ptr<statement::operand_t> parsers::RegisterIndirectOffsetParser::parse(std::string operand)
 {
@@ -40,9 +41,17 @@ std::shared_ptr<statement::operand_t> parsers::RegisterIndirectOffsetParser::par
             ret->register_index = 0xF;
 
         auto offset_value =
-            LiteralParser::evaluate_expression(operand_offset, this->symbol_table_);
+            ExpressionParser::evaluate_expression(operand_offset, this->symbol_table_);
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
         ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
+
+        if (!ExpressionParser::is_literal(operand_offset))
+        {
+            if (base_register == "pc" || base_register == "r7")
+                add_pc_relative_relocation(operand_offset, ret);
+            else
+                add_register_relative_relocation(operand_offset, ret);
+        }
     }
     else
     {
@@ -90,9 +99,17 @@ parsers::RegisterIndirectOffsetParser::parse_jump_instruction(std::string operan
             ret->register_index = 0xF;
 
         auto offset_value =
-            LiteralParser::evaluate_expression(operand_offset, this->symbol_table_);
+            ExpressionParser::evaluate_expression(operand_offset, this->symbol_table_);
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
         ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
+
+        if (!ExpressionParser::is_literal(operand_offset))
+        {
+            if (base_register == "pc" || base_register == "r7")
+                add_pc_relative_relocation(operand_offset, ret);
+            else
+                add_register_relative_relocation(operand_offset, ret);
+        }
     }
     else
     {
@@ -120,4 +137,25 @@ bool parsers::RegisterIndirectOffsetParser::can_parse_jump_instruction(const std
 {
     const std::regex register_indirect_offset_regex{ "^\\*[_a-zA-Z0-9]+\\(%(r[0-7]|pc|sp|psw)([hl]?)\\)$" };
     return std::regex_match(operand, register_indirect_offset_regex);
+}
+
+void parsers::RegisterIndirectOffsetParser::add_pc_relative_relocation(
+    std::string symbol, std::shared_ptr<statement::operand_t> operand)
+{
+    if (!this->symbol_table_->is_defined(symbol))
+    {
+        operand->relocation = std::make_shared<assembler::RelocationTable::relocation_table_entry_t>(
+            assembler::RelocationTable::relocation_table_entry_t{
+                symbol, assembler::RelocationTable::R_PC16 });
+    }
+}
+
+void parsers::RegisterIndirectOffsetParser::add_register_relative_relocation(
+    std::string symbol, std::shared_ptr<statement::operand_t> operand)
+{
+    auto relocation_type = this->symbol_table_->is_defined(symbol)
+                               ? assembler::RelocationTable::R_SECTION16
+                               : assembler::RelocationTable::R_16;
+    operand->relocation = std::make_shared<assembler::RelocationTable::relocation_table_entry_t>(
+        assembler::RelocationTable::relocation_table_entry_t{ symbol, relocation_type });
 }

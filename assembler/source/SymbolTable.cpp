@@ -58,6 +58,11 @@ void assembler::SymbolTable::make_declaration(const key_type &key)
     }
 }
 
+bool assembler::SymbolTable::is_defined(const key_type &key)
+{
+    return this->symbol_table_[key].section_index != 0;
+}
+
 std::stringstream assembler::SymbolTable::to_school_elf() const
 {
     std::stringstream school_elf_stream;

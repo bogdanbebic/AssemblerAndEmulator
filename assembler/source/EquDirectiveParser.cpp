@@ -3,13 +3,18 @@
 #include <regex>
 #include <vector>
 
-#include "LiteralParser.hpp"
+#include "ExpressionParser.hpp"
+#include "RelocationTable.hpp"
 #include "SectionTable.hpp"
 #include "SymbolTable.hpp"
 
-parsers::EquDirectiveParser::EquDirectiveParser(std::shared_ptr<assembler::SectionTable> section_table,
-                                                std::shared_ptr<assembler::SymbolTable> symbol_table)
-    : section_table_(std::move(section_table)), symbol_table_(std::move(symbol_table))
+parsers::EquDirectiveParser::EquDirectiveParser(
+    std::shared_ptr<assembler::SectionTable> section_table,
+    std::shared_ptr<assembler::SymbolTable> symbol_table,
+    std::shared_ptr<assembler::RelocationTable> relocation_table)
+    : section_table_(std::move(section_table))
+    , symbol_table_(std::move(symbol_table))
+    , relocation_table_(std::move(relocation_table))
 {
     // empty body
 }
@@ -25,10 +30,11 @@ std::shared_ptr<statements::Statement> parsers::EquDirectiveParser::parse(std::s
     {
         auto symbol     = match[1].str();
         auto expression = match[2].str();
-        auto value = LiteralParser::evaluate_expression(expression, this->symbol_table_);
+        auto value = ExpressionParser::evaluate_expression(expression, this->symbol_table_);
 
-        if (this->is_invalid_expression(expression))
-            throw std::invalid_argument{ "EQU expression invalid" };
+        auto relocation_symbol = this->get_relocation_symbol(expression);
+        if (relocation_symbol != "")
+            this->relocation_table_->add_equ_relocation(symbol, relocation_symbol);
 
         this->symbol_table_->insert({ symbol, { symbol, value, 1, false } });
     }
@@ -42,9 +48,10 @@ bool parsers::EquDirectiveParser::can_parse(const std::string &statement) const
     return std::regex_match(statement, regex);
 }
 
-bool parsers::EquDirectiveParser::is_invalid_expression(std::string expression) const
+std::string parsers::EquDirectiveParser::get_relocation_symbol(std::string expression) const
 {
     std::vector<int> classification_index(this->section_table_->size());
+    std::vector<std::string> relocation_symbols(this->section_table_->size());
 
     expression.erase(std::remove_if(expression.begin(),
                                     expression.end(),
@@ -61,32 +68,42 @@ bool parsers::EquDirectiveParser::is_invalid_expression(std::string expression) 
     while (std::regex_search(expression, match, regex))
     {
         std::string operand = match.str();
-        if (!LiteralParser::is_literal(operand))
+        if (!ExpressionParser::is_literal(operand))
         {
             const size_t section_table_idx =
                 this->symbol_table_->at(operand.substr(1)).section_index;
             classification_index[section_table_idx] +=
                 (operand[0] == '-' && section_table_idx != 0 ? -1 : 1);
+            relocation_symbols[section_table_idx] = operand.substr(1);
         }
 
         expression = match.suffix();
     }
 
+    std::string ret;
     bool is_one = false;
+    size_t i    = 0;
     for (auto &elem : classification_index)
     {
         if (elem == 1)
         {
             if (is_one)
-                return true;
+            {
+                throw std::invalid_argument{ "EQU expression invalid" };
+            }
             else
+            {
                 is_one = true;
+                ret    = relocation_symbols[i];
+            }
         }
         else if (elem != 0)
         {
-            return true;
+            throw std::invalid_argument{ "EQU expression invalid" };
         }
+
+        i++;
     }
 
-    return false;
+    return ret;
 }

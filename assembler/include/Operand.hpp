@@ -1,6 +1,10 @@
 #ifndef _OPERAND_HPP_
 #define _OPERAND_HPP_
 
+#include <memory>
+
+#include "RelocationTable.hpp"
+
 namespace statement
 {
     enum AddressingModes
@@ -19,6 +23,7 @@ namespace statement
         uint8_t operand[2];
         uint8_t low_high_byte        = 0;
         uint8_t low_high_byte_exists = 0;
+        std::shared_ptr<assembler::RelocationTable::relocation_table_entry_t> relocation = nullptr;
     } operand_t;
 } // namespace statement
 

@@ -18,6 +18,8 @@ namespace assembler
 
         std::stringstream to_school_elf() const;
 
+        size_t size() const;
+
     private:
         std::vector<byte_t> object_code_;
     };
