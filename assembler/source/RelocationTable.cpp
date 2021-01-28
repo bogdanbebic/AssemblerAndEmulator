@@ -97,15 +97,26 @@ void assembler::RelocationTable::cleanup_forward_references()
 
 std::stringstream assembler::RelocationTable::to_school_elf() const
 {
+    const std::map<relocation_type_t, std::string> relocation_type_descriptions = {
+        { R_16, "R_16" },
+        { R_PC16, "R_PC16" },
+        { R_8, "R_8" },
+
+        { R_SECTION16, "R_SECTION16" },
+        { R_SECTION8, "R_SECTION8" },
+    };
+
     std::stringstream school_elf_stream;
     school_elf_stream << "##########\n";
     school_elf_stream << "# School ELF relocation table:\n"
-                      << "# symbol,type,offset\n";
+                      << "# symbol,type,offset,type_string\n";
 
     for (auto &relocation_entry : this->relocation_table_)
     {
         school_elf_stream << relocation_entry.symbol << ',' << relocation_entry.type
-                          << ',' << relocation_entry.offset << '\n';
+                          << ',' << relocation_entry.offset << ','
+                          << relocation_type_descriptions.at(relocation_entry.type)
+                          << '\n';
     }
 
     school_elf_stream << "##########\n";
