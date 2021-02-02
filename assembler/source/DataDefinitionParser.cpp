@@ -6,12 +6,16 @@
 
 #include "ExpressionParser.hpp"
 #include "ObjectCodeArray.hpp"
+#include "RelocationTable.hpp"
+#include "SymbolTable.hpp"
 
 #include <iostream>
 
-parsers::DataDefinitionParser::DataDefinitionParser(std::shared_ptr<assembler::ObjectCodeArray> object_code,
-                                                    std::shared_ptr<assembler::SymbolTable> symbol_table)
-    : object_code_(object_code), symbol_table_(symbol_table)
+parsers::DataDefinitionParser::DataDefinitionParser(
+    std::shared_ptr<assembler::ObjectCodeArray> object_code,
+    std::shared_ptr<assembler::SymbolTable> symbol_table,
+    std::shared_ptr<assembler::RelocationTable> relocation_table)
+    : object_code_(object_code), symbol_table_(symbol_table), relocation_table_(relocation_table)
 {
     // empty body
 }
@@ -58,6 +62,15 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                 std::cout << byte_def;
                 auto value = ExpressionParser::evaluate_expression(byte_def, this->symbol_table_);
                 std::cout << " : " << value << std::endl;
+
+                byte_def.erase(
+                    std::remove_if(byte_def.begin(),
+                                   byte_def.end(),
+                                   [](int ch) { return std::isspace(ch); }),
+                    byte_def.end());
+                if (!ExpressionParser::is_literal(byte_def))
+                    this->add_byte_relocation(byte_def);
+
                 this->object_code_->push_back_byte(static_cast<assembler::byte_t>(value));
                 bytes_defs_count++;
             }
@@ -79,6 +92,15 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                 std::cout << word_def;
                 auto value = ExpressionParser::evaluate_expression(word_def, this->symbol_table_);
                 std::cout << " : " << value << std::endl;
+
+                word_def.erase(
+                    std::remove_if(word_def.begin(),
+                                   word_def.end(),
+                                   [](int ch) { return std::isspace(ch); }),
+                    word_def.end());
+                if (!ExpressionParser::is_literal(word_def))
+                    this->add_word_relocation(word_def);
+
                 this->object_code_->push_back_word(static_cast<assembler::word_t>(value));
                 word_defs_count++;
             }
@@ -94,4 +116,22 @@ bool parsers::DataDefinitionParser::can_parse(const std::string &statement) cons
 {
     const std::regex data_definitions_regex{ "^\\.(skip|byte|word)\\s+.*$" };
     return std::regex_match(statement, data_definitions_regex);
+}
+
+void parsers::DataDefinitionParser::add_byte_relocation(std::string symbol)
+{
+    auto relocation_type = this->symbol_table_->is_defined(symbol)
+                               ? assembler::RelocationTable::R_SECTION8
+                               : assembler::RelocationTable::R_8;
+    this->relocation_table_->insert(
+        { symbol, relocation_type, this->object_code_->size() });
+}
+
+void parsers::DataDefinitionParser::add_word_relocation(std::string symbol)
+{
+    auto relocation_type = this->symbol_table_->is_defined(symbol)
+                               ? assembler::RelocationTable::R_SECTION16
+                               : assembler::RelocationTable::R_16;
+    this->relocation_table_->insert(
+        { symbol, relocation_type, this->object_code_->size() });
 }
