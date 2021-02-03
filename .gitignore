@@ -10,3 +10,10 @@ venv_old/*
 
 # Visual Studio
 VisualStudio/
+
+# bak files
+*.bak
+
+# ss_elf and ss_mem files in test source directory
+tests/source_ss/*.ss_elf
+tests/source_ss/*.ss_mem
