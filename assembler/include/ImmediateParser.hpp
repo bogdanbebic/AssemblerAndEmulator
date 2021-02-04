@@ -22,6 +22,9 @@ namespace parsers
         bool can_parse(const std::string &operand) const;
         bool can_parse_jump_instruction(const std::string &operand) const;
 
+        void add_immediate_relocation(std::string symbol,
+                                      std::shared_ptr<statement::operand_t> operand);
+
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
     };
 } // namespace parsers

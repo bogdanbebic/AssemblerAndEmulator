@@ -1,6 +1,8 @@
 #include "ImmediateParser.hpp"
 
 #include "ExpressionParser.hpp"
+#include "RelocationTable.hpp"
+#include "SymbolTable.hpp"
 
 std::shared_ptr<statement::operand_t> parsers::ImmediateParser::parse(std::string operand)
 {
@@ -14,6 +16,9 @@ std::shared_ptr<statement::operand_t> parsers::ImmediateParser::parse(std::strin
     auto value = ExpressionParser::evaluate_expression(operand_stripped, this->symbol_table_);
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
     ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
+
+    if (!ExpressionParser::is_literal(operand_stripped))
+        this->add_immediate_relocation(operand_stripped, ret);
 
     return ret;
 }
@@ -30,6 +35,9 @@ parsers::ImmediateParser::parse_jump_instruction(std::string operand)
     auto value = ExpressionParser::evaluate_expression(operand, this->symbol_table_);
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
     ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
+
+    if (!ExpressionParser::is_literal(operand))
+        this->add_immediate_relocation(operand, ret);
 
     return ret;
 }
@@ -50,4 +58,14 @@ bool parsers::ImmediateParser::can_parse_jump_instruction(const std::string &ope
 {
     const std::regex regex{ "^[_a-zA-Z0-9]+$" };
     return std::regex_match(operand, regex);
+}
+
+void parsers::ImmediateParser::add_immediate_relocation(std::string symbol,
+                                                        std::shared_ptr<statement::operand_t> operand)
+{
+    auto relocation_type = this->symbol_table_->is_defined(symbol)
+                               ? assembler::RelocationTable::R_SECTION16
+                               : assembler::RelocationTable::R_16;
+    operand->relocation = std::make_shared<assembler::RelocationTable::relocation_table_entry_t>(
+        assembler::RelocationTable::relocation_table_entry_t{ symbol, relocation_type });
 }
