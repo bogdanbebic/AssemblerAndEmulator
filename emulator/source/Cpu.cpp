@@ -90,7 +90,7 @@ emulator::system::cpu::instruction::instruction_t emulator::system::cpu::Cpu::fe
         else
         {
             instr.operands[i].operand =
-                this->memory_->read_word(this->general_purpose_registers_[REG_PC]++);
+                this->memory_->read_word(this->general_purpose_registers_[REG_PC]);
             this->general_purpose_registers_[REG_PC] += sizeof(word_t);
         }
     }
