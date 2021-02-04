@@ -11,12 +11,14 @@ public:
     std::string help_message() const;
 
     bool is_help_option_set() const;
+    bool is_verbose_option_set() const;
 
     std::string input_file_name() const;
     std::string output_file_name() const;
 
 private:
-    bool help_flag_ = false;
+    bool help_flag_    = false;
+    bool verbose_flag_ = false;
     std::string input_file_name_;
     std::string output_file_name_;
 };

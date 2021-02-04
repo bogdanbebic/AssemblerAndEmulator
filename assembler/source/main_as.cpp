@@ -16,8 +16,11 @@ int main(int argc, char *argv[])
             return 0;
         }
 
-        std::cout << "Input file: " << command_options.input_file_name() << "\n";
-        std::cout << "Output file: " << command_options.output_file_name() << "\n";
+        if (command_options.is_verbose_option_set())
+        {
+            std::cout << "Input file: " << command_options.input_file_name() << "\n";
+            std::cout << "Output file: " << command_options.output_file_name() << "\n";
+        }
 
         std::ifstream input_file{ command_options.input_file_name() };
         parsers::Parser parser;
