@@ -36,8 +36,8 @@ void emulator::system::Memory::write_word(const mem_address_t base_address, cons
         return;
     }
 
-    const auto memory = reinterpret_cast<word_t *>(this->memory_);
-    memory[base_address / sizeof(byte_t) * sizeof(word_t)] = data;
+    this->memory_[base_address]     = static_cast<byte_t>(data & 0x00FF);
+    this->memory_[base_address + 1] = static_cast<byte_t>((data & 0xFF00) >> 8);
 }
 
 emulator::system::word_t emulator::system::Memory::read_word(const mem_address_t base_address)
@@ -52,8 +52,8 @@ emulator::system::word_t emulator::system::Memory::read_word(const mem_address_t
         return this->read_mmio_word(base_address);
     }
 
-    const auto memory = reinterpret_cast<word_t *>(this->memory_);
-    return memory[base_address / sizeof(byte_t) * sizeof(word_t)];
+    return this->memory_[base_address] +
+           (static_cast<word_t>(this->memory_[base_address + 1]) << 8);
 }
 
 void emulator::system::Memory::add_mmio_device(std::shared_ptr<MmioDevice> device,
