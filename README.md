@@ -34,8 +34,10 @@ be run simply from the root of the repo by calling:
 $ ./scripts/check_all.sh
 ```
 ### Dependencies
-The `unit_test_as` script requires `BoostTest` with
-it's headers in the default include path.
+The `format` scripts require `clang-format` in the path.
+
+The `unit_test` scripts and some `make` targets require
+`BoostTest` with it's headers in the default include path.
 
 The `run_behave_tests` script requries `python3` with libraries:
 - `pexpect` 
