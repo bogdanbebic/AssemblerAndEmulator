@@ -10,7 +10,7 @@
 emulator::system::cpu::Cpu::Cpu(std::shared_ptr<Memory> memory)
     : memory_(std::move(memory))
 {
-    // empty body
+    this->general_purpose_registers_[REG_SP] = Memory::STACK_START_ADDRESS;
 }
 
 void emulator::system::cpu::Cpu::interrupt(const size_t ivt_entry)

@@ -31,6 +31,8 @@ namespace emulator
                 MMIO_SPACE_SIZE    = 0x100,
                 MMIO_START_ADDRESS = 0xFF00,
                 MMIO_END_ADDRESS   = MMIO_START_ADDRESS + MMIO_SPACE_SIZE,
+
+                STACK_START_ADDRESS = MMIO_START_ADDRESS,
             };
 
         private:
