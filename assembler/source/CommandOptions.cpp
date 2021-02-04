@@ -32,12 +32,15 @@ CommandOptions::CommandOptions(int argc, char *argv[])
     int c;
     opterr = 0;
 
-    while ((c = getopt(argc, argv, "ho:")) != -1)
+    while ((c = getopt(argc, argv, "hvo:")) != -1)
     {
         switch (c)
         {
         case 'h':
             this->help_flag_ = true;
+            break;
+        case 'v':
+            this->verbose_flag_ = true;
             break;
         case 'o':
             this->output_file_name_ = optarg;
@@ -78,9 +81,10 @@ std::string CommandOptions::help_message() const
     return std::string{ "Usage: assembler <input_file> [<output_file>]\n" };
 #else
     // LINUX
-    return std::string{ "Usage: assembler [-h] [-o <output_file>] <input_file>\n"
+    return std::string{ "Usage: assembler [-h] [-v] [-o <output_file>] <input_file>\n"
                         "Options:\n"
                         "\t-h - print this message and quit\n"
+                        "\t-v - verbose - print file names\n"
                         "\t-o <output_file> - specifies the output file for the ss_elf assembler\n"
                         "\t\tIf left out, the output will be written to <input_file>.ss_elf\n" };
 #endif
@@ -89,6 +93,11 @@ std::string CommandOptions::help_message() const
 bool CommandOptions::is_help_option_set() const
 {
     return this->help_flag_;
+}
+
+bool CommandOptions::is_verbose_option_set() const
+{
+    return this->verbose_flag_;
 }
 
 std::string CommandOptions::input_file_name() const
