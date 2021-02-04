@@ -82,7 +82,6 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
     if (std::regex_match(statement, match, zero_operand_regex))
     {
         std::string mnemonic = match[1].str();
-        std::cout << "INSTRUCTION 0:'" << statement << "'" << mnemonic << "\n";
         this->object_code_->push_back_byte(to_object_code(mnemonic));
         return std::make_shared<statements::Statement>(1, false);
     }
@@ -99,11 +98,9 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
         }
 
         char operand_size_specifier = mnemonic.back();
-        std::cout << "INSTRUCTION 1:'" << statement << "'" << mnemonic << "\n";
 
         std::string operand0_str = match[3].str();
-        std::cout << "Operand0:'" << operand0_str << "'\n";
-        auto operand0 = is_jump_instruction(statement)
+        auto operand0            = is_jump_instruction(statement)
                             ? this->operand_parser_chain_->parse_jump_instruction(operand0_str)
                             : this->operand_parser_chain_->parse(operand0_str);
 
@@ -138,13 +135,10 @@ std::shared_ptr<statements::Statement> parsers::InstructionParser::parse(std::st
         }
 
         char operand_size_specifier = mnemonic.back();
-        std::cout << "INSTRUCTION 2:'" << statement << "'" << mnemonic << "\n";
 
         std::string operand0_str = match[3].str();
         std::string operand1_str = match[4].str();
-        std::cout << "Operand0:'" << operand0_str << "'\n";
-        std::cout << "Operand1:'" << operand1_str << "'\n";
-        auto operand0 = is_jump_instruction(statement)
+        auto operand0            = is_jump_instruction(statement)
                             ? this->operand_parser_chain_->parse_jump_instruction(operand0_str)
                             : this->operand_parser_chain_->parse(operand0_str);
         auto operand1 = is_jump_instruction(statement)
