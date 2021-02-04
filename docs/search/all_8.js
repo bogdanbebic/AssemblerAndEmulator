@@ -37,11 +37,12 @@ var searchData=
   ['is_5fliteral_106',['is_literal',['../classparsers_1_1ExpressionParser.html#af02cb22e8af06d140d923d1e1ba7032d',1,'parsers::ExpressionParser']]],
   ['is_5foperand_5fin_5fmemory_107',['is_operand_in_memory',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#a88591e6843331965cba8df835c5e32b6',1,'emulator::system::cpu::instruction']]],
   ['is_5fsection_5fend_108',['is_section_end',['../classstatements_1_1Statement.html#a9cbea6dd3d5e325e8f2f18c4b64d03c4',1,'statements::Statement']]],
-  ['ivt_5fentry_5ft_109',['ivt_entry_t',['../namespaceemulator_1_1system_1_1cpu.html#ac162e0314705dd5f61b2087fbb42a446',1,'emulator::system::cpu']]],
-  ['ivt_5finvalid_5fop_110',['IVT_INVALID_OP',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08a2c2548e2fe34eb128f9bae13925a8c17',1,'emulator::system::cpu']]],
-  ['ivt_5fnum_5fentries_111',['ivt_num_entries',['../namespaceemulator_1_1system_1_1cpu.html#a6fc8e6dc192a55866ee5884c18a956c3',1,'emulator::system::cpu']]],
-  ['ivt_5fproc_5fstart_112',['IVT_PROC_START',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08a4ec4da5dd2161362f4e33ef161202dbd',1,'emulator::system::cpu']]],
-  ['ivt_5fterminal_113',['IVT_TERMINAL',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08aeccde389b1d45552db125a5d98dc0a26',1,'emulator::system::cpu']]],
-  ['ivt_5ftimer_114',['IVT_TIMER',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08a260e484cf2c886d02950560c892a3885',1,'emulator::system::cpu']]],
-  ['ivtentries_115',['IvtEntries',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08',1,'emulator::system::cpu']]]
+  ['is_5fverbose_5foption_5fset_109',['is_verbose_option_set',['../classCommandOptions.html#a37d2ae8b9eff92a29e344889fb5312b7',1,'CommandOptions']]],
+  ['ivt_5fentry_5ft_110',['ivt_entry_t',['../namespaceemulator_1_1system_1_1cpu.html#ac162e0314705dd5f61b2087fbb42a446',1,'emulator::system::cpu']]],
+  ['ivt_5finvalid_5fop_111',['IVT_INVALID_OP',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08a2c2548e2fe34eb128f9bae13925a8c17',1,'emulator::system::cpu']]],
+  ['ivt_5fnum_5fentries_112',['ivt_num_entries',['../namespaceemulator_1_1system_1_1cpu.html#a6fc8e6dc192a55866ee5884c18a956c3',1,'emulator::system::cpu']]],
+  ['ivt_5fproc_5fstart_113',['IVT_PROC_START',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08a4ec4da5dd2161362f4e33ef161202dbd',1,'emulator::system::cpu']]],
+  ['ivt_5fterminal_114',['IVT_TERMINAL',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08aeccde389b1d45552db125a5d98dc0a26',1,'emulator::system::cpu']]],
+  ['ivt_5ftimer_115',['IVT_TIMER',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08a260e484cf2c886d02950560c892a3885',1,'emulator::system::cpu']]],
+  ['ivtentries_116',['IvtEntries',['../namespaceemulator_1_1system_1_1cpu.html#a4f91870eeb980eda5767ea699db14c08',1,'emulator::system::cpu']]]
 ];

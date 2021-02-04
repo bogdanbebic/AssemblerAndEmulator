@@ -82,23 +82,26 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    std::string <a class="code" href="classCommandOptions.html#a5a6aed36e7e89095a773421cda936267">help_message</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandOptions.html#abe25a2391e1b159ebb0ea368b4a50a98">is_help_option_set</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::string <a class="code" href="classCommandOptions.html#ac7797901efc4b574b64459c713293284">input_file_name</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::string <a class="code" href="classCommandOptions.html#ab454beb3a5c1065636f7fa91457cef7f">output_file_name</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">bool</span> help_flag_ = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::string input_file_name_;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    std::string output_file_name_;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;};</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandOptions.html#a37d2ae8b9eff92a29e344889fb5312b7">is_verbose_option_set</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::string <a class="code" href="classCommandOptions.html#ac7797901efc4b574b64459c713293284">input_file_name</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string <a class="code" href="classCommandOptions.html#ab454beb3a5c1065636f7fa91457cef7f">output_file_name</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> help_flag_    = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span> verbose_flag_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    std::string input_file_name_;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string output_file_name_;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassCommandOptions_html"><div class="ttname"><a href="classCommandOptions.html">CommandOptions</a></div><div class="ttdef"><b>Definition:</b> CommandOptions.hpp:7</div></div>
-<div class="ttc" id="aclassCommandOptions_html_a5a6aed36e7e89095a773421cda936267"><div class="ttname"><a href="classCommandOptions.html#a5a6aed36e7e89095a773421cda936267">CommandOptions::help_message</a></div><div class="ttdeci">std::string help_message() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:75</div></div>
+<div class="ttc" id="aclassCommandOptions_html_a37d2ae8b9eff92a29e344889fb5312b7"><div class="ttname"><a href="classCommandOptions.html#a37d2ae8b9eff92a29e344889fb5312b7">CommandOptions::is_verbose_option_set</a></div><div class="ttdeci">bool is_verbose_option_set() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:98</div></div>
+<div class="ttc" id="aclassCommandOptions_html_a5a6aed36e7e89095a773421cda936267"><div class="ttname"><a href="classCommandOptions.html#a5a6aed36e7e89095a773421cda936267">CommandOptions::help_message</a></div><div class="ttdeci">std::string help_message() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:78</div></div>
 <div class="ttc" id="aclassCommandOptions_html_a71503451272711639bf90bbf2e274861"><div class="ttname"><a href="classCommandOptions.html#a71503451272711639bf90bbf2e274861">CommandOptions::CommandOptions</a></div><div class="ttdeci">CommandOptions(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:11</div></div>
-<div class="ttc" id="aclassCommandOptions_html_ab454beb3a5c1065636f7fa91457cef7f"><div class="ttname"><a href="classCommandOptions.html#ab454beb3a5c1065636f7fa91457cef7f">CommandOptions::output_file_name</a></div><div class="ttdeci">std::string output_file_name() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:99</div></div>
-<div class="ttc" id="aclassCommandOptions_html_abe25a2391e1b159ebb0ea368b4a50a98"><div class="ttname"><a href="classCommandOptions.html#abe25a2391e1b159ebb0ea368b4a50a98">CommandOptions::is_help_option_set</a></div><div class="ttdeci">bool is_help_option_set() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:89</div></div>
-<div class="ttc" id="aclassCommandOptions_html_ac7797901efc4b574b64459c713293284"><div class="ttname"><a href="classCommandOptions.html#ac7797901efc4b574b64459c713293284">CommandOptions::input_file_name</a></div><div class="ttdeci">std::string input_file_name() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:94</div></div>
+<div class="ttc" id="aclassCommandOptions_html_ab454beb3a5c1065636f7fa91457cef7f"><div class="ttname"><a href="classCommandOptions.html#ab454beb3a5c1065636f7fa91457cef7f">CommandOptions::output_file_name</a></div><div class="ttdeci">std::string output_file_name() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:108</div></div>
+<div class="ttc" id="aclassCommandOptions_html_abe25a2391e1b159ebb0ea368b4a50a98"><div class="ttname"><a href="classCommandOptions.html#abe25a2391e1b159ebb0ea368b4a50a98">CommandOptions::is_help_option_set</a></div><div class="ttdeci">bool is_help_option_set() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:93</div></div>
+<div class="ttc" id="aclassCommandOptions_html_ac7797901efc4b574b64459c713293284"><div class="ttname"><a href="classCommandOptions.html#ac7797901efc4b574b64459c713293284">CommandOptions::input_file_name</a></div><div class="ttdeci">std::string input_file_name() const</div><div class="ttdef"><b>Definition:</b> CommandOptions.cpp:103</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
