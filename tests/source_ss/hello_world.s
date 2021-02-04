@@ -21,12 +21,12 @@ _start:
     mov $0, %r1
     mov $msg_len, %r2
 loop:
-    # movb (%r0l), term_out
+    mov (%r0), term_out
 
-    # add $1, %r0
-    # sub $1, %r1
-    # test %r1, %r2
-    # jne loop
+    add $1, %r0
+    add $1, %r1
+    test %r1, %r2
+    jne loop
 
     halt
 
