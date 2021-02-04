@@ -81,7 +81,8 @@ $(function() {
 <h1>Tests</h1>
 <p>There are some automated tests, but a lot of the testing still has to be done manually. The automated tests can be run simply from the root of the repo by calling: </p><div class="fragment"><div class="line">$ ./scripts/check_all.sh</div>
 </div><!-- fragment --> <h2>Dependencies</h2>
-<p>The <code>unit_test_as</code> script requires <code>BoostTest</code> with it's headers in the default include path.</p>
+<p>The <code>format</code> scripts require <code>clang-format</code> in the path.</p>
+<p>The <code>unit_test</code> scripts and some <code>make</code> targets require <code>BoostTest</code> with it's headers in the default include path.</p>
 <p>The <code>run_behave_tests</code> script requries <code>python3</code> with libraries:</p><ul>
 <li><code>pexpect</code></li>
 <li><code>behave</code></li>
