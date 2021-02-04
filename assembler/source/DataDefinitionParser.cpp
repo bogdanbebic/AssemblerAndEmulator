@@ -24,7 +24,6 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
 {
     if (this->can_parse(statement))
     {
-        std::cout << "DATA_DEF: '" << statement << "'\n";
         const std::regex data_skip_regex{ R"(^\.skip\s+([^\s]+)\s*$)" };
         const std::regex data_byte_regex{ R"(^\.byte\s+(.+)$)" };
         const std::regex data_word_regex{ R"(^\.word\s+(.+)$)" };
@@ -36,7 +35,6 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
         if (std::regex_match(statement, match, data_skip_regex))
         {
             const auto arg = match[1].str();
-            std::cout << "literal:'" + arg + "'\n";
             if (ExpressionParser::is_literal(arg))
             {
                 int literal = ExpressionParser::parse(arg);
@@ -59,9 +57,7 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                 if (!std::regex_match(byte_def, single_symbol))
                     throw std::invalid_argument{ "Invalid argument for .byte directive" };
 
-                std::cout << byte_def;
                 auto value = ExpressionParser::evaluate_expression(byte_def, this->symbol_table_);
-                std::cout << " : " << value << std::endl;
 
                 byte_def.erase(
                     std::remove_if(byte_def.begin(),
@@ -89,9 +85,7 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                 if (!std::regex_match(word_def, single_symbol))
                     throw std::invalid_argument{ "Invalid argument for .word directive" };
 
-                std::cout << word_def;
                 auto value = ExpressionParser::evaluate_expression(word_def, this->symbol_table_);
-                std::cout << " : " << value << std::endl;
 
                 word_def.erase(
                     std::remove_if(word_def.begin(),

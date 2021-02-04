@@ -17,7 +17,6 @@ std::string parsers::LabelParser::parse(std::string line, size_t section_index, 
     {
         if (std::regex_match(line.c_str(), this->match_, this->regex_))
         {
-            std::cout << "LABEL:'" << this->match_[1].str() << "'\n";
             std::string symbol = this->match_[1].str();
             assembler::SymbolTable::SymbolTableEntry entry = {
                 symbol, static_cast<assembler::word_t>(line_counter), section_index, false
