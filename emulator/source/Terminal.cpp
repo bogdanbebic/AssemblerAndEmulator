@@ -4,6 +4,7 @@
 #include <utility>
 
 #include "CpuDefs.hpp"
+#include "MemoryAccessViolation.hpp"
 
 #ifndef _WIN32
 #include <fcntl.h>
@@ -17,7 +18,7 @@ emulator::system::word_t emulator::system::Terminal::get_memory(mem_address_t of
     case DATA_IN:
         return this->data_in();
     default:
-        throw std::invalid_argument{ "Invalid memory offset" };
+        throw exceptions::MemoryAccessViolation{ "Terminal (get_memory): Invalid memory offset" };
     }
 }
 
@@ -29,7 +30,7 @@ void emulator::system::Terminal::set_memory(mem_address_t offset, word_t value)
         this->set_data_out(value);
         break;
     default:
-        throw std::invalid_argument{ "Invalid memory offset" };
+        throw exceptions::MemoryAccessViolation{ "Terminal (set_memory): Invalid memory offset" };
     }
 }
 

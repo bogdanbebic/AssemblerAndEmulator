@@ -1,11 +1,11 @@
 #include "Cpu.hpp"
 
-#include <stdexcept>
 #include <utility>
 
 #include "InstructionsDefs.hpp"
 #include "StackOverflow.hpp"
 #include "StackUnderflow.hpp"
+#include "UsageFault.hpp"
 
 emulator::system::cpu::Cpu::Cpu(std::shared_ptr<Memory> memory)
     : memory_(std::move(memory))
@@ -16,7 +16,7 @@ emulator::system::cpu::Cpu::Cpu(std::shared_ptr<Memory> memory)
 void emulator::system::cpu::Cpu::interrupt(const size_t ivt_entry)
 {
     if (ivt_entry >= ivt_num_entries)
-        throw std::invalid_argument{ "Usage fault: invalid ivt_entry" };
+        throw exceptions::UsageFault{ "invalid ivt_entry" };
     this->interrupt_pending_[ivt_entry] = true;
 }
 
@@ -146,7 +146,7 @@ void emulator::system::cpu::Cpu::execute_instruction_zero_operand(instruction::i
         this->general_purpose_registers_[REG_PC] = this->pop_from_stack();
         break;
     default:
-        throw std::invalid_argument{ "Usage fault: invalid opcode" };
+        throw exceptions::UsageFault{ "invalid opcode" };
     }
 }
 
@@ -185,7 +185,7 @@ void emulator::system::cpu::Cpu::execute_instruction_one_operand(instruction::in
         this->write_operand(instr, 0, this->pop_from_stack());
         break;
     default:
-        throw std::invalid_argument{ "Usage fault: invalid opcode" };
+        throw exceptions::UsageFault{ "invalid opcode" };
     }
 }
 
@@ -283,7 +283,7 @@ void emulator::system::cpu::Cpu::execute_instruction_two_operand(instruction::in
         break;
 
     default:
-        throw std::invalid_argument{ "Usage fault: invalid opcode" };
+        throw exceptions::UsageFault{ "invalid opcode" };
     }
 }
 
@@ -310,7 +310,7 @@ emulator::system::cpu::Cpu::operand_memory_address(instruction::instruction_t in
         ret = instr.operands[operand_index].operand;
         break;
     default:
-        throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+        throw exceptions::UsageFault{ "invalid addressing mode" };
     }
 
     return ret;
@@ -335,7 +335,7 @@ emulator::system::word_t emulator::system::cpu::Cpu::operand_value(instruction::
             ret = this->general_purpose_registers_[instr.operands[operand_index].register_index];
             break;
         default:
-            throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+            throw exceptions::UsageFault{ "invalid addressing mode" };
         }
     }
 
@@ -367,10 +367,10 @@ void emulator::system::cpu::Cpu::write_operand(instruction::instruction_t instr,
         else if (reg_index == instruction::psw_idx)
             this->psw_.set(value);
         else
-            throw std::invalid_argument{ "Usage fault: invalid register index" };
+            throw exceptions::UsageFault{ "invalid register index" };
     }
     else
     {
-        throw std::invalid_argument{ "Usage fault: invalid addressing mode" };
+        throw exceptions::UsageFault{ "invalid addressing mode" };
     }
 }

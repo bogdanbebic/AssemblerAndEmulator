@@ -1,8 +1,7 @@
 #include "Alu.hpp"
 
-#include <stdexcept>
-
 #include "Instruction.hpp"
+#include "UsageFault.hpp"
 
 emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operation(
     instruction::OperationCodes opcode, word_t op0, word_t op1, byte_t operand_size)
@@ -105,7 +104,7 @@ emulator::system::cpu::alu_result_t emulator::system::cpu::Alu::execute_operatio
         break;
 
     default:
-        throw std::invalid_argument{ "Usage fault: invalid opcode for ALU" };
+        throw exceptions::UsageFault{ "invalid opcode for ALU" };
     }
 
     ret.z_flag = ret.result == 0;

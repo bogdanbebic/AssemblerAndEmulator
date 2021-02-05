@@ -1,9 +1,9 @@
 #include "Timer.hpp"
 
-#include <stdexcept>
 #include <utility>
 
 #include "CpuDefs.hpp"
+#include "MemoryAccessViolation.hpp"
 
 std::map<emulator::system::word_t, std::chrono::milliseconds> emulator::system::Timer::timeouts_ = {
     { 0x0, std::chrono::milliseconds{ 500 } },
@@ -21,7 +21,7 @@ emulator::system::word_t emulator::system::Timer::get_memory(mem_address_t offse
     switch (offset)
     {
     default:
-        throw std::invalid_argument{ "Invalid memory offset" };
+        throw exceptions::MemoryAccessViolation{ "Timer (get_memory): Invalid memory offset" };
     }
 }
 
@@ -33,7 +33,7 @@ void emulator::system::Timer::set_memory(mem_address_t offset, word_t value)
         this->set_timer_cfg(value);
         break;
     default:
-        throw std::invalid_argument{ "Invalid memory offset" };
+        throw exceptions::MemoryAccessViolation{ "Timer (set_memory): Invalid memory offset" };
     }
 }
 

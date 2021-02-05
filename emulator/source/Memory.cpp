@@ -27,7 +27,7 @@ void emulator::system::Memory::write_word(const mem_address_t base_address, cons
 {
     if (base_address == MEMORY_SIZE - 1)
     {
-        throw exceptions::MemoryAccessViolation{};
+        throw exceptions::MemoryAccessViolation{ "memory write word out of bounds" };
     }
 
     if (base_address >= MMIO_START_ADDRESS && base_address < MMIO_END_ADDRESS)
@@ -44,7 +44,7 @@ emulator::system::word_t emulator::system::Memory::read_word(const mem_address_t
 {
     if (base_address == MEMORY_SIZE - 1)
     {
-        throw exceptions::MemoryAccessViolation{};
+        throw exceptions::MemoryAccessViolation{ "memory read word out of bounds" };
     }
 
     if (base_address >= MMIO_START_ADDRESS && base_address < MMIO_END_ADDRESS)
