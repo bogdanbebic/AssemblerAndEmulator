@@ -1,20 +1,20 @@
-#ifndef _MEMORY_ACCESS_VIOLATION_HPP_
-#define _MEMORY_ACCESS_VIOLATION_HPP_
+#ifndef _INVALID_COMMAND_LIND_OPTIONS_HPP_
+#define _INVALID_COMMAND_LIND_OPTIONS_HPP_
 
 #include <exception>
 #include <string>
 
 namespace emulator
 {
-    namespace system
+    namespace utility
     {
         namespace exceptions
         {
-            class MemoryAccessViolation final : public std::exception
+            class InvalidCommandLineOptions final : public std::exception
             {
             public:
-                explicit MemoryAccessViolation(std::string msg)
-                    : msg_("Memory access violation: " + msg)
+                explicit InvalidCommandLineOptions(std::string msg)
+                    : msg_("invalid cmd options: " + msg)
                 {
                 }
 
@@ -27,7 +27,7 @@ namespace emulator
                 std::string msg_;
             };
         } // namespace exceptions
-    }     // namespace system
+    }     // namespace utility
 } // namespace emulator
 
 #endif

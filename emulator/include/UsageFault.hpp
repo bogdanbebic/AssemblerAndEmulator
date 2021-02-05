@@ -1,5 +1,5 @@
-#ifndef _MEMORY_ACCESS_VIOLATION_HPP_
-#define _MEMORY_ACCESS_VIOLATION_HPP_
+#ifndef _USAGE_FAULT_HPP_
+#define _USAGE_FAULT_HPP_
 
 #include <exception>
 #include <string>
@@ -10,11 +10,11 @@ namespace emulator
     {
         namespace exceptions
         {
-            class MemoryAccessViolation final : public std::exception
+            class UsageFault : std::exception
             {
             public:
-                explicit MemoryAccessViolation(std::string msg)
-                    : msg_("Memory access violation: " + msg)
+                explicit UsageFault(std::string msg)
+                    : msg_("Usage fault: " + msg)
                 {
                 }
 

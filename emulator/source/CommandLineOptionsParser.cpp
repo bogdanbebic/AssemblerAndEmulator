@@ -1,7 +1,8 @@
 #include "CommandLineOptionsParser.hpp"
 
 #include <sstream>
-#include <stdexcept>
+
+#include "InvalidCommandLineOptions.hpp"
 
 static constexpr char usage_string[] = "Usage: emulator "
                                        "[option...] "
@@ -32,7 +33,7 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char *ar
             this->option_bare_memory_ = true;
             if (++i >= argc)
             {
-                throw std::invalid_argument{ "Error: invalid arguments: No bare memory binary file provided" };
+                throw exceptions::InvalidCommandLineOptions{ "No bare memory binary file provided" };
             }
 
             this->bare_memory_filepath_ = argv[i];
@@ -42,7 +43,7 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char *ar
             this->option_link_only_ = true;
             if (++i >= argc)
             {
-                throw std::invalid_argument{ "Error: invalid arguments: No binary file provided for output of linker" };
+                throw exceptions::InvalidCommandLineOptions{ "No binary file provided for output of linker" };
             }
 
             this->link_only_filepath_ = argv[i];
@@ -59,7 +60,7 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char *ar
             bool is_inserted = ret_insert.second;
             if (!is_inserted)
             {
-                throw std::invalid_argument{ "Error: invalid arguments: Duplicate section name provided in args" };
+                throw exceptions::InvalidCommandLineOptions{ "Duplicate section name provided in args" };
             }
         }
         else
@@ -71,7 +72,7 @@ void emulator::utility::CommandLineOptionsParser::parse(const int argc, char *ar
     if (!this->is_help_option() && !this->is_bare_memory_option() &&
         this->source_file_paths().empty())
     {
-        throw std::invalid_argument{ "Error: invalid arguments: No source files provided" };
+        throw exceptions::InvalidCommandLineOptions{ "No source files provided" };
     }
 }
 
