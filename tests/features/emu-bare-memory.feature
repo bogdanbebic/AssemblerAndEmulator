@@ -45,3 +45,10 @@ Feature: Run emulator with bare memory
       And emulator will print "4"
       And emulator will print "1"
       And emulator will print "Emulator finished!"
+
+  Scenario: emulate test function call
+     Given we have emulator
+      When we run emulator with "--bare-memory ./tests/ss_mem/hello_function.s.ss_mem" as arguments
+      Then emulator will print "Emulator started!"
+      And emulator will print "Hello, World!"
+      And emulator will print "Emulator finished!"
