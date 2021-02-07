@@ -52,3 +52,12 @@ Feature: Run emulator with bare memory
       Then emulator will print "Emulator started!"
       And emulator will print "Hello, World!"
       And emulator will print "Emulator finished!"
+
+  Scenario: emulate test move instructions
+     Given we have emulator
+      When we run emulator with "--bare-memory ./tests/ss_mem/test_move.s.ss_mem" as arguments
+      Then emulator will print "Emulator started!"
+      And emulator will print "001"
+      And emulator will print "ABBA"
+      And emulator will print "BABB"
+      And emulator will print "Emulator finished!"
