@@ -107,3 +107,10 @@ Feature: Run emulator with bare memory
       Then emulator will print "Emulator started!"
       And emulator will print "12345"
       And emulator will print "Emulator finished!"
+
+  Scenario: emulate test interrupt instruction
+     Given we have emulator
+      When we run emulator with "--bare-memory ./tests/ss_mem/hello_isr.s.ss_mem" as arguments
+      Then emulator will print "Emulator started!"
+      And emulator will print "INT"
+      And emulator will print "Emulator finished!"
