@@ -22,6 +22,11 @@ def step_impl(context, text):
     context.child = pexpect.spawn(emulator_path + ' ' + text)
 
 
+@when('we send "{text}" to emulator')
+def step_impl(context, text):
+    context.child.send(text)
+
+
 @then('emulator will print "{text}"')
 def step_impl(context, text):
     context.child.expect(text)

@@ -32,6 +32,22 @@ Feature: Run emulator with bare memory
       And emulator will print "TIMER"
       And emulator will print "Emulator finished!"
 
+  Scenario: emulate hello terminal
+     Given we have emulator
+      When we run emulator with "--bare-memory ./tests/ss_mem/hello_terminal.s.ss_mem" as arguments
+      Then emulator will print "Emulator started!"
+      When we send "x" to emulator
+      Then emulator will print "x"
+      When we send "y" to emulator
+      Then emulator will print "y"
+      When we send "1" to emulator
+      Then emulator will print "1"
+      When we send "/" to emulator
+      Then emulator will print "/"
+      When we send "\" to emulator
+      Then emulator will print "\\"
+      And emulator will print "Emulator finished!"
+
   Scenario: emulate hello no loops
      Given we have emulator
       When we run emulator with "--bare-memory ./tests/ss_mem/hello_no_loops.s.ss_mem" as arguments
