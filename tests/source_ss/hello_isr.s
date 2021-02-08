@@ -18,8 +18,7 @@ interrupt_handler:
     mov (%r0), term_out
     mov 1(%r0), term_out
     mov 2(%r0), term_out
-    mov 3(%r0), term_out
-    mov 4(%r0), term_out
+    mov $LF, term_out
     iret
 
 # .section text:
@@ -27,16 +26,16 @@ interrupt_handler:
 _start:
     mov $msg, %r0
 
-    int $4
+    int 4
 
     halt
 
 # .section data:
 
 msg:
-.byte 'I', 'N', 'T', '4'
-.byte 10 # LF
+.byte 'I', 'N', 'T'
 msg_end:
 
 .equ msg_len, msg_end - msg
 .equ term_out, 0xff00
+.equ LF, 0xa
