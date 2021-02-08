@@ -48,6 +48,13 @@ Feature: Run emulator with bare memory
       Then emulator will print "\\"
       And emulator will print "Emulator finished!"
 
+  Scenario: emulate test usage fault
+     Given we have emulator
+      When we run emulator with "--bare-memory ./tests/ss_mem/hello_usage_fault.s.ss_mem" as arguments
+      Then emulator will print "Emulator started!"
+      And emulator will print "INT"
+      And emulator will print "Emulator finished!"
+
   Scenario: emulate hello no loops
      Given we have emulator
       When we run emulator with "--bare-memory ./tests/ss_mem/hello_no_loops.s.ss_mem" as arguments

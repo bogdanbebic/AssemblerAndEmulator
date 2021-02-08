@@ -27,8 +27,15 @@ void emulator::system::cpu::Cpu::work()
         this->memory_->read_word(this->interrupt_vector_table_pointer_);
     while (this->cpu_running_)
     {
-        instruction::instruction_t instr = this->fetch_instruction();
-        this->execute_instruction(instr);
+        try
+        {
+            instruction::instruction_t instr = this->fetch_instruction();
+            this->execute_instruction(instr);
+        }
+        catch (exceptions::UsageFault &ex)
+        {
+            this->interrupt(IVT_INVALID_OP);
+        }
         this->handle_interrupt();
     }
 }
