@@ -100,3 +100,10 @@ Feature: Run emulator with bare memory
       And emulator will print "ABBA"
       And emulator will print "BABB"
       And emulator will print "Emulator finished!"
+
+  Scenario: emulate test jump instructions
+     Given we have emulator
+      When we run emulator with "--bare-memory ./tests/ss_mem/test_jump.s.ss_mem" as arguments
+      Then emulator will print "Emulator started!"
+      And emulator will print "12345"
+      And emulator will print "Emulator finished!"
