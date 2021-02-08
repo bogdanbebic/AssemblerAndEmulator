@@ -155,8 +155,10 @@ void emulator::system::cpu::Cpu::execute_instruction_one_operand(instruction::in
     switch (instr.instruction_descriptor.operation_code)
     {
     case instruction::INT:
+        this->push_to_stack(this->general_purpose_registers_[REG_PC]);
         this->push_to_stack(this->psw_.get());
-        this->general_purpose_registers_[REG_PC] = (this->operand_value(instr, 0) % 8) * 2;
+        this->general_purpose_registers_[REG_PC] =
+            this->memory_->read_word((this->operand_value(instr, 0) % 8) * 2);
         break;
     case instruction::CALL:
         this->push_to_stack(this->general_purpose_registers_[REG_PC]);
