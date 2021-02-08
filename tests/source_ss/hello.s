@@ -25,7 +25,7 @@ loop:
 
     add $1, %r0
     add $1, %r1
-    test %r1, %r2
+    cmp %r1, %r2
     jne loop
 
     halt
