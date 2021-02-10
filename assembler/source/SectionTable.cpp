@@ -49,6 +49,15 @@ size_t assembler::SectionTable::size() const
     return this->section_table_.size();
 }
 
+assembler::SectionTable::key_type assembler::SectionTable::section_name(size_t idx) const
+{
+    for (auto entry : this->section_table_)
+        if (entry.second.index == idx)
+            return entry.first;
+
+    return "*UND*";
+}
+
 std::stringstream assembler::SectionTable::to_school_elf() const
 {
     std::stringstream school_elf_stream;

@@ -34,6 +34,8 @@ namespace assembler
 
         size_t size() const;
 
+        key_type section_name(size_t idx) const;
+
         std::stringstream to_school_elf() const;
 
     private:
