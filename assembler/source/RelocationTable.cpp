@@ -81,6 +81,21 @@ void assembler::RelocationTable::cleanup_forward_references()
         }
     }
 
+    // remove equ section relocations
+    this->relocation_table_.erase(
+        std::remove_if(this->relocation_table_.begin(),
+                       this->relocation_table_.end(),
+                       [this](assembler::RelocationTable::relocation_table_entry_t entry) {
+                           if ((entry.type == R_SECTION16 || entry.type == R_SECTION8) &&
+                               this->symbol_table_->is_defined(entry.symbol))
+                           {
+                               return this->symbol_table_->at(entry.symbol).section_index == 1;
+                           }
+
+                           return false;
+                       }),
+        this->relocation_table_.end());
+
     // check for undefined references
     auto undefined_references_exist = false;
     for (auto &entry : this->relocation_table_)
