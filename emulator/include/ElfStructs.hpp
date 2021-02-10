@@ -31,9 +31,12 @@ namespace linker
             std::vector<emulator::system::byte_t> object_code;
         } section_t;
 
+        using relocation_type_t = int;
         typedef struct RelocationTableEntry
         {
-            // TODO: implement
+            std::string symbol;
+            relocation_type_t type;
+            size_t offset;
         } relocation_table_entry_t;
 
         symbol_table_entry_t parse_symbol_table_entry(std::string s);
