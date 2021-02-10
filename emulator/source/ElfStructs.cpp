@@ -35,7 +35,14 @@ linker::elf::section_table_entry_t linker::elf::parse_section_table_entry(std::s
 
 linker::elf::relocation_table_entry_t linker::elf::parse_relocation_table_entry(std::string s)
 {
-    // TODO: implement
+    std::regex re{ "([_a-zA-Z]+),([0-9]+),([0-9]+),([_A-Z0-9]*)" };
+    std::smatch match;
+    if (!std::regex_match(s, match, re))
+        throw std::invalid_argument{ "Does not contain a school ELF relocation" };
+
     linker::elf::relocation_table_entry_t ret;
+    ret.symbol = match[1].str();
+    ret.type   = std::stoi(match[2].str());
+    ret.offset = std::stoi(match[3].str());
     return ret;
 }
