@@ -9,6 +9,7 @@
 namespace assembler
 {
     class SymbolTable;
+    class SectionTable;
     class ObjectCodeArray;
 
     class RelocationTable
@@ -34,6 +35,7 @@ namespace assembler
         } relocation_table_entry_t;
 
         explicit RelocationTable(std::shared_ptr<SymbolTable> symbol_table,
+                                 std::shared_ptr<SectionTable> section_table,
                                  std::shared_ptr<ObjectCodeArray> object_code);
 
         void insert(relocation_table_entry_t entry);
@@ -51,6 +53,7 @@ namespace assembler
 
         std::map<std::string, std::string> equ_relocations_;
         std::shared_ptr<SymbolTable> symbol_table_;
+        std::shared_ptr<SectionTable> section_table_;
         std::shared_ptr<ObjectCodeArray> object_code_;
     };
 } // namespace assembler

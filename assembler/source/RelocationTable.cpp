@@ -5,12 +5,14 @@
 #include <sstream>
 
 #include "ObjectCodeArray.hpp"
+#include "SectionTable.hpp"
 #include "SymbolTable.hpp"
 #include "UndefinedSymbolReference.hpp"
 
 assembler::RelocationTable::RelocationTable(std::shared_ptr<SymbolTable> symbol_table,
+                                            std::shared_ptr<SectionTable> section_table,
                                             std::shared_ptr<ObjectCodeArray> object_code)
-    : symbol_table_(symbol_table), object_code_(object_code)
+    : symbol_table_(symbol_table), section_table_(section_table), object_code_(object_code)
 {
     // empty body
 }
