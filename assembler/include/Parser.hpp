@@ -26,7 +26,7 @@ namespace parsers
         bool parse_line(const std::string &line);
 
         size_t line_counter_          = 0;
-        size_t current_section_index_ = 0;
+        size_t current_section_index_ = 1;
         assembler::SectionTable::key_type current_section_name_{
             assembler::SectionTable::undefined_section_entry_name
         };
