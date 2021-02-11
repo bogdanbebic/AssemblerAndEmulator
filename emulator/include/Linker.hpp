@@ -26,6 +26,8 @@ namespace linker
         std::vector<emulator::system::byte_t> parse_object_code(std::istream &is, size_t size);
         std::vector<elf::relocation_table_entry_t> parse_relocation_table(std::istream &is);
 
+        std::vector<elf::section_t> sections;
+
         std::vector<emulator::system::byte_t> memory_contents_;
     };
 } // namespace linker
