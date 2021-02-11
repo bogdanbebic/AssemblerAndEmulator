@@ -30,6 +30,12 @@ void linker::Linker::parse_file(const std::string &filepath)
                        symbol_table.end());
 
     std::vector<elf::section_table_entry_t> section_table = this->parse_section_table(file);
+    section_table.erase(std::remove_if(section_table.begin(),
+                                       section_table.end(),
+                                       [](elf::section_table_entry_t entry) {
+                                           return entry.idx < 2;
+                                       }),
+                        section_table.end());
     std::sort(section_table.begin(),
               section_table.end(),
               [](elf::section_table_entry_t entry1, elf::section_table_entry_t entry2) {
@@ -46,17 +52,27 @@ void linker::Linker::parse_file(const std::string &filepath)
     std::vector<elf::relocation_table_entry_t> relocation_table =
         this->parse_relocation_table(file);
 
-    // std::cout << "Parsing file " << filepath << std::endl;
-    std::cout << "SYMBOL:\n";
-    for (auto &entry : symbol_table)
-        std::cout << entry.symbol << "-" << entry.value << "-"
-                  << entry.section_index << "-" << entry.is_global << std::endl;
-    std::cout << "SECTION:\n";
-    for (auto &entry : section_table)
-        std::cout << entry.section << "-" << entry.idx << "-" << entry.size << std::endl;
-    std::cout << "RELOCATION:\n";
-    for (auto &entry : relocation_table)
-        std::cout << entry.symbol << "-" << entry.type << "-" << entry.offset << std::endl;
+    size_t start_address = 0;
+    for (auto section_entry : section_table)
+    {
+        auto end_address = start_address + section_entry.size;
+        elf::section_t section;
+        section.descriptor  = section_entry;
+        section.object_code = std::vector<emulator::system::byte_t>(
+            object_code.begin() + start_address, object_code.begin() + end_address);
+
+        for (auto &relocation : relocation_table)
+        {
+            if (relocation.offset >= start_address && relocation.offset < end_address)
+            {
+                relocation.offset -= start_address;
+                section.relocations.push_back(relocation);
+            }
+        }
+
+        this->sections.push_back(section);
+        start_address += section_entry.size;
+    }
 }
 
 std::vector<linker::elf::symbol_table_entry_t> linker::Linker::parse_symbol_table(std::istream &is)
