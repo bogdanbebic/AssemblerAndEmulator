@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "LinkerError.hpp"
+
 void linker::Linker::link(std::vector<std::string> source_file_paths,
                           std::map<std::string, int> section_address_map)
 {
@@ -25,9 +27,18 @@ void linker::Linker::parse_file(const std::string &filepath)
     symbol_table.erase(std::remove_if(symbol_table.begin(),
                                       symbol_table.end(),
                                       [](elf::symbol_table_entry_t entry) {
-                                          return !entry.is_global;
+                                          return !entry.is_global ||
+                                                 entry.section_index == 0;
                                       }),
                        symbol_table.end());
+    for (auto &symbol : symbol_table)
+    {
+        if (this->symbols.find(symbol.symbol) == this->symbols.end())
+            this->symbols[symbol.symbol] = symbol;
+        else
+            throw exceptions::LinkerError{ "Double definition of symbol: " +
+                                           symbol.symbol };
+    }
 
     std::vector<elf::section_table_entry_t> section_table = this->parse_section_table(file);
     section_table.erase(std::remove_if(section_table.begin(),
