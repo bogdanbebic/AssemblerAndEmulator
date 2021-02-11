@@ -70,6 +70,10 @@ void linker::Linker::parse_file(const std::string &filepath)
             }
         }
 
+        for (auto &symbol : symbol_table)
+            if (symbol.section_index == section.descriptor.idx)
+                section.symbols.push_back(symbol);
+
         this->sections.push_back(section);
         start_address += section_entry.size;
     }
