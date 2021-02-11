@@ -10,7 +10,7 @@ namespace linker
     {
         namespace exceptions
         {
-            class InvalidElf : std::exception
+            class InvalidElf : public std::exception
             {
             public:
                 explicit InvalidElf(std::string msg)
