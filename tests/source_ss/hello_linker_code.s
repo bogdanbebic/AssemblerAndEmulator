@@ -5,13 +5,6 @@
 .global _timer_handler
 .global _terminal_handler
 
-.section isr_handlers:
-
-_illegal_instruction_handler:
-_timer_handler:
-_terminal_handler:
-    iret
-
 .section text:
 
 _start:
