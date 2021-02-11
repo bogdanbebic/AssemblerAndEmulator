@@ -12,6 +12,9 @@ void linker::Linker::link(std::vector<std::string> source_file_paths,
     // TODO: link source files according to section_address_map
     for (auto &source_file_path : source_file_paths)
         this->parse_file(source_file_path);
+
+    this->stitch_section_offsets();
+    this->add_section_address_offsets(section_address_map);
 }
 
 std::vector<emulator::system::byte_t> linker::Linker::memory_contents() const
@@ -31,14 +34,6 @@ void linker::Linker::parse_file(const std::string &filepath)
                                                  entry.section_index == 0;
                                       }),
                        symbol_table.end());
-    for (auto &symbol : symbol_table)
-    {
-        if (this->symbols.find(symbol.symbol) == this->symbols.end())
-            this->symbols[symbol.symbol] = symbol;
-        else
-            throw exceptions::LinkerError{ "Double definition of symbol: " +
-                                           symbol.symbol };
-    }
 
     std::vector<elf::section_table_entry_t> section_table = this->parse_section_table(file);
     section_table.erase(std::remove_if(section_table.begin(),
@@ -68,6 +63,7 @@ void linker::Linker::parse_file(const std::string &filepath)
     {
         auto end_address = start_address + section_entry.size;
         elf::section_t section;
+        section.offset      = 0;
         section.descriptor  = section_entry;
         section.object_code = std::vector<emulator::system::byte_t>(
             object_code.begin() + start_address, object_code.begin() + end_address);
@@ -169,6 +165,64 @@ linker::Linker::parse_relocation_table(std::istream &is)
     }
 
     return ret;
+}
+
+void linker::Linker::stitch_section_offsets()
+{
+    for (auto &section : this->sections)
+    {
+        auto section_id = section.descriptor.section;
+        if (this->section_sizes.find(section_id) != this->section_sizes.end())
+        {
+            section.offset = this->section_sizes[section_id];
+
+            // update object code offsets
+            for (auto &relocation : section.relocations)
+            {
+                if (relocation.symbol == section_id)
+                {
+                    if (relocation.type == elf::R_SECTION16)
+                        Linker::add_word(
+                            section.object_code, relocation.offset, section.offset);
+                    else if (relocation.type == elf::R_SECTION8)
+                        Linker::add_byte(
+                            section.object_code, relocation.offset, section.offset);
+                }
+            }
+
+            // update symbol values
+            for (auto &symbol : section.symbols)
+                symbol.value += section.offset;
+
+            this->section_sizes[section_id] += section.descriptor.size;
+        }
+        else
+        {
+            this->section_sizes[section_id] = section.descriptor.size;
+        }
+
+        for (auto &symbol : section.symbols)
+        {
+            if (this->symbols.find(symbol.symbol) == this->symbols.end())
+                this->symbols[symbol.symbol] = symbol;
+            else
+                throw exceptions::LinkerError{ "Double definition of symbol: " +
+                                               symbol.symbol };
+        }
+    }
+}
+
+void linker::Linker::add_section_address_offsets(std::map<std::string, int> section_address_map)
+{
+    for (auto &section : this->sections)
+    {
+        auto section_id = section.descriptor.section;
+        if (section_address_map.find(section_id) != section_address_map.end())
+            section.offset += section_address_map[section_id];
+
+        if (this->section_offsets.find(section_id) == this->section_offsets.end())
+            this->section_offsets[section_id] = section.offset;
+    }
 }
 
 void linker::Linker::add_byte(std::vector<emulator::system::byte_t> &object_code,
