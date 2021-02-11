@@ -11,6 +11,7 @@ namespace assembler
 {
     class ObjectCodeArray;
     class SymbolTable;
+    class SectionTable;
     class RelocationTable;
 } // namespace assembler
 
@@ -22,6 +23,7 @@ namespace parsers
     {
     public:
         explicit InstructionParser(std::shared_ptr<assembler::SymbolTable> symbol_table,
+                                   std::shared_ptr<assembler::SectionTable> section_table,
                                    std::shared_ptr<assembler::ObjectCodeArray> object_code,
                                    std::shared_ptr<assembler::RelocationTable> relocation_table);
 
@@ -37,6 +39,7 @@ namespace parsers
                                        size_t operand_size);
 
         std::shared_ptr<assembler::SymbolTable> symbol_table_;
+        std::shared_ptr<assembler::SectionTable> section_table_;
         std::shared_ptr<assembler::ObjectCodeArray> object_code_;
         std::shared_ptr<assembler::RelocationTable> relocation_table_;
 

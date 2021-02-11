@@ -12,12 +12,16 @@
 #include "RegisterIndirectParser.hpp"
 
 #include "ObjectCodeArray.hpp"
+#include "SectionTable.hpp"
+#include "SymbolTable.hpp"
 
 parsers::InstructionParser::InstructionParser(
     std::shared_ptr<assembler::SymbolTable> symbol_table,
+    std::shared_ptr<assembler::SectionTable> section_table,
     std::shared_ptr<assembler::ObjectCodeArray> object_code,
     std::shared_ptr<assembler::RelocationTable> relocation_table)
     : symbol_table_(std::move(symbol_table))
+    , section_table_(std::move(section_table))
     , object_code_(std::move(object_code))
     , relocation_table_(std::move(relocation_table))
 {
@@ -244,6 +248,12 @@ size_t parsers::InstructionParser::add_operand_object_code(
          operand->addressing_mode == statement::REGISTER_INDIRECT_OFFSET ||
          operand->addressing_mode == statement::IMMEDIATE))
     {
+        if (operand->relocation->type == assembler::RelocationTable::R_SECTION16)
+        {
+            operand->relocation->symbol = this->section_table_->section_name(
+                this->symbol_table_->at(operand->relocation->symbol).section_index);
+        }
+
         if (operand_size == 1 && operand->addressing_mode == statement::IMMEDIATE)
         {
             if (operand->relocation->type == assembler::RelocationTable::R_SECTION16)

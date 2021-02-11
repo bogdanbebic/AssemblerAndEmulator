@@ -69,14 +69,18 @@ void assembler::RelocationTable::cleanup_forward_references()
             {
                 this->object_code_->increment_word(
                     entry.offset, this->symbol_table_->at(entry.symbol).value);
-                entry.type = R_SECTION16;
+                entry.type   = R_SECTION16;
+                entry.symbol = this->section_table_->section_name(
+                    this->symbol_table_->at(entry.symbol).section_index);
             }
 
             if (entry.type == R_8)
             {
                 this->object_code_->increment_byte(
                     entry.offset, this->symbol_table_->at(entry.symbol).value);
-                entry.type = R_SECTION8;
+                entry.type   = R_SECTION8;
+                entry.symbol = this->section_table_->section_name(
+                    this->symbol_table_->at(entry.symbol).section_index);
             }
         }
     }
@@ -86,13 +90,7 @@ void assembler::RelocationTable::cleanup_forward_references()
         std::remove_if(this->relocation_table_.begin(),
                        this->relocation_table_.end(),
                        [this](assembler::RelocationTable::relocation_table_entry_t entry) {
-                           if ((entry.type == R_SECTION16 || entry.type == R_SECTION8) &&
-                               this->symbol_table_->is_defined(entry.symbol))
-                           {
-                               return this->symbol_table_->at(entry.symbol).section_index == 1;
-                           }
-
-                           return false;
+                           return entry.symbol == assembler::SectionTable::equ_section_entry_name;
                        }),
         this->relocation_table_.end());
 
@@ -100,8 +98,8 @@ void assembler::RelocationTable::cleanup_forward_references()
     auto undefined_references_exist = false;
     for (auto &entry : this->relocation_table_)
     {
-        if (!this->symbol_table_->is_extern(entry.symbol) &&
-            entry.type != R_SECTION16 && entry.type != R_SECTION8)
+        if (entry.type != R_SECTION16 && entry.type != R_SECTION8 &&
+            !this->symbol_table_->is_extern(entry.symbol))
         {
             undefined_references_exist = true;
             std::cerr << "Undefined symbol: " << entry.symbol << std::endl;
