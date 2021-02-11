@@ -17,6 +17,7 @@ void linker::Linker::link(std::vector<std::string> source_file_paths,
 
     this->stitch_section_offsets();
     this->add_section_address_offsets(section_address_map);
+    this->resolve_relocations();
 }
 
 std::vector<emulator::system::byte_t> linker::Linker::memory_contents() const
@@ -75,10 +76,9 @@ void linker::Linker::parse_file(const std::string &filepath)
         auto new_section_idx = ++Linker::next_section_idx;
         auto end_address     = start_address + section_entry.size;
         elf::section_t section;
-        section.offset         = 0;
-        section.descriptor     = section_entry;
-        section.descriptor.idx = new_section_idx;
-        section.object_code    = std::vector<emulator::system::byte_t>(
+        section.offset      = 0;
+        section.descriptor  = section_entry;
+        section.object_code = std::vector<emulator::system::byte_t>(
             object_code.begin() + start_address, object_code.begin() + end_address);
 
         for (auto &relocation : relocation_table)
@@ -99,6 +99,7 @@ void linker::Linker::parse_file(const std::string &filepath)
             }
         }
 
+        section.descriptor.idx = new_section_idx;
         this->sections.push_back(section);
         start_address += section_entry.size;
     }
@@ -199,10 +200,10 @@ void linker::Linker::stitch_section_offsets()
             {
                 if (relocation.symbol == section_id)
                 {
-                    if (relocation.type == elf::R_SECTION16)
+                    if (relocation.type == elf::R_SECTION16 || relocation.type == elf::R_16)
                         Linker::add_word(
                             section.object_code, relocation.offset, section.offset);
-                    else if (relocation.type == elf::R_SECTION8)
+                    else if (relocation.type == elf::R_SECTION8 || relocation.type == elf::R_8)
                         Linker::add_byte(
                             section.object_code, relocation.offset, section.offset);
                 }
@@ -240,6 +241,68 @@ void linker::Linker::add_section_address_offsets(std::map<std::string, int> sect
 
         if (this->section_offsets.find(section_id) == this->section_offsets.end())
             this->section_offsets[section_id] = section.offset;
+    }
+}
+
+void linker::Linker::resolve_relocations()
+{
+    for (auto &section : this->sections)
+    {
+        for (auto &relocation : section.relocations)
+        {
+            switch (relocation.type)
+            {
+            case elf::R_PC16:
+            {
+                auto increment = this->symbols[relocation.symbol].value;
+                Linker::add_word(section.object_code, relocation.offset, increment);
+                break;
+            }
+            case elf::R_16:
+            {
+                auto increment   = this->symbols[relocation.symbol].value;
+                auto section_idx = this->symbols[relocation.symbol].section_index;
+                if (section_idx > 0)
+                {
+                    auto section_name =
+                        this->sections[section_idx - 1].descriptor.section;
+                    increment += this->section_offsets[section_name];
+                }
+
+                Linker::add_word(section.object_code, relocation.offset, increment);
+                break;
+            }
+            case elf::R_8:
+            {
+                auto increment   = this->symbols[relocation.symbol].value;
+                auto section_idx = this->symbols[relocation.symbol].section_index;
+                if (section_idx > 0)
+                {
+                    auto section_name =
+                        this->sections[section_idx - 1].descriptor.section;
+                    increment += this->section_offsets[section_name];
+                }
+
+                Linker::add_byte(section.object_code, relocation.offset, increment);
+                break;
+            }
+            case elf::R_SECTION16:
+            {
+                auto increment = this->section_offsets[relocation.symbol];
+                Linker::add_word(section.object_code, relocation.offset, increment);
+                break;
+            }
+            case elf::R_SECTION8:
+            {
+                auto increment = this->section_offsets[relocation.symbol];
+                Linker::add_byte(section.object_code, relocation.offset, increment);
+                break;
+            }
+
+            default:
+                break;
+            }
+        }
     }
 }
 

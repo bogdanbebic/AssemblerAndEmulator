@@ -28,6 +28,7 @@ namespace linker
 
         void stitch_section_offsets();
         void add_section_address_offsets(std::map<std::string, int> section_address_map);
+        void resolve_relocations();
 
         static void add_byte(std::vector<emulator::system::byte_t> &object_code,
                              size_t offset,
