@@ -6,6 +6,8 @@
 
 #include "LinkerError.hpp"
 
+size_t linker::Linker::next_section_idx = 0;
+
 void linker::Linker::link(std::vector<std::string> source_file_paths,
                           std::map<std::string, int> section_address_map)
 {
@@ -61,11 +63,13 @@ void linker::Linker::parse_file(const std::string &filepath)
     size_t start_address = 0;
     for (auto section_entry : section_table)
     {
-        auto end_address = start_address + section_entry.size;
+        auto new_section_idx = ++Linker::next_section_idx;
+        auto end_address     = start_address + section_entry.size;
         elf::section_t section;
-        section.offset      = 0;
-        section.descriptor  = section_entry;
-        section.object_code = std::vector<emulator::system::byte_t>(
+        section.offset         = 0;
+        section.descriptor     = section_entry;
+        section.descriptor.idx = new_section_idx;
+        section.object_code    = std::vector<emulator::system::byte_t>(
             object_code.begin() + start_address, object_code.begin() + end_address);
 
         for (auto &relocation : relocation_table)
@@ -78,8 +82,13 @@ void linker::Linker::parse_file(const std::string &filepath)
         }
 
         for (auto &symbol : symbol_table)
+        {
             if (symbol.section_index == section.descriptor.idx)
+            {
+                symbol.section_index = new_section_idx;
                 section.symbols.push_back(symbol);
+            }
+        }
 
         this->sections.push_back(section);
         start_address += section_entry.size;
