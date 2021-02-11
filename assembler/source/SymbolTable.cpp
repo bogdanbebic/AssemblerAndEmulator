@@ -60,6 +60,9 @@ void assembler::SymbolTable::make_declaration(const key_type &key)
 
 bool assembler::SymbolTable::is_defined(const key_type &key)
 {
+    if (this->symbol_table_.find(key) == this->symbol_table_.end())
+        return false;
+
     return this->symbol_table_[key].section_index != 0;
 }
 
