@@ -36,6 +36,15 @@ void linker::Linker::parse_file(const std::string &filepath)
                                                  entry.section_index == 0;
                                       }),
                        symbol_table.end());
+    // add equ symbols to new symbol table
+    for (auto &symbol : symbol_table)
+    {
+        if (symbol.section_index == 1)
+        {
+            symbol.section_index         = 0;
+            this->symbols[symbol.symbol] = symbol;
+        }
+    }
 
     std::vector<elf::section_table_entry_t> section_table = this->parse_section_table(file);
     section_table.erase(std::remove_if(section_table.begin(),
