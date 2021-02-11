@@ -33,6 +33,8 @@ namespace linker
                              size_t offset,
                              emulator::system::word_t increment);
 
+        std::map<std::string, elf::symbol_table_entry_t> symbols;
+
         std::vector<elf::section_t> sections;
 
         std::vector<emulator::system::byte_t> memory_contents_;
