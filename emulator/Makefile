@@ -27,6 +27,7 @@ CXXFLAGS =
 CXXFLAGS += -I$(INCLUDE_DIR)
 CXXFLAGS += -MMD -MP
 CXXFLAGS += -Wall
+CXXFLAGS += -g
 
 LDFLAGS = -lpthread
 
