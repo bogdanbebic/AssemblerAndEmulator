@@ -1,8 +1,9 @@
 <map id="emulator/include/Linker.hpp" name="emulator/include/Linker.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="53,5,234,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="50,5,231,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,52,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="76,80,131,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="155,80,214,107"/>
-<area shape="rect" id="node5" href="$Typedefs_8hpp.html" title=" " alt="" coords="238,80,337,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="257,155,318,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="85,155,140,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="175,155,234,181"/>
+<area shape="rect" id="node5" href="$ElfStructs_8hpp.html" title=" " alt="" coords="179,80,281,107"/>
+<area shape="rect" id="node6" href="$Typedefs_8hpp.html" title=" " alt="" coords="263,155,362,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="282,229,343,256"/>
 </map>

@@ -97,7 +97,7 @@ $(function() {
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">bool</span> parse_line(<span class="keyword">const</span> std::string &amp;line);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">size_t</span> line_counter_          = 0;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">size_t</span> current_section_index_ = 0;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">size_t</span> current_section_index_ = 1;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="classassembler_1_1SectionTable.html#a6bfbf8fc16637776a9e2d72627070b69">assembler::SectionTable::key_type</a> current_section_name_{</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="classassembler_1_1SectionTable.html#aa37a2616f9921f508a1b673d029927a9">assembler::SectionTable::undefined_section_entry_name</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        };</div>
@@ -109,8 +109,8 @@ $(function() {
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        std::shared_ptr&lt;assembler::ObjectCodeArray&gt; object_code_ =</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            std::make_shared&lt;assembler::ObjectCodeArray&gt;();</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        std::shared_ptr&lt;assembler::RelocationTable&gt; relocation_table_ =</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            std::make_shared&lt;assembler::RelocationTable&gt;(this-&gt;symbol_table_,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                                         this-&gt;object_code_);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            std::make_shared&lt;assembler::RelocationTable&gt;(</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                this-&gt;symbol_table_, this-&gt;section_table_, this-&gt;object_code_);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classparsers_1_1LineCommentStripper.html">LineCommentStripper</a> line_comment_stripper_;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classparsers_1_1LabelParser.html">LabelParser</a> label_parser_{ symbol_table_ };</div>
