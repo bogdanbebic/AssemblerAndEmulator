@@ -25,7 +25,16 @@ namespace linker
             size_t size;
         } section_table_entry_t;
 
-        using relocation_type_t = int;
+        typedef enum RelocationType
+        {
+            R_16   = 12,
+            R_PC16 = 13,
+            R_8    = 14,
+
+            R_SECTION16 = 15,
+            R_SECTION8  = 16,
+        } relocation_type_t;
+
         typedef struct RelocationTableEntry
         {
             std::string symbol;

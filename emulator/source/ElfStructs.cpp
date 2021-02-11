@@ -44,7 +44,7 @@ linker::elf::relocation_table_entry_t linker::elf::parse_relocation_table_entry(
 
     linker::elf::relocation_table_entry_t ret;
     ret.symbol = match[1].str();
-    ret.type   = std::stoi(match[2].str());
+    ret.type   = static_cast<relocation_type_t>(std::stoi(match[2].str()));
     ret.offset = std::stoi(match[3].str());
     return ret;
 }
