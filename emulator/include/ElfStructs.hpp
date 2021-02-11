@@ -48,6 +48,7 @@ namespace linker
             std::vector<emulator::system::byte_t> object_code;
             std::vector<relocation_table_entry_t> relocations;
             std::vector<symbol_table_entry_t> symbols;
+            size_t offset;
         } section_t;
 
         symbol_table_entry_t parse_symbol_table_entry(std::string s);

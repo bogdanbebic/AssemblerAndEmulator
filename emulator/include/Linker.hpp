@@ -26,6 +26,9 @@ namespace linker
         std::vector<emulator::system::byte_t> parse_object_code(std::istream &is, size_t size);
         std::vector<elf::relocation_table_entry_t> parse_relocation_table(std::istream &is);
 
+        void stitch_section_offsets();
+        void add_section_address_offsets(std::map<std::string, int> section_address_map);
+
         static void add_byte(std::vector<emulator::system::byte_t> &object_code,
                              size_t offset,
                              emulator::system::byte_t increment);
@@ -36,6 +39,8 @@ namespace linker
         std::map<std::string, elf::symbol_table_entry_t> symbols;
 
         std::vector<elf::section_t> sections;
+        std::map<std::string, size_t> section_offsets;
+        std::map<std::string, size_t> section_sizes;
 
         std::vector<emulator::system::byte_t> memory_contents_;
     };
