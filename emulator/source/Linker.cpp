@@ -155,3 +155,20 @@ linker::Linker::parse_relocation_table(std::istream &is)
 
     return ret;
 }
+
+void linker::Linker::add_byte(std::vector<emulator::system::byte_t> &object_code,
+                              size_t offset,
+                              emulator::system::byte_t increment)
+{
+    object_code[offset] += increment;
+}
+
+void linker::Linker::add_word(std::vector<emulator::system::byte_t> &object_code,
+                              size_t offset,
+                              emulator::system::word_t increment)
+{
+    emulator::system::byte_t low_byte  = increment & 0x00FF;
+    emulator::system::byte_t high_byte = (increment & 0xFF00) >> 8;
+    object_code[offset] += low_byte;
+    object_code[offset + 1] += high_byte;
+}
