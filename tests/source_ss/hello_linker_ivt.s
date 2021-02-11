@@ -1,7 +1,7 @@
 .extern _start
-.extern _illegal_instruction_handler
-.extern _timer_handler
-.extern _terminal_handler
+.global _illegal_instruction_handler
+.global _timer_handler
+.global _terminal_handler
 
 .section startup:
 

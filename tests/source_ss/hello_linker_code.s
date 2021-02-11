@@ -1,9 +1,7 @@
 .extern msg, msg_len
 .extern term_out
 
-.global _illegal_instruction_handler
-.global _timer_handler
-.global _terminal_handler
+.global _start
 
 .section text:
 
