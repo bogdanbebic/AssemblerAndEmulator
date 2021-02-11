@@ -36,6 +36,8 @@ namespace linker
                              size_t offset,
                              emulator::system::word_t increment);
 
+        static size_t next_section_idx;
+
         std::map<std::string, elf::symbol_table_entry_t> symbols;
 
         std::vector<elf::section_t> sections;
