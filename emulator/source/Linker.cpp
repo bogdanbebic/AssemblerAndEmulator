@@ -200,10 +200,10 @@ void linker::Linker::stitch_section_offsets()
             {
                 if (relocation.symbol == section_id)
                 {
-                    if (relocation.type == elf::R_SECTION16 || relocation.type == elf::R_16)
+                    if (relocation.type == elf::R_SECTION16)
                         Linker::add_word(
                             section.object_code, relocation.offset, section.offset);
-                    else if (relocation.type == elf::R_SECTION8 || relocation.type == elf::R_8)
+                    else if (relocation.type == elf::R_SECTION8)
                         Linker::add_byte(
                             section.object_code, relocation.offset, section.offset);
                 }
