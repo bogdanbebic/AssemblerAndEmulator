@@ -71,6 +71,14 @@ bool assembler::SymbolTable::is_extern(const key_type &key)
     return this->symbol_table_[key].is_global && !this->is_defined(key);
 }
 
+bool assembler::SymbolTable::is_global(const key_type &key)
+{
+    if (this->symbol_table_.find(key) == this->symbol_table_.end())
+        return false;
+
+    return this->symbol_table_[key].is_global;
+}
+
 std::stringstream assembler::SymbolTable::to_school_elf() const
 {
     std::stringstream school_elf_stream;
