@@ -32,6 +32,7 @@ namespace assembler
         void make_declaration(const key_type &key);
         bool is_defined(const key_type &key);
         bool is_extern(const key_type &key);
+        bool is_global(const key_type &key);
 
         std::stringstream to_school_elf() const;
 
