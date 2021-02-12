@@ -341,7 +341,8 @@ bool linker::Linker::check_section_address_map(std::map<std::string, int> sectio
 
     std::sort(sections_start_end.begin(), sections_start_end.end());
 
-    this->next_section_offset = sections_start_end.back().second;
+    if (sections_start_end.size() > 0)
+        this->next_section_offset = sections_start_end.back().second;
 
     if (sections_start_end.size() < 2)
         return true;
