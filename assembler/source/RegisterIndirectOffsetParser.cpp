@@ -42,6 +42,10 @@ std::shared_ptr<statement::operand_t> parsers::RegisterIndirectOffsetParser::par
 
         auto offset_value =
             ExpressionParser::evaluate_expression(operand_offset, this->symbol_table_);
+
+        if (this->symbol_table_->is_global(operand_offset))
+            offset_value = 0;
+
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
         ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
 
@@ -100,6 +104,10 @@ parsers::RegisterIndirectOffsetParser::parse_jump_instruction(std::string operan
 
         auto offset_value =
             ExpressionParser::evaluate_expression(operand_offset, this->symbol_table_);
+
+        if (this->symbol_table_->is_global(operand_offset))
+            offset_value = 0;
+
         ret->operand[0] = static_cast<uint8_t>(offset_value & 0x00FF);
         ret->operand[1] = static_cast<uint8_t>((offset_value & 0xFF00) >> 8);
 
@@ -142,7 +150,7 @@ bool parsers::RegisterIndirectOffsetParser::can_parse_jump_instruction(const std
 void parsers::RegisterIndirectOffsetParser::add_pc_relative_relocation(
     std::string symbol, std::shared_ptr<statement::operand_t> operand)
 {
-    if (!this->symbol_table_->is_defined(symbol))
+    if (!this->symbol_table_->is_defined(symbol) || this->symbol_table_->is_global(symbol))
     {
         operand->relocation = std::make_shared<assembler::RelocationTable::relocation_table_entry_t>(
             assembler::RelocationTable::relocation_table_entry_t{
@@ -153,7 +161,8 @@ void parsers::RegisterIndirectOffsetParser::add_pc_relative_relocation(
 void parsers::RegisterIndirectOffsetParser::add_register_relative_relocation(
     std::string symbol, std::shared_ptr<statement::operand_t> operand)
 {
-    auto relocation_type = this->symbol_table_->is_defined(symbol)
+    auto relocation_type = this->symbol_table_->is_defined(symbol) &&
+                                   !this->symbol_table_->is_global(symbol)
                                ? assembler::RelocationTable::R_SECTION16
                                : assembler::RelocationTable::R_16;
     operand->relocation = std::make_shared<assembler::RelocationTable::relocation_table_entry_t>(

@@ -63,7 +63,8 @@ void assembler::RelocationTable::cleanup_forward_references()
     // cleanup local forward references
     for (auto &entry : this->relocation_table_)
     {
-        if (this->symbol_table_->is_defined(entry.symbol))
+        if (this->symbol_table_->is_defined(entry.symbol) &&
+            !this->symbol_table_->is_global(entry.symbol))
         {
             if (entry.type == R_16)
             {
@@ -99,7 +100,7 @@ void assembler::RelocationTable::cleanup_forward_references()
     for (auto &entry : this->relocation_table_)
     {
         if (entry.type != R_SECTION16 && entry.type != R_SECTION8 &&
-            !this->symbol_table_->is_extern(entry.symbol))
+            !this->symbol_table_->is_global(entry.symbol))
         {
             undefined_references_exist = true;
             std::cerr << "Undefined symbol: " << entry.symbol << std::endl;
