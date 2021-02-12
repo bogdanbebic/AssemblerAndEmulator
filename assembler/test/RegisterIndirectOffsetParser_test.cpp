@@ -1,13 +1,15 @@
 #include <boost/test/unit_test.hpp>
 
 #include "RegisterIndirectOffsetParser.hpp"
+#include "SymbolTable.hpp"
 
 #include <memory>
 
 struct RegisterIndirectOffsetParserFixture
 {
     std::unique_ptr<parsers::RegisterIndirectOffsetParser> reg_ind_off_parser =
-        std::make_unique<parsers::RegisterIndirectOffsetParser>(nullptr);
+        std::make_unique<parsers::RegisterIndirectOffsetParser>(
+            std::make_shared<assembler::SymbolTable>());
     void test_equal(statement::operand_t expected, statement::operand_t actual)
     {
         BOOST_TEST(expected.addressing_mode == actual.addressing_mode);

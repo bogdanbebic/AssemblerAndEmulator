@@ -1,13 +1,15 @@
 #include <boost/test/unit_test.hpp>
 
 #include "ImmediateParser.hpp"
+#include "SymbolTable.hpp"
 
 #include <memory>
 
 struct ImmediateParserFixture
 {
     std::unique_ptr<parsers::ImmediateParser> immediate_parser =
-        std::make_unique<parsers::ImmediateParser>(nullptr);
+        std::make_unique<parsers::ImmediateParser>(
+            std::make_shared<assembler::SymbolTable>());
     void test_equal(statement::operand_t expected, statement::operand_t actual)
     {
         BOOST_TEST(expected.addressing_mode == actual.addressing_mode);
