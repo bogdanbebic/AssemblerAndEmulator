@@ -14,11 +14,12 @@ var searchData=
   ['is_5fend_530',['is_end',['../classstatements_1_1Statement.html#ac726a69267bc5355e3d95e42b48feda0',1,'statements::Statement']]],
   ['is_5fexpression_531',['is_expression',['../classparsers_1_1ExpressionParser.html#ab15508977120ae06a3c9f4d2f6699640',1,'parsers::ExpressionParser']]],
   ['is_5fextern_532',['is_extern',['../classassembler_1_1SymbolTable.html#a6af1ab9d51e1d473e41257caeafdeb6c',1,'assembler::SymbolTable']]],
-  ['is_5fhelp_5foption_533',['is_help_option',['../classemulator_1_1utility_1_1CommandLineOptionsParser.html#a60afc144b98f08e92f92324f3a656ed8',1,'emulator::utility::CommandLineOptionsParser']]],
-  ['is_5fhelp_5foption_5fset_534',['is_help_option_set',['../classCommandOptions.html#abe25a2391e1b159ebb0ea368b4a50a98',1,'CommandOptions']]],
-  ['is_5flink_5fonly_5foption_535',['is_link_only_option',['../classemulator_1_1utility_1_1CommandLineOptionsParser.html#af2c114d47b71835694bfa2fa53bb51df',1,'emulator::utility::CommandLineOptionsParser']]],
-  ['is_5fliteral_536',['is_literal',['../classparsers_1_1ExpressionParser.html#af02cb22e8af06d140d923d1e1ba7032d',1,'parsers::ExpressionParser']]],
-  ['is_5foperand_5fin_5fmemory_537',['is_operand_in_memory',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#a88591e6843331965cba8df835c5e32b6',1,'emulator::system::cpu::instruction']]],
-  ['is_5fsection_5fend_538',['is_section_end',['../classstatements_1_1Statement.html#a9cbea6dd3d5e325e8f2f18c4b64d03c4',1,'statements::Statement']]],
-  ['is_5fverbose_5foption_5fset_539',['is_verbose_option_set',['../classCommandOptions.html#a37d2ae8b9eff92a29e344889fb5312b7',1,'CommandOptions']]]
+  ['is_5fglobal_533',['is_global',['../classassembler_1_1SymbolTable.html#a4b73bd61d0c34ef821fdee95d430ebd4',1,'assembler::SymbolTable']]],
+  ['is_5fhelp_5foption_534',['is_help_option',['../classemulator_1_1utility_1_1CommandLineOptionsParser.html#a60afc144b98f08e92f92324f3a656ed8',1,'emulator::utility::CommandLineOptionsParser']]],
+  ['is_5fhelp_5foption_5fset_535',['is_help_option_set',['../classCommandOptions.html#abe25a2391e1b159ebb0ea368b4a50a98',1,'CommandOptions']]],
+  ['is_5flink_5fonly_5foption_536',['is_link_only_option',['../classemulator_1_1utility_1_1CommandLineOptionsParser.html#af2c114d47b71835694bfa2fa53bb51df',1,'emulator::utility::CommandLineOptionsParser']]],
+  ['is_5fliteral_537',['is_literal',['../classparsers_1_1ExpressionParser.html#af02cb22e8af06d140d923d1e1ba7032d',1,'parsers::ExpressionParser']]],
+  ['is_5foperand_5fin_5fmemory_538',['is_operand_in_memory',['../namespaceemulator_1_1system_1_1cpu_1_1instruction.html#a88591e6843331965cba8df835c5e32b6',1,'emulator::system::cpu::instruction']]],
+  ['is_5fsection_5fend_539',['is_section_end',['../classstatements_1_1Statement.html#a9cbea6dd3d5e325e8f2f18c4b64d03c4',1,'statements::Statement']]],
+  ['is_5fverbose_5foption_5fset_540',['is_verbose_option_set',['../classCommandOptions.html#a37d2ae8b9eff92a29e344889fb5312b7',1,'CommandOptions']]]
 ];

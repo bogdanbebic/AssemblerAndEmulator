@@ -99,31 +99,32 @@ $(function() {
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">void</span> stitch_section_offsets();</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span> add_section_address_offsets(std::map&lt;std::string, int&gt; section_address_map);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> add_byte(std::vector&lt;emulator::system::byte_t&gt; &amp;object_code,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                             <span class="keywordtype">size_t</span> offset,</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                             <a class="code" href="namespaceemulator_1_1system.html#a47e14db436e9c9e9146bb5778118346c">emulator::system::byte_t</a> increment);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> add_word(std::vector&lt;emulator::system::byte_t&gt; &amp;object_code,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                             <span class="keywordtype">size_t</span> offset,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                             <a class="code" href="namespaceemulator_1_1system.html#a1aea35845049f95d8442217b217adb30">emulator::system::word_t</a> increment);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">size_t</span> next_section_idx;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        std::map&lt;std::string, elf::symbol_table_entry_t&gt; symbols;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        std::vector&lt;elf::section_t&gt; sections;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        std::map&lt;std::string, size_t&gt; section_offsets;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::map&lt;std::string, size_t&gt; section_sizes;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::vector&lt;emulator::system::byte_t&gt; memory_contents_;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    };</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <span class="comment">// namespace linker</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span> resolve_relocations();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> add_byte(std::vector&lt;emulator::system::byte_t&gt; &amp;object_code,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                             <span class="keywordtype">size_t</span> offset,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                             <a class="code" href="namespaceemulator_1_1system.html#a47e14db436e9c9e9146bb5778118346c">emulator::system::byte_t</a> increment);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> add_word(std::vector&lt;emulator::system::byte_t&gt; &amp;object_code,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                             <span class="keywordtype">size_t</span> offset,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                             <a class="code" href="namespaceemulator_1_1system.html#a1aea35845049f95d8442217b217adb30">emulator::system::word_t</a> increment);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">size_t</span> next_section_idx;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        std::map&lt;std::string, elf::symbol_table_entry_t&gt; symbols;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        std::vector&lt;elf::section_t&gt; sections;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::map&lt;std::string, size_t&gt; section_offsets;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::map&lt;std::string, size_t&gt; section_sizes;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::vector&lt;emulator::system::byte_t&gt; memory_contents_;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace linker</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aElfStructs_8hpp_html"><div class="ttname"><a href="ElfStructs_8hpp.html">ElfStructs.hpp</a></div></div>
 <div class="ttc" id="aTypedefs_8hpp_html"><div class="ttname"><a href="Typedefs_8hpp.html">Typedefs.hpp</a></div></div>
 <div class="ttc" id="aclasslinker_1_1Linker_html"><div class="ttname"><a href="classlinker_1_1Linker.html">linker::Linker</a></div><div class="ttdef"><b>Definition:</b> Linker.hpp:14</div></div>
-<div class="ttc" id="aclasslinker_1_1Linker_html_a457bcdc4c170d48733310a08eead714e"><div class="ttname"><a href="classlinker_1_1Linker.html#a457bcdc4c170d48733310a08eead714e">linker::Linker::memory_contents</a></div><div class="ttdeci">std::vector&lt; emulator::system::byte_t &gt; memory_contents() const</div><div class="ttdef"><b>Definition:</b> Linker.cpp:22</div></div>
+<div class="ttc" id="aclasslinker_1_1Linker_html_a457bcdc4c170d48733310a08eead714e"><div class="ttname"><a href="classlinker_1_1Linker.html#a457bcdc4c170d48733310a08eead714e">linker::Linker::memory_contents</a></div><div class="ttdeci">std::vector&lt; emulator::system::byte_t &gt; memory_contents() const</div><div class="ttdef"><b>Definition:</b> Linker.cpp:23</div></div>
 <div class="ttc" id="aclasslinker_1_1Linker_html_ae723d60176a25e2ba7d0c31777889972"><div class="ttname"><a href="classlinker_1_1Linker.html#ae723d60176a25e2ba7d0c31777889972">linker::Linker::link</a></div><div class="ttdeci">void link(std::vector&lt; std::string &gt; source_file_paths, std::map&lt; std::string, int &gt; section_address_map)</div><div class="ttdef"><b>Definition:</b> Linker.cpp:11</div></div>
 <div class="ttc" id="anamespaceemulator_1_1system_html_a1aea35845049f95d8442217b217adb30"><div class="ttname"><a href="namespaceemulator_1_1system.html#a1aea35845049f95d8442217b217adb30">emulator::system::word_t</a></div><div class="ttdeci">uint16_t word_t</div><div class="ttdef"><b>Definition:</b> Typedefs.hpp:13</div></div>
 <div class="ttc" id="anamespaceemulator_1_1system_html_a47e14db436e9c9e9146bb5778118346c"><div class="ttname"><a href="namespaceemulator_1_1system.html#a47e14db436e9c9e9146bb5778118346c">emulator::system::byte_t</a></div><div class="ttdeci">uint8_t byte_t</div><div class="ttdef"><b>Definition:</b> Typedefs.hpp:12</div></div>

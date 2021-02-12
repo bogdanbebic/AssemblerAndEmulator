@@ -34,7 +34,7 @@ var searchData=
   ['is_5fend_103',['is_end',['../classstatements_1_1Statement.html#ac726a69267bc5355e3d95e42b48feda0',1,'statements::Statement']]],
   ['is_5fexpression_104',['is_expression',['../classparsers_1_1ExpressionParser.html#ab15508977120ae06a3c9f4d2f6699640',1,'parsers::ExpressionParser']]],
   ['is_5fextern_105',['is_extern',['../classassembler_1_1SymbolTable.html#a6af1ab9d51e1d473e41257caeafdeb6c',1,'assembler::SymbolTable']]],
-  ['is_5fglobal_106',['is_global',['../structassembler_1_1SymbolTable_1_1SymbolTableEntry.html#a4907f9d91b3295fda44a85a012105e60',1,'assembler::SymbolTable::SymbolTableEntry::is_global()'],['../structlinker_1_1elf_1_1SymbolTableEntry.html#a8aa7ed2503fdc5b7d6174420fdfe49c5',1,'linker::elf::SymbolTableEntry::is_global()']]],
+  ['is_5fglobal_106',['is_global',['../classassembler_1_1SymbolTable.html#a4b73bd61d0c34ef821fdee95d430ebd4',1,'assembler::SymbolTable::is_global()'],['../structlinker_1_1elf_1_1SymbolTableEntry.html#a8aa7ed2503fdc5b7d6174420fdfe49c5',1,'linker::elf::SymbolTableEntry::is_global()'],['../structassembler_1_1SymbolTable_1_1SymbolTableEntry.html#a4907f9d91b3295fda44a85a012105e60',1,'assembler::SymbolTable::SymbolTableEntry::is_global()']]],
   ['is_5fhelp_5foption_107',['is_help_option',['../classemulator_1_1utility_1_1CommandLineOptionsParser.html#a60afc144b98f08e92f92324f3a656ed8',1,'emulator::utility::CommandLineOptionsParser']]],
   ['is_5fhelp_5foption_5fset_108',['is_help_option_set',['../classCommandOptions.html#abe25a2391e1b159ebb0ea368b4a50a98',1,'CommandOptions']]],
   ['is_5flink_5fonly_5foption_109',['is_link_only_option',['../classemulator_1_1utility_1_1CommandLineOptionsParser.html#af2c114d47b71835694bfa2fa53bb51df',1,'emulator::utility::CommandLineOptionsParser']]],
