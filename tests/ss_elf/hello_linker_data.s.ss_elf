@@ -1,0 +1,24 @@
+##########
+# School ELF symbol table:
+# symbol,value,section_index,is_global(G/L)
+msg,0,2,G
+msg_end,14,2,L
+msg_len,14,1,G
+term_out,65280,1,G
+##########
+##########
+# School ELF section table:
+# section,index,size
+*EQU*,1,0
+*UND*,0,0
+data,2,14
+##########
+##########
+# School ELF object code:
+Hello, World!
+
+##########
+##########
+# School ELF relocation table:
+# symbol,type,offset,type_string
+##########
