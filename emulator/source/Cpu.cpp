@@ -358,8 +358,9 @@ emulator::system::word_t emulator::system::cpu::Cpu::operand_value(instruction::
         }
     }
 
-    if (instruction::operand_size(instr, operand_index))
+    if (instruction::operand_size(instr, operand_index) == instruction::OPERAND_SIZE_BYTE)
         ret &= 0xFF;
+
     return ret;
 }
 
