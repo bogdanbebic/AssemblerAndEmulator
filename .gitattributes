@@ -4,3 +4,6 @@
 *.bat text eol=crlf
 
 *.sh text eol=lf
+
+*.ss_elf binary
+*.ss_mem binary
