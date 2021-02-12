@@ -30,6 +30,9 @@ namespace linker
         void add_section_address_offsets(std::map<std::string, int> section_address_map);
         void resolve_relocations();
 
+        void arrange_sections_to_memory(std::map<std::string, int> section_address_map);
+        bool check_section_address_map(std::map<std::string, int> section_address_map);
+
         static void add_byte(std::vector<emulator::system::byte_t> &object_code,
                              size_t offset,
                              emulator::system::byte_t increment);
@@ -38,6 +41,8 @@ namespace linker
                              emulator::system::word_t increment);
 
         static size_t next_section_idx;
+
+        size_t next_section_offset = 0;
 
         std::map<std::string, elf::symbol_table_entry_t> symbols;
 

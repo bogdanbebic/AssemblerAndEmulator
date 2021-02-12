@@ -5,19 +5,21 @@
 #include <iostream>
 
 #include "LinkerError.hpp"
+#include "Memory.hpp"
 
 size_t linker::Linker::next_section_idx = 0;
 
 void linker::Linker::link(std::vector<std::string> source_file_paths,
                           std::map<std::string, int> section_address_map)
 {
-    // TODO: link source files according to section_address_map
     for (auto &source_file_path : source_file_paths)
         this->parse_file(source_file_path);
 
     this->stitch_section_offsets();
     this->add_section_address_offsets(section_address_map);
     this->resolve_relocations();
+
+    this->arrange_sections_to_memory(section_address_map);
 }
 
 std::vector<emulator::system::byte_t> linker::Linker::memory_contents() const
@@ -233,11 +235,22 @@ void linker::Linker::stitch_section_offsets()
 
 void linker::Linker::add_section_address_offsets(std::map<std::string, int> section_address_map)
 {
+    if (!this->check_section_address_map(section_address_map))
+        throw exceptions::LinkerError{ "Invalid section addresses, a conflict exists" };
+
     for (auto &section : this->sections)
     {
         auto section_id = section.descriptor.section;
         if (section_address_map.find(section_id) != section_address_map.end())
+        {
             section.offset += section_address_map[section_id];
+        }
+        else
+        {
+            section.offset += this->next_section_offset;
+            this->next_section_offset += this->section_sizes[section_id];
+            section_address_map[section_id] = section.offset;
+        }
 
         if (this->section_offsets.find(section_id) == this->section_offsets.end())
             this->section_offsets[section_id] = section.offset;
@@ -304,6 +317,40 @@ void linker::Linker::resolve_relocations()
             }
         }
     }
+}
+
+void linker::Linker::arrange_sections_to_memory(std::map<std::string, int> section_address_map)
+{
+    this->memory_contents_ = std::vector<emulator::system::byte_t>(
+        emulator::system::Memory::MEMORY_SIZE, 0);
+
+    for (auto &section : this->sections)
+        for (size_t i = 0; i < section.descriptor.size; i++)
+            this->memory_contents_.at(section.offset + i) = section.object_code.at(i);
+}
+
+bool linker::Linker::check_section_address_map(std::map<std::string, int> section_address_map)
+{
+    std::vector<std::pair<size_t, size_t>> sections_start_end;
+    for (auto &entry : section_address_map)
+    {
+        auto start_address = entry.second;
+        auto end_address   = start_address + this->section_sizes[entry.first];
+        sections_start_end.push_back({ start_address, end_address });
+    }
+
+    std::sort(sections_start_end.begin(), sections_start_end.end());
+
+    this->next_section_offset = sections_start_end.back().second;
+
+    if (sections_start_end.size() < 2)
+        return true;
+
+    for (size_t i = 0; i < sections_start_end.size() - 1; i++)
+        if (sections_start_end[i].second > sections_start_end[i + 1].first)
+            return false;
+
+    return true;
 }
 
 void linker::Linker::add_byte(std::vector<emulator::system::byte_t> &object_code,
