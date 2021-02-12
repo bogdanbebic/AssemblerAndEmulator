@@ -14,6 +14,10 @@ std::shared_ptr<statement::operand_t> parsers::MemoryDirectParser::parse(std::st
     ret->addressing_mode = statement::MEMORY_DIRECT;
 
     auto value = ExpressionParser::evaluate_expression(operand, this->symbol_table_);
+
+    if (this->symbol_table_->is_global(operand))
+        value = 0;
+
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
     ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
 
@@ -34,6 +38,10 @@ parsers::MemoryDirectParser::parse_jump_instruction(std::string operand)
 
     auto operand_stripped = operand.substr(1);
     auto value = ExpressionParser::evaluate_expression(operand_stripped, this->symbol_table_);
+
+    if (this->symbol_table_->is_global(operand_stripped))
+        value = 0;
+
     ret->operand[0] = static_cast<uint8_t>(value & 0x00FF);
     ret->operand[1] = static_cast<uint8_t>((value & 0xFF00) >> 8);
 
@@ -64,7 +72,8 @@ bool parsers::MemoryDirectParser::can_parse_jump_instruction(const std::string &
 void parsers::MemoryDirectParser::add_memory_direct_relocation(
     std::string symbol, std::shared_ptr<statement::operand_t> operand)
 {
-    auto relocation_type = this->symbol_table_->is_defined(symbol)
+    auto relocation_type = this->symbol_table_->is_defined(symbol) &&
+                                   !this->symbol_table_->is_global(symbol)
                                ? assembler::RelocationTable::R_SECTION16
                                : assembler::RelocationTable::R_16;
     operand->relocation = std::make_shared<assembler::RelocationTable::relocation_table_entry_t>(

@@ -67,6 +67,9 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                 if (!ExpressionParser::is_literal(byte_def))
                     this->add_byte_relocation(byte_def);
 
+                if (this->symbol_table_->is_global(byte_def))
+                    value = 0;
+
                 this->object_code_->push_back_byte(static_cast<assembler::byte_t>(value));
                 bytes_defs_count++;
             }
@@ -95,6 +98,9 @@ std::shared_ptr<statements::Statement> parsers::DataDefinitionParser::parse(std:
                 if (!ExpressionParser::is_literal(word_def))
                     this->add_word_relocation(word_def);
 
+                if (this->symbol_table_->is_global(word_def))
+                    value = 0;
+
                 this->object_code_->push_back_word(static_cast<assembler::word_t>(value));
                 word_defs_count++;
             }
@@ -114,7 +120,8 @@ bool parsers::DataDefinitionParser::can_parse(const std::string &statement) cons
 
 void parsers::DataDefinitionParser::add_byte_relocation(std::string symbol)
 {
-    auto relocation_type = this->symbol_table_->is_defined(symbol)
+    auto relocation_type = this->symbol_table_->is_defined(symbol) &&
+                                   !this->symbol_table_->is_global(symbol)
                                ? assembler::RelocationTable::R_SECTION8
                                : assembler::RelocationTable::R_8;
     this->relocation_table_->insert(
@@ -123,7 +130,8 @@ void parsers::DataDefinitionParser::add_byte_relocation(std::string symbol)
 
 void parsers::DataDefinitionParser::add_word_relocation(std::string symbol)
 {
-    auto relocation_type = this->symbol_table_->is_defined(symbol)
+    auto relocation_type = this->symbol_table_->is_defined(symbol) &&
+                                   !this->symbol_table_->is_global(symbol)
                                ? assembler::RelocationTable::R_SECTION16
                                : assembler::RelocationTable::R_16;
     this->relocation_table_->insert(
